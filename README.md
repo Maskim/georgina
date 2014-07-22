@@ -1,6 +1,6 @@
-Ceorgina Collier Website
+Georgina Collier Website
 ========
 
 This is the repository from the website of Georgina Collier
 
-www.georgina.collier.com
+www.georgina-collier.com
