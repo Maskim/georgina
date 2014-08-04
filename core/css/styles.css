@@ -90,7 +90,7 @@ nav ul li a:hover {
 }
 /* line 42, ../scss/layout/_menu.scss */
 nav ul li a:hover .link-alt {
-  left: 120px;
+  left: 100px;
 }
 /* line 47, ../scss/layout/_menu.scss */
 nav ul li a i {
@@ -105,26 +105,29 @@ nav ul li a span {
 /* line 60, ../scss/layout/_menu.scss */
 .link-alt {
   position: absolute;
-  background: rgba(255, 255, 255, 0.8);
-  color: #111111;
-  border: 1px solid;
-  border-color: rgba(255, 255, 255, 0.9);
-  height: 30px;
-  top: 50%;
-  margin-top: -15px;
-  padding: 5px;
+  top: 0;
   left: -200px;
+  background: #ededed;
+  color: #111111;
+  border: solid;
+  border-width: 0 3px 0 0;
+  border-color: #ffb10a;
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  -ms-border-radius: 2;
+  -o-border-radius: 2;
+  border-radius: 2;
   z-index: -1;
-  font-size: 24px;
   white-space: nowrap;
   display: block;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
-  -webkit-transition: left 0.5s;
-  -moz-transition: left 0.5s;
-  -o-transition: left 0.5s;
-  transition: left 0.5s;
+  height: 100%;
+  font-size: 20px;
+  padding: 32px 20px 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: left 0.3s;
+  -moz-transition: left 0.3s;
+  -o-transition: left 0.3s;
+  transition: left 0.3s;
 }
