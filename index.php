@@ -34,18 +34,24 @@
             <a href="#" data-title="Films">
                 <i class="fa fa-film"></i>
                 <span>Movies</span>
+
+                <div class="link-alt">My movies</div>
             </a>
         </li>
         <li>
             <a href="#" data-title="Photos">
                 <i class="fa fa-photo"></i>
                 <span>Photos</span>
+
+                <div class="link-alt">My prints projects</div>
             </a>
         </li>
         <li>
             <a href="#" data-title="Contact">
                 <i class="fa fa-phone"></i>
                 <span>Contact</span>
+
+                <div class="link-alt">How to contact me ?</div>
             </a>
         </li>
     </ul>

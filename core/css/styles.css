@@ -90,7 +90,7 @@ nav ul li a:hover {
 }
 /* line 42, ../scss/layout/_menu.scss */
 nav ul li a:hover .link-alt {
-  right: -100px;
+  left: 120px;
 }
 /* line 47, ../scss/layout/_menu.scss */
 nav ul li a i {
@@ -105,15 +105,26 @@ nav ul li a span {
 /* line 60, ../scss/layout/_menu.scss */
 .link-alt {
   position: absolute;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   color: #111111;
   border: 1px solid;
-  border-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.9);
+  height: 30px;
   top: 50%;
-  right: 0;
+  margin-top: -15px;
+  padding: 5px;
+  left: -200px;
   z-index: -1;
-  -webkit-transition: right 0.5s;
-  -moz-transition: right 0.5s;
-  -o-transition: right 0.5s;
-  transition: right 0.5s;
+  font-size: 24px;
+  white-space: nowrap;
+  display: block;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+  -o-transition: left 0.5s;
+  transition: left 0.5s;
 }
