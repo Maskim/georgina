@@ -18,8 +18,12 @@
 </head>
 <body>
 
-<nav>
-    <h1><a href="/" title="Georgina Collier" data-title="Georgina Collier">GC</a></h1>
+<!--<nav>
+    <h1>
+        <a href="/" title="Georgina Collier" data-title="Georgina Collier">GC</a>
+
+        <div class="link-alt">Georgina Collier</div>
+    </h1>
 
     <ul>
         <li>
@@ -27,35 +31,48 @@
                 <i class="fa fa-home"></i>
                 <span>Home</span>
 
-                <div class="link-alt">Home</div>
             </a>
+            <div class="link-alt">Home</div>
         </li>
         <li>
             <a href="#" data-title="Films">
                 <i class="fa fa-film"></i>
                 <span>Movies</span>
 
-                <div class="link-alt">My movies</div>
             </a>
+            <div class="link-alt">My movies</div>
         </li>
         <li>
             <a href="#" data-title="Photos">
                 <i class="fa fa-photo"></i>
                 <span>Photos</span>
-
-                <div class="link-alt">My prints projects</div>
             </a>
+
+            <div class="link-alt">My prints projects</div>
         </li>
         <li>
             <a href="#" data-title="Contact">
+
                 <i class="fa fa-phone"></i>
                 <span>Contact</span>
-
-                <div class="link-alt">How to contact me ?</div>
             </a>
+            <div class="link-alt">How to contact me ?</div>
         </li>
     </ul>
 </nav>
+-->
+
+<div class="home">
+    <h1 class="me">
+        <span class="left">Georgina</span>
+        <span class="right">Collier</span>
+    </h1>
+
+    <div class="designer">Designer</div>
+    <div class="videaste">Videaste</div>
+</div>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 </body>
 </html>

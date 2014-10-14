@@ -10,21 +10,24 @@ body {
   padding: 0;
   font-size: 1em;
   background: #333333;
+  font-family: 'Geometria-Light', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-/* line 9, ../scss/generic/_base.scss */
+/* line 10, ../scss/generic/_base.scss */
 h1 {
   margin: 0;
   padding: 0;
 }
 
-/* line 14, ../scss/generic/_base.scss */
+/* line 15, ../scss/generic/_base.scss */
 a {
   color: white;
   text-decoration: none;
 }
 
-/* line 19, ../scss/generic/_base.scss */
+/* line 20, ../scss/generic/_base.scss */
 ul, li {
   list-style: none;
   margin: 0;
@@ -37,8 +40,15 @@ nav {
   width: 100px;
   height: 100%;
   background: white;
+  z-index: 100;
 }
-/* line 7, ../scss/layout/_menu.scss */
+/* line 8, ../scss/layout/_menu.scss */
+nav h1 {
+  position: relative;
+  font-size: 28px;
+  z-index: 100;
+}
+/* line 14, ../scss/layout/_menu.scss */
 nav h1 a {
   background: #ffb10a;
   height: 80px;
@@ -48,16 +58,29 @@ nav h1 a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding-top: 27px;
+  padding-top: 23px;
   font-family: 'Geometria-Light', Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-/* line 20, ../scss/layout/_menu.scss */
+/* line 28, ../scss/layout/_menu.scss */
+nav h1:hover .link-alt {
+  left: 100px;
+}
+/* line 33, ../scss/layout/_menu.scss */
+nav h1 .link-alt {
+  background: #ffb10a;
+  color: white;
+  font-size: 28px;
+  padding-top: 25px;
+}
+/* line 42, ../scss/layout/_menu.scss */
 nav ul li {
   position: relative;
+  width: 100%;
+  height: 90px;
 }
-/* line 22, ../scss/layout/_menu.scss */
+/* line 47, ../scss/layout/_menu.scss */
 nav ul li a {
   width: 100%;
   height: 90px;
@@ -81,28 +104,29 @@ nav ul li a {
   font-weight: 400;
   font-style: normal;
   font-size: 18px;
+  background: white;
 }
-/* line 37, ../scss/layout/_menu.scss */
+/* line 64, ../scss/layout/_menu.scss */
 nav ul li a:hover {
   background: #ededed;
   color: #111111;
   border-left-width: 2px;
 }
-/* line 42, ../scss/layout/_menu.scss */
-nav ul li a:hover .link-alt {
+/* line 69, ../scss/layout/_menu.scss */
+nav ul li a:hover + .link-alt {
   left: 100px;
 }
-/* line 47, ../scss/layout/_menu.scss */
+/* line 75, ../scss/layout/_menu.scss */
 nav ul li a i {
   font-size: 30px;
 }
-/* line 51, ../scss/layout/_menu.scss */
+/* line 79, ../scss/layout/_menu.scss */
 nav ul li a span {
   display: block;
   padding-top: 2px;
 }
 
-/* line 60, ../scss/layout/_menu.scss */
+/* line 88, ../scss/layout/_menu.scss */
 .link-alt {
   position: absolute;
   top: 0;
@@ -130,4 +154,152 @@ nav ul li a span {
   -moz-transition: left 0.3s;
   -o-transition: left 0.3s;
   transition: left 0.3s;
+}
+
+/* line 2, ../scss/layout/_content.scss */
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 1, ../scss/layout/_home.scss */
+.home {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/pont-chaban.jpg");
+  background-size: 100%;
+  position: relative;
+}
+/* line 8, ../scss/layout/_home.scss */
+.home .me {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  left: 0;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 10;
+  height: 100px;
+}
+/* line 19, ../scss/layout/_home.scss */
+.home .me:before {
+  content: "";
+  background: rgba(26, 148, 206, 0.5);
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  right: 50%;
+  position: absolute;
+  z-index: 9;
+  -webkit-transform: skewX(-30deg);
+  -moz-transform: skewX(-30deg);
+  -ms-transform: skewX(-30deg);
+  -o-transform: skewX(-30deg);
+  transform: skewX(-30deg);
+}
+/* line 30, ../scss/layout/_home.scss */
+.home .me:after {
+  content: "";
+  background: rgba(17, 17, 17, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: -50%;
+  position: absolute;
+  z-index: 9;
+  -webkit-transform: skewX(-30deg);
+  -moz-transform: skewX(-30deg);
+  -ms-transform: skewX(-30deg);
+  -o-transform: skewX(-30deg);
+  transform: skewX(-30deg);
+}
+/* line 41, ../scss/layout/_home.scss */
+.home .me .left, .home .me .right {
+  display: inline-block;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  margin-top: -27px;
+  font-size: 70px;
+  line-height: 70px;
+}
+/* line 51, ../scss/layout/_home.scss */
+.home .me .left {
+  right: 55%;
+}
+/* line 55, ../scss/layout/_home.scss */
+.home .me .right {
+  left: 55%;
+}
+/* line 60, ../scss/layout/_home.scss */
+.home .designer {
+  position: absolute;
+  height: 50px;
+  top: 30%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: 55px;
+  right: -50%;
+  font-size: 30px;
+  color: white;
+  z-index: 10;
+  padding-left: 50px;
+  padding-top: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 76, ../scss/layout/_home.scss */
+.home .designer:before {
+  content: "";
+  position: absolute;
+  background: rgba(26, 148, 206, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  -webkit-transform: skewX(-30deg);
+  -moz-transform: skewX(-30deg);
+  -ms-transform: skewX(-30deg);
+  -o-transform: skewX(-30deg);
+  transform: skewX(-30deg);
+}
+/* line 88, ../scss/layout/_home.scss */
+.home .videaste {
+  position: absolute;
+  height: 50px;
+  top: 30%;
+  margin-top: 140px;
+  right: 50%;
+  margin-right: 55px;
+  left: -50%;
+  font-size: 30px;
+  color: white;
+  z-index: 10;
+  padding-right: 50px;
+  text-align: right;
+  padding-top: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 106, ../scss/layout/_home.scss */
+.home .videaste:before {
+  content: "";
+  position: absolute;
+  background: rgba(17, 17, 17, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  -webkit-transform: skewX(-30deg);
+  -moz-transform: skewX(-30deg);
+  -ms-transform: skewX(-30deg);
+  -o-transform: skewX(-30deg);
+  transform: skewX(-30deg);
 }
