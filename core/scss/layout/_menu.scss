@@ -1,4 +1,4 @@
-nav{
+/*nav{
   position: fixed;
   width: 100px;
   height: 100%;
@@ -109,4 +109,69 @@ nav{
   @include box-sizing(border-box);
 
   @include transition(left 0.3s);
+}*/
+
+
+nav {
+  position: absolute;
+  bottom: 10%;
+  left: 0; right: 0;
+
+  ul {
+    text-align: center;
+
+    li{
+      display: inline-block;
+
+      i {
+        font-size: 35px;
+        color: $white;
+        border-radius: 100px;
+        display: inline-block;
+        border: 3px solid $blue;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        vertical-align: middle;
+        background: rgba($black, 0.7);
+
+        @include box-sizing(border-box);
+        @include transition(all 0.3s);
+        padding-top: 8px;
+
+        &.fa-photo {
+          padding-top: 10px;
+        }
+
+        &.fa-film {
+          padding-left: 2px;
+        }
+
+        &.fa-phone {
+          padding-top: 11px;
+        }
+      }
+
+      span {
+        font-size: 20px;
+        text-transform: uppercase;
+        color: $white;
+        @include transition(all 0.3s);
+      }
+
+      a {
+        &:hover {
+          i {
+            background: rgba($black, 0.3);
+            color: $blue;
+            border-color: lighten($blue, 10%);
+          }
+
+          span {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
 }
