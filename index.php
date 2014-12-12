@@ -25,6 +25,7 @@
 
     <div class="designer">
         <span>Designer</span>
+        <p> test </p>
     </div>
     <div class="videaste">
         <span>Vidéaste</span>
