@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Geometria-Light';
+  src: url('../fonts/geometria-light.eot');
+  src: url('../fonts/geometria-light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/geometria-light.woff') format('woff'),
+        url('../fonts/geometria-light.ttf') format('truetype');
+}
+
+@mixin geometria(){
+  font-family: 'Geometria-Light', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

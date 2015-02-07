@@ -39,7 +39,7 @@
 
         <ul>
             <li>
-                <a href="#home" data-title="Home">
+                <a href="#home" data-scroll data-title="Home">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
 
@@ -47,7 +47,7 @@
                 <!--<div class="link-alt">Home</div>-->
             </li>
             <li>
-                <a href="#designer" data-title="Photos">
+                <a href="#designer" data-scroll data-title="Photos">
                     <i class="fa fa-photo"></i>
                     <span>Designer</span>
                 </a>
@@ -55,7 +55,7 @@
                 <!--<div class="link-alt">My prints projects</div>-->
             </li>
             <li>
-                <a href="#videaste" data-title="Films">
+                <a href="#videaste" data-scroll data-title="Films">
                     <i class="fa fa-film"></i>
                     <span>Vidéaste</span>
 
@@ -63,7 +63,7 @@
                 <!--<div class="link-alt">My movies</div>-->
             </li>
             <li>
-                <a href="#contact" data-title="Contact">
+                <a href="#contact" data-scroll data-title="Contact">
                     <i class="fa fa-phone"></i>
                     <span>Contact</span>
                 </a>
@@ -111,7 +111,8 @@
     </div>
 </section>
 
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<script type="text/javascript" src="core/js/libs/smooth-scroll.js"></script>
+<script type="text/javascript" src="core/js/behaviors.js"></script>
 
 </body>
 </html>

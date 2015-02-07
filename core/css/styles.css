@@ -148,19 +148,25 @@ ul, li {
 /* line 115, ../scss/layout/_menu.scss */
 nav {
   position: absolute;
-  bottom: 10%;
+  bottom: 0;
   left: 0;
   right: 0;
+  height: 120px;
+  padding-top: 20px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.5);
 }
-/* line 120, ../scss/layout/_menu.scss */
+/* line 124, ../scss/layout/_menu.scss */
 nav ul {
   text-align: center;
 }
-/* line 123, ../scss/layout/_menu.scss */
+/* line 127, ../scss/layout/_menu.scss */
 nav ul li {
   display: inline-block;
 }
-/* line 126, ../scss/layout/_menu.scss */
+/* line 130, ../scss/layout/_menu.scss */
 nav ul li i {
   font-size: 35px;
   color: #FFFFFF;
@@ -181,19 +187,19 @@ nav ul li i {
   transition: all 0.3s;
   padding-top: 8px;
 }
-/* line 142, ../scss/layout/_menu.scss */
+/* line 146, ../scss/layout/_menu.scss */
 nav ul li i.fa-photo {
   padding-top: 10px;
 }
-/* line 146, ../scss/layout/_menu.scss */
+/* line 150, ../scss/layout/_menu.scss */
 nav ul li i.fa-film {
   padding-left: 2px;
 }
-/* line 150, ../scss/layout/_menu.scss */
+/* line 154, ../scss/layout/_menu.scss */
 nav ul li i.fa-phone {
   padding-top: 11px;
 }
-/* line 155, ../scss/layout/_menu.scss */
+/* line 159, ../scss/layout/_menu.scss */
 nav ul li span {
   font-size: 20px;
   text-transform: uppercase;
@@ -203,13 +209,13 @@ nav ul li span {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 164, ../scss/layout/_menu.scss */
+/* line 168, ../scss/layout/_menu.scss */
 nav ul li a:hover i {
   background: rgba(17, 17, 17, 0.3);
   color: #00E8E8;
   border-color: #1cffff;
 }
-/* line 170, ../scss/layout/_menu.scss */
+/* line 174, ../scss/layout/_menu.scss */
 nav ul li a:hover span {
   color: #00E8E8;
 }
@@ -274,11 +280,12 @@ section h2 span {
   height: 100%;
   min-height: 580px;
   background-image: url("../img/pont-chaban.jpg");
-  background-size: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
   position: relative;
   overflow: hidden;
 }
-/* line 10, ../scss/layout/_home.scss */
+/* line 11, ../scss/layout/_home.scss */
 .home .me {
   position: absolute;
   top: 30%;
@@ -291,7 +298,7 @@ section h2 span {
   z-index: 10;
   height: 100px;
 }
-/* line 21, ../scss/layout/_home.scss */
+/* line 22, ../scss/layout/_home.scss */
 .home .me:before {
   content: "";
   background: rgba(0, 232, 232, 0.5);
@@ -306,7 +313,7 @@ section h2 span {
   -webkit-transform: skewX(-30deg);
   transform: skewX(-30deg);
 }
-/* line 32, ../scss/layout/_home.scss */
+/* line 33, ../scss/layout/_home.scss */
 .home .me:after {
   content: "";
   background: rgba(17, 17, 17, 0.5);
@@ -321,7 +328,7 @@ section h2 span {
   -webkit-transform: skewX(-30deg);
   transform: skewX(-30deg);
 }
-/* line 43, ../scss/layout/_home.scss */
+/* line 44, ../scss/layout/_home.scss */
 .home .me .left, .home .me .right {
   display: inline-block;
   position: absolute;
@@ -331,15 +338,15 @@ section h2 span {
   font-size: 70px;
   line-height: 70px;
 }
-/* line 53, ../scss/layout/_home.scss */
+/* line 54, ../scss/layout/_home.scss */
 .home .me .left {
   right: 55%;
 }
-/* line 57, ../scss/layout/_home.scss */
+/* line 58, ../scss/layout/_home.scss */
 .home .me .right {
   left: 55%;
 }
-/* line 62, ../scss/layout/_home.scss */
+/* line 63, ../scss/layout/_home.scss */
 .home .designer,
 .home .videaste {
   position: absolute;
@@ -353,13 +360,13 @@ section h2 span {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-/* line 74, ../scss/layout/_home.scss */
+/* line 75, ../scss/layout/_home.scss */
 .home .designer span,
 .home .videaste span {
   position: relative;
   z-index: 10;
 }
-/* line 80, ../scss/layout/_home.scss */
+/* line 81, ../scss/layout/_home.scss */
 .home .designer {
   top: 30%;
   margin-top: -50px;
@@ -372,11 +379,11 @@ section h2 span {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 89, ../scss/layout/_home.scss */
+/* line 90, ../scss/layout/_home.scss */
 .home .designer:hover {
   padding-left: 60px;
 }
-/* line 93, ../scss/layout/_home.scss */
+/* line 94, ../scss/layout/_home.scss */
 .home .designer:before {
   content: "";
   position: absolute;
@@ -391,7 +398,7 @@ section h2 span {
   -webkit-transform: skewX(-30deg);
   transform: skewX(-30deg);
 }
-/* line 105, ../scss/layout/_home.scss */
+/* line 106, ../scss/layout/_home.scss */
 .home .videaste {
   top: 30%;
   margin-top: 140px;
@@ -405,11 +412,11 @@ section h2 span {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 116, ../scss/layout/_home.scss */
+/* line 117, ../scss/layout/_home.scss */
 .home .videaste:hover {
   padding-right: 60px;
 }
-/* line 120, ../scss/layout/_home.scss */
+/* line 121, ../scss/layout/_home.scss */
 .home .videaste:before {
   content: "";
   position: absolute;
