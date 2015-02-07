@@ -1,118 +1,35 @@
-<!doctype html>
-<!--[if lte IE 7]> <html class="no-js ie67 ie678" lang="fr"> <![endif]-->
-<!--[if IE 8]> <html class="no-js ie8 ie678" lang="fr"> <![endif]-->
-<!--[if IE 9]> <html class="no-js ie9" lang="fr"> <![endif]-->
-<!--[if gt IE 9]> <!--><html class="no-js" lang="fr"> <!--<![endif]-->
-<head>
-    <meta charset="UTF-8">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
-    <title>Georgina Collier</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+namespace Grav;
 
-    <meta name="keyword" content="Georgina, Collier, graphiste, videaste, graphic, designer, video" />
+if (version_compare($ver = PHP_VERSION, $req = '5.4.0', '<')) {
+    exit(sprintf('You are running PHP %s, but Grav needs at least <strong>PHP %s</strong> to run.', $ver, $req));
+}
 
-    <!--[if lt IE 9]>
-    <![endif]-->
-    <link rel="stylesheet" href="core/css/styles.css" media="all">
-    <link rel="stylesheet" href="core/css/font-awesome.css" media="all">
-</head>
-<body>
-<div class="home">
-    <h1 class="me">
-        <span class="left">Georgina</span>
-        <span class="right">Collier</span>
-    </h1>
+$autoload = __DIR__ . '/vendor/autoload.php';
+if (!is_file($autoload)) {
+    exit('Please run: <i>bin/grav install</i>');
+}
 
-    <div class="designer">
-        <span>Designer</span>
-    </div>
-    <div class="videaste">
-        <span>Vidéaste</span>
-    </div>
+use Grav\Common\Grav;
 
-    <nav>
-        <!--<h1>
-            <a href="/" title="Georgina Collier" data-title="Georgina Collier">GC</a>
+// Register the auto-loader.
+$loader = require_once $autoload;
 
-            <div class="link-alt">Georgina Collier</div>
-        </h1>-->
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
+}
 
-        <ul>
-            <li>
-                <a href="#home" data-scroll data-title="Home">
-                    <i class="fa fa-home"></i>
-                    <span>Home</span>
+$grav = Grav::instance(
+    array(
+        'loader' => $loader
+    )
+);
 
-                </a>
-                <!--<div class="link-alt">Home</div>-->
-            </li>
-            <li>
-                <a href="#designer" data-scroll data-title="Photos">
-                    <i class="fa fa-photo"></i>
-                    <span>Designer</span>
-                </a>
+try {
+    $grav->process();
 
-                <!--<div class="link-alt">My prints projects</div>-->
-            </li>
-            <li>
-                <a href="#videaste" data-scroll data-title="Films">
-                    <i class="fa fa-film"></i>
-                    <span>Vidéaste</span>
+} catch (\Exception $e) {
+    $grav->fireEvent('onFatalException');
+    throw $e;
+}
 
-                </a>
-                <!--<div class="link-alt">My movies</div>-->
-            </li>
-            <li>
-                <a href="#contact" data-scroll data-title="Contact">
-                    <i class="fa fa-phone"></i>
-                    <span>Contact</span>
-                </a>
-                <!--<div class="link-alt">How to contact me ?</div>-->
-            </li>
-        </ul>
-    </nav>
-</div>
-
-<section id="me">
-    <h2><span>What about me ?</span></h2>
-</section>
-
-<section id="designer">
-    <h2><span>Designer</span></h2>
-</section>
-
-<section id="videaste">
-    <h2><span>Vidéaste</span></h2>
-</section>
-
-<section id="contact">
-    <h2><span>How to contact me ?</span></h2>
-    <div class="content">
-        <form action="#" method="POST">
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" />
-            </div>
-
-            <div class="form-group">
-                <label for="subject">Your email</label>
-                <input type="email" id="email" name="email" />
-            </div>
-
-            <div class="form-group">
-                <label for="content">Your message</label>
-                <textarea id="content"></textarea>
-            </div>
-
-            <div>
-                <input type="submit" value="Envoyer" />
-            </div>
-        </form>
-    </div>
-</section>
-
-<script type="text/javascript" src="core/js/libs/smooth-scroll.js"></script>
-<script type="text/javascript" src="core/js/behaviors.js"></script>
-
-</body>
-</html>
