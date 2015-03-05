@@ -2,6 +2,25 @@ title: Georgina Collier
 author:
   name: Georgina Collier
   email: 'georgina.abigail.collier@gmail.com'
+  copyright: "Copyright 2015 Georgina Collier. All Rights Reserved."
 metadata:
     description: 'Portfolio de Georgina Collier'
 
+header_options:
+  arrows: 'true'                            # Create Next and previous button
+  autoslide: 'false'                        # Auto slideshow mode
+  autoslideHoverStop: 'false'               # Pause auto slideshow mode on mouseover
+  interval: '2000'                          # The interval between each slide (Interval in millisecond)
+  loop: 'true'                             # Infinite slideshow
+  transition : zoom                         # Set the animation kind (fade/slide/page/zoom)
+  itemsForSlide: '0'                        # Wrap each 'n' item
+  touch: 'true'                             # Set a native slide for touch device
+  swipe : 'true'                            # Enable swipe for touch device
+
+footer:
+    description: "Graphiste et Vidéaste"
+    contact_title: "Contact Info"
+    newsletter_title: "Newsletter"
+    newsletter_description: "Etiam porta sem malesuada magna mollis euismod."
+    copyright_text: "Copyright 2015 Georgina Collier. All Rights Reserved."
+    feedburner: ""   # Your feedburner id for Newsletter footer modul

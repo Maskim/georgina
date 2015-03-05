@@ -1,7 +1,7 @@
 ---
 title: Homepage Features
 menu: Features
-class: small
+class: card
 features:
     - header: Markdown Syntax
       icon: text-height
@@ -31,3 +31,4 @@ features:
 
 ## Stuffed full of Amazing Features
 ### This is a non-inclusive smattering of them
+

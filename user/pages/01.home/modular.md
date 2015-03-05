@@ -1,8 +1,9 @@
 ---
 title: Georgina Collier - Portfolio
 menu: Home
-onpage_menu: true
+onpage_menu: false
 body_classes: "modular header-image fullwidth"
+bg_color: "#B4B093"
 
 content:
     items: @self.modular
@@ -11,9 +12,8 @@ content:
         dir: asc
         custom:
             - _showcase
-            - _callout
-            - _highlights
-            - _features
+            - _portfolio
+            
 ---
 
 

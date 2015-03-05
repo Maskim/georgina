@@ -2,11 +2,11 @@ home:
   alias: '/home'
 
 pages:
-  theme: antimatter
+  theme: deliver
   markdown_extra: false
   process:
     markdown: true
-    twig: false
+    twig: true
 
 cache:
   enabled: true
