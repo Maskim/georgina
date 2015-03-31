@@ -13,6 +13,7 @@ content:
         custom:
             - _showcase
             - _portfolio
+            - _contact
             
 ---
 
