@@ -1,0 +1,1168 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GT3Themes WP\n"
+"POT-Creation-Date: 2014-11-07 20:37+0200\n"
+"PO-Revision-Date: 2014-11-07 20:37+0200\n"
+"Last-Translator: \n"
+"Language-Team: GT3Themes <help@gt3themes.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-KeywordsList: __;_e;_\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:11 404.php:26 core/admin/options.php:606 search.php:63
+msgid "Oops!"
+msgstr ""
+
+#: 404.php:26 search.php:63
+msgid "Not Found :("
+msgstr ""
+
+#: 404.php:27 core/admin/options.php:613 search.php:64
+msgid "Apologies, but we were unable to find what you were looking for."
+msgstr ""
+
+#: 404.php:30 core/admin/options.php:557 search.php:67 searchform.php:2
+msgid "Search the site..."
+msgstr ""
+
+#: bloglisting.php:10 comments.php:24 core/admin/options.php:563
+#: core/admin/options.php:570 core/admin/options.php:577
+#: core/admin/options.php:713 core/admin/options.php:720
+#: core/admin/options.php:727 core/admin/options.php:734
+#: core/admin/options.php:738 core/admin/options.php:742
+#: core/shortcodes/sitemap.php:108
+msgid "Comments"
+msgstr ""
+
+#: bloglisting.php:27 core/admin/options.php:756
+#: core/page-builder/pb-parser.php:128 core/registrator/ajax-handlers.php:245
+#: core/shortcodes/feature_posts.php:190 core/shortcodes/feature_posts.php:244
+#: core/shortcodes/portfolio.php:158 core/widgets/posts.php:27 page.php:36
+#: single-port.php:76 single.php:50
+msgid "Read more!"
+msgstr ""
+
+#: comments.php:4 core/admin/options.php:700
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: comments.php:49 core/admin/options.php:655 core/admin/options.php:770
+#: core/registrator/ajax-handlers.php:143 core/shortcodes/feedback_form.php:25
+msgid "Name *"
+msgstr ""
+
+#: comments.php:50 core/admin/options.php:662 core/admin/options.php:777
+#: core/registrator/ajax-handlers.php:143 core/shortcodes/feedback_form.php:28
+msgid "Email *"
+msgstr ""
+
+#: comments.php:51 core/admin/options.php:780 core/admin/options.php:784
+msgid "URL"
+msgstr ""
+
+#: comments.php:53 core/admin/options.php:791
+msgid "Message..."
+msgstr ""
+
+#: comments.php:56 core/admin/options.php:714
+msgid "You must be logged in to post a comment."
+msgstr ""
+
+#: comments.php:57 core/admin/options.php:703 core/admin/options.php:707
+msgid "Leave a Comment!"
+msgstr ""
+
+#: comments.php:58 core/admin/options.php:567 core/admin/options.php:571
+msgid "Post Comment"
+msgstr ""
+
+#: comments.php:59 core/admin/options.php:717 core/admin/options.php:721
+msgid "Logged in as"
+msgstr ""
+
+#: comments.php:59 core/admin/options.php:728
+msgid "Log out?"
+msgstr ""
+
+#: comments.php:64 core/admin/options.php:735
+msgid "Sorry, the comment form is closed at this time."
+msgstr ""
+
+#: core/admin/options.php:6
+msgid "General"
+msgstr ""
+
+#: core/admin/options.php:13
+msgid "Header logo"
+msgstr ""
+
+#: core/admin/options.php:19
+msgid "Logo (Retina)"
+msgstr ""
+
+#: core/admin/options.php:25
+msgid "Header logo width"
+msgstr ""
+
+#: core/admin/options.php:33
+msgid "Header logo height"
+msgstr ""
+
+#: core/admin/options.php:42
+msgid "Favicon"
+msgstr ""
+
+#: core/admin/options.php:49
+msgid "Apple touch icon (57px)"
+msgstr ""
+
+#: core/admin/options.php:56
+msgid "Apple touch icon (72px)"
+msgstr ""
+
+#: core/admin/options.php:63
+msgid "Apple touch icon (114px)"
+msgstr ""
+
+#: core/admin/options.php:69
+msgid "Header type"
+msgstr ""
+
+#: core/admin/options.php:82
+msgid "Tag Line type"
+msgstr ""
+
+#: core/admin/options.php:95
+msgid "Custom CSS"
+msgstr ""
+
+#: core/admin/options.php:100
+msgid "Google analytics or any other code<br>(before &lt;/head&gt;)"
+msgstr ""
+
+#: core/admin/options.php:105
+msgid "Any code <br>(before &lt;/body&gt;)"
+msgstr ""
+
+#: core/admin/options.php:110 core/admin/options.php:864
+#: core/admin/options.php:868 single.php:98
+msgid "Related Posts"
+msgstr ""
+
+#: core/admin/options.php:120
+msgid "Footer Widget Area"
+msgstr ""
+
+#: core/admin/options.php:130
+msgid "Responsive"
+msgstr ""
+
+#: core/admin/options.php:140
+msgid "Site width"
+msgstr ""
+
+#: core/admin/options.php:150
+msgid "Portfolio comments"
+msgstr ""
+
+#: core/admin/options.php:160
+msgid "Page comments"
+msgstr ""
+
+#: core/admin/options.php:173
+msgid "Sidebars"
+msgstr ""
+
+#: core/admin/options.php:180
+msgid "Default sidebar layout"
+msgstr ""
+
+#: core/admin/options.php:191
+msgid "Sidebar manager"
+msgstr ""
+
+#: core/admin/options.php:199
+msgid "Fonts"
+msgstr ""
+
+#: core/admin/options.php:206
+msgid "Main font"
+msgstr ""
+
+#: core/admin/options.php:213
+msgid "Main font parameters"
+msgstr ""
+
+#: core/admin/options.php:222
+msgid "Headers"
+msgstr ""
+
+#: core/admin/options.php:229
+msgid "Headers font parameters"
+msgstr ""
+
+#: core/admin/options.php:238 core/page-builder/pb-modules.php:71
+msgid "Content"
+msgstr ""
+
+#: core/admin/options.php:245
+msgid "Content font parameters"
+msgstr ""
+
+#: core/admin/options.php:254
+msgid "H1 font size"
+msgstr ""
+
+#: core/admin/options.php:263
+msgid "H2 font size"
+msgstr ""
+
+#: core/admin/options.php:272
+msgid "H3 font size"
+msgstr ""
+
+#: core/admin/options.php:281
+msgid "H4 font size"
+msgstr ""
+
+#: core/admin/options.php:290
+msgid "H5 font size"
+msgstr ""
+
+#: core/admin/options.php:299
+msgid "H6 font size"
+msgstr ""
+
+#: core/admin/options.php:308
+msgid "Content font size"
+msgstr ""
+
+#: core/admin/options.php:317
+msgid "Content line height"
+msgstr ""
+
+#: core/admin/options.php:329
+msgid "Socials"
+msgstr ""
+
+#: core/admin/options.php:335
+msgid "Facebook"
+msgstr ""
+
+#: core/admin/options.php:338 core/admin/options.php:344
+#: core/admin/options.php:350 core/admin/options.php:356
+#: core/admin/options.php:362 core/admin/options.php:368
+#: core/admin/options.php:374 core/admin/options.php:380
+#: core/admin/options.php:386 core/admin/options.php:392
+#: core/admin/options.php:398 core/admin/options.php:404
+msgid "Please specify http:// to the URL"
+msgstr ""
+
+#: core/admin/options.php:341
+msgid "Flickr"
+msgstr ""
+
+#: core/admin/options.php:347
+msgid "Vimeo"
+msgstr ""
+
+#: core/admin/options.php:353
+msgid "Pinterest"
+msgstr ""
+
+#: core/admin/options.php:359
+msgid "Dribbble"
+msgstr ""
+
+#: core/admin/options.php:365
+msgid "LinkedIn"
+msgstr ""
+
+#: core/admin/options.php:371
+msgid "Tumblr"
+msgstr ""
+
+#: core/admin/options.php:377
+msgid "YouTube"
+msgstr ""
+
+#: core/admin/options.php:383
+msgid "Delicious"
+msgstr ""
+
+#: core/admin/options.php:389
+msgid "Google Plus"
+msgstr ""
+
+#: core/admin/options.php:395
+msgid "Instagram"
+msgstr ""
+
+#: core/admin/options.php:401
+msgid "Twitter"
+msgstr ""
+
+#: core/admin/options.php:407
+msgid "Twitter Consumer key"
+msgstr ""
+
+#: core/admin/options.php:410 core/admin/options.php:416
+#: core/admin/options.php:422 core/admin/options.php:428
+msgid ""
+"For Twitter widget. Get it <a target=\"_blank\" href=\"https://dev.twitter."
+"com/apps\">here</a>."
+msgstr ""
+
+#: core/admin/options.php:413
+msgid "Twitter Consumer secret"
+msgstr ""
+
+#: core/admin/options.php:419
+msgid "Twitter User token"
+msgstr ""
+
+#: core/admin/options.php:425
+msgid "Twitter User secret"
+msgstr ""
+
+#: core/admin/options.php:434
+msgid "Contacts"
+msgstr ""
+
+#: core/admin/options.php:440
+msgid "Send mails to"
+msgstr ""
+
+#: core/admin/options.php:445
+msgid "Phone number"
+msgstr ""
+
+#: core/admin/options.php:453
+msgid "View Options"
+msgstr ""
+
+#: core/admin/options.php:459
+msgid "Theme color"
+msgstr ""
+
+#: core/admin/options.php:466
+msgid "Default theme layout"
+msgstr ""
+
+#: core/admin/options.php:471
+msgid "Clean"
+msgstr ""
+
+#: core/admin/options.php:472
+msgid "Boxed"
+msgstr ""
+
+#: core/admin/options.php:473
+msgid "Fullscreen bg image"
+msgstr ""
+
+#: core/admin/options.php:477
+msgid "Default background color"
+msgstr ""
+
+#: core/admin/options.php:484
+msgid "Header text color"
+msgstr ""
+
+#: core/admin/options.php:492 core/page-builder/pb-modules.php:1140
+msgid "Background image"
+msgstr ""
+
+#: core/admin/options.php:499
+msgid "Background pattern"
+msgstr ""
+
+#: core/admin/options.php:505
+msgid "Breadcrumb"
+msgstr ""
+
+#: core/admin/options.php:510 core/page-builder/pb-modules.php:1195
+msgid "Yes"
+msgstr ""
+
+#: core/admin/options.php:511 core/page-builder/pb-modules.php:1195
+msgid "No"
+msgstr ""
+
+#: core/admin/options.php:518
+msgid "Translator"
+msgstr ""
+
+#: core/admin/options.php:524
+msgid "Custom translator status"
+msgstr ""
+
+#: core/admin/options.php:526
+msgid ""
+"If you want to use .po .mo files, please disable custom translator, "
+"otherwise you can use the custom translator below."
+msgstr ""
+
+#: core/admin/options.php:529
+msgid "Enable"
+msgstr ""
+
+#: core/admin/options.php:530
+msgid "Disable"
+msgstr ""
+
+#: core/admin/options.php:534
+msgid "Copyright"
+msgstr ""
+
+#: core/admin/options.php:537 footer.php:39
+msgid "&copy; 2020 Business Theme. All Rights Reserved."
+msgstr ""
+
+#: core/admin/options.php:538
+msgid "In footer"
+msgstr ""
+
+#: core/admin/options.php:541
+msgid "Call us"
+msgstr ""
+
+#: core/admin/options.php:544 header.php:43 header.php:55
+msgid "Call us toll free: "
+msgstr ""
+
+#: core/admin/options.php:548
+msgid "Slogan"
+msgstr ""
+
+#: core/admin/options.php:551 header.php:44
+msgid "Best WP Theme Ever!"
+msgstr ""
+
+#: core/admin/options.php:554
+msgid "Search"
+msgstr ""
+
+#: core/admin/options.php:560
+msgid "Reply button"
+msgstr ""
+
+#: core/admin/options.php:564 functions.php:213
+msgid "Reply"
+msgstr ""
+
+#: core/admin/options.php:574
+msgid "Awaiting moderation"
+msgstr ""
+
+#: core/admin/options.php:578 functions.php:216
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: core/admin/options.php:581
+msgid "Clear"
+msgstr ""
+
+#: core/admin/options.php:584 core/admin/options.php:591
+msgid "In all forms"
+msgstr ""
+
+#: core/admin/options.php:585 core/shortcodes/feedback_form.php:42
+msgid "Clear form"
+msgstr ""
+
+#: core/admin/options.php:588 core/admin/options.php:592
+#: core/shortcodes/feedback_form.php:43
+msgid "Send comment"
+msgstr ""
+
+#: core/admin/options.php:595
+msgid "404 header"
+msgstr ""
+
+#: core/admin/options.php:598
+msgid "Error 404 page header"
+msgstr ""
+
+#: core/admin/options.php:599
+msgid "Not Found!"
+msgstr ""
+
+#: core/admin/options.php:602
+msgid "Oops"
+msgstr ""
+
+#: core/admin/options.php:605
+msgid "Error 404 page"
+msgstr ""
+
+#: core/admin/options.php:609
+msgid "404 text"
+msgstr ""
+
+#: core/admin/options.php:612
+msgid "Error 404 page text"
+msgstr ""
+
+#: core/admin/options.php:616 core/admin/options.php:620 single-port.php:60
+msgid "Project URL"
+msgstr ""
+
+#: core/admin/options.php:623 core/admin/options.php:627
+msgid "View Project"
+msgstr ""
+
+#: core/admin/options.php:630
+msgid "All items"
+msgstr ""
+
+#: core/admin/options.php:633
+msgid "Portfolio page (filter)"
+msgstr ""
+
+#: core/admin/options.php:634 functions.php:115 functions.php:167
+msgid "All"
+msgstr ""
+
+#: core/admin/options.php:637 core/admin/options.php:641
+#: core/page-builder/pb-modules.php:29 core/shortcodes/sitemap.php:65
+msgid "Portfolio"
+msgstr ""
+
+#: core/admin/options.php:644
+msgid "Load more button"
+msgstr ""
+
+#: core/admin/options.php:647 core/admin/options.php:797
+msgid "Portfolio page"
+msgstr ""
+
+#: core/admin/options.php:648 core/shortcodes/portfolio.php:300
+msgid "Load more works"
+msgstr ""
+
+#: core/admin/options.php:651
+msgid "Feedback form name"
+msgstr ""
+
+#: core/admin/options.php:654 core/admin/options.php:661
+#: core/admin/options.php:668 core/admin/options.php:675
+msgid "Contact form"
+msgstr ""
+
+#: core/admin/options.php:658
+msgid "Feedback form email"
+msgstr ""
+
+#: core/admin/options.php:665
+msgid "Feedback form subject"
+msgstr ""
+
+#: core/admin/options.php:669 core/shortcodes/feedback_form.php:31
+msgid "Subject"
+msgstr ""
+
+#: core/admin/options.php:672
+msgid "Feedback form message"
+msgstr ""
+
+#: core/admin/options.php:676 core/registrator/ajax-handlers.php:143
+#: core/shortcodes/feedback_form.php:34
+msgid "Message *"
+msgstr ""
+
+#: core/admin/options.php:679
+msgid "Message subject"
+msgstr ""
+
+#: core/admin/options.php:681 functions.php:331
+msgid "[Website] Contact Form"
+msgstr ""
+
+#: core/admin/options.php:684
+msgid "Thank you message"
+msgstr ""
+
+#: core/admin/options.php:686 core/registrator/ajax-handlers.php:154
+msgid "Thank you! Your message has been sent."
+msgstr ""
+
+#: core/admin/options.php:689
+msgid "Please fill the required field"
+msgstr ""
+
+#: core/admin/options.php:692
+msgid "Contact page"
+msgstr ""
+
+#: core/admin/options.php:693 core/registrator/ajax-handlers.php:144
+#: core/registrator/ajax-handlers.php:149
+msgid "Please fill the required field."
+msgstr ""
+
+#: core/admin/options.php:696
+msgid "Password protected"
+msgstr ""
+
+#: core/admin/options.php:710
+msgid "Logged in"
+msgstr ""
+
+#: core/admin/options.php:724
+msgid "Log out"
+msgstr ""
+
+#: core/admin/options.php:731
+msgid "Comment form is closed"
+msgstr ""
+
+#: core/admin/options.php:745 core/admin/options.php:749 functions.php:211
+msgid "Posted by"
+msgstr ""
+
+#: core/admin/options.php:752
+msgid "Read more"
+msgstr ""
+
+#: core/admin/options.php:755
+msgid "All pages"
+msgstr ""
+
+#: core/admin/options.php:759
+msgid "Tags"
+msgstr ""
+
+#: core/admin/options.php:763
+msgid "Tags: "
+msgstr ""
+
+#: core/admin/options.php:766 core/page-builder/pb-modules.php:1413
+msgid "Name"
+msgstr ""
+
+#: core/admin/options.php:769 core/admin/options.php:776
+#: core/admin/options.php:783 core/admin/options.php:790
+msgid "Comment form"
+msgstr ""
+
+#: core/admin/options.php:773
+msgid "Email"
+msgstr ""
+
+#: core/admin/options.php:787
+msgid "Message"
+msgstr ""
+
+#: core/admin/options.php:794
+msgid "Back button"
+msgstr ""
+
+#: core/admin/options.php:798 single-port.php:156 single.php:111
+msgid "Back"
+msgstr ""
+
+#: core/admin/options.php:801 core/admin/options.php:805
+#: core/admin/options.php:829 core/admin/options.php:833
+#: core/shortcodes/sitemap.php:40 page.php:40 single-port.php:79 single.php:52
+msgid "Pages"
+msgstr ""
+
+#: core/admin/options.php:808 core/admin/options.php:812
+#: core/shortcodes/sitemap.php:29
+msgid "Site Feeds"
+msgstr ""
+
+#: core/admin/options.php:815 core/admin/options.php:819
+#: core/shortcodes/sitemap.php:31
+msgid "Main RSS Feed"
+msgstr ""
+
+#: core/admin/options.php:822 core/admin/options.php:826
+#: core/shortcodes/sitemap.php:32
+msgid "Comments RSS Feed"
+msgstr ""
+
+#: core/admin/options.php:836 core/admin/options.php:840
+#: core/shortcodes/sitemap.php:89
+msgid "Posts"
+msgstr ""
+
+#: core/admin/options.php:843 core/page-builder/pb-modules.php:1313
+#: core/registrator/ajax-handlers.php:215 core/shortcodes/portfolio.php:126
+msgid "Time spent"
+msgstr ""
+
+#: core/admin/options.php:847 single-port.php:56
+msgid "time spent"
+msgstr ""
+
+#: core/admin/options.php:850
+msgid "Skills Needed"
+msgstr ""
+
+#: core/admin/options.php:854 single-port.php:64
+msgid "skills needed"
+msgstr ""
+
+#: core/admin/options.php:857 core/admin/options.php:861 single-port.php:130
+msgid "Related Projects"
+msgstr ""
+
+#: core/admin/options.php:871 core/admin/options.php:875 functions.php:723
+msgid "Home"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:5
+msgid "Accordion"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:8
+msgid "Toggle"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:11
+msgid "Blockquote"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:14
+msgid "Feedback form"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:17
+msgid "Icon box"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:20
+msgid "Message box"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:23
+msgid "Custom list"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:26
+msgid "Gallery"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:32
+msgid "Blog"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:35
+msgid "Featured posts"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:38
+msgid "Promo text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:41
+msgid "Divider"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:44
+msgid "Video"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:47
+msgid "Tabs"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:50
+msgid "Title"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:53
+msgid "Slider"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:56
+msgid "Team"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:59
+msgid "Price table"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:62
+msgid "Testimonials"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:65
+msgid "Text area"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:68
+msgid "Google map"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:74
+msgid "Contact info"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:77
+msgid "Social share"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:80
+msgid "Partners"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:83
+msgid "Diagram"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:86
+msgid "Sitemap"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:89
+msgid "BG Start"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:92
+msgid "BG End"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:95 core/page-builder/pb-modules.php:1116
+msgid "HTML"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:106
+msgid "Heading"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:110
+msgid "Alignment"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:116
+msgid "Heading size"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:122
+msgid "Color"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:227
+msgid "Done"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:317 core/page-builder/pb-modules.php:386
+#: core/page-builder/pb-modules.php:455 core/page-builder/pb-modules.php:573
+msgid "add new section"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:350 core/page-builder/pb-modules.php:419
+#: core/page-builder/pb-modules.php:488
+msgid "Expanded"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:364 core/page-builder/pb-modules.php:433
+#: core/page-builder/pb-modules.php:503 core/page-builder/pb-modules.php:529
+#: core/page-builder/pb-modules.php:550 core/page-builder/pb-modules.php:615
+#: core/page-builder/pb-modules.php:679 core/page-builder/pb-modules.php:714
+#: core/page-builder/pb-modules.php:737 core/page-builder/pb-modules.php:785
+#: core/page-builder/pb-modules.php:828 core/page-builder/pb-modules.php:884
+#: core/page-builder/pb-modules.php:905 core/page-builder/pb-modules.php:938
+#: core/page-builder/pb-modules.php:962 core/page-builder/pb-modules.php:983
+#: core/page-builder/pb-modules.php:1012 core/page-builder/pb-modules.php:1043
+#: core/page-builder/pb-modules.php:1070 core/page-builder/pb-modules.php:1096
+#: core/page-builder/pb-modules.php:1118 core/page-builder/pb-modules.php:1146
+#: core/page-builder/pb-modules.php:1196 core/page-builder/pb-modules.php:1219
+#: core/page-builder/pb-modules.php:1242 core/page-builder/pb-modules.php:1262
+#: core/page-builder/pb-modules.php:1288 core/page-builder/pb-modules.php:1318
+#: core/page-builder/pb-modules.php:1342 core/page-builder/pb-modules.php:1366
+#: core/page-builder/pb-modules.php:1474
+msgid "Margin-bottom"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:524
+msgid "Quote text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:526
+msgid "Quote type"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:528
+msgid "Author"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:636
+msgid "Select gallery"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:678
+msgid "Images in a row"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:735
+msgid "Show Site Feeds"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:736
+msgid "Show Posts"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:783
+msgid "Posts per page"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:784 core/page-builder/pb-modules.php:883
+msgid "Category"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:827
+msgid "Select slider"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:829
+msgid ""
+"Please create a slider using \"LayerSlider WP\". Please make sure it has "
+"already been installed in your wordpress."
+msgstr ""
+
+#: core/page-builder/pb-modules.php:878
+msgid "Items per page (Put the number of the items to load on the page)"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:879
+msgid "Load per click"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:880 core/page-builder/pb-modules.php:1317
+msgid "View type"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:881
+msgid "Ajax"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:882
+msgid "Filter"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:904
+msgid "Number"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:934
+msgid "Number of posts"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:935
+msgid "Posts per line"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:936
+msgid "Post type"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:937 core/page-builder/pb-modules.php:1069
+msgid "Sorting type"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:958
+msgid "Main text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:959
+msgid "Additional text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:960
+msgid "Button text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:961
+msgid "Button link"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:982
+msgid "Divider type"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1010
+msgid "Video url"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1011
+msgid "Video height"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1041
+msgid "Number of workers"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1042
+msgid "Workers per line"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1068
+msgid "Number of testimonials"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1094
+msgid "Text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1095 core/page-builder/pb-modules.php:1117
+msgid "You can use HTML tags and shortcodes that are available in this theme."
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1138
+msgid "Padding-top"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1139
+msgid "Properties"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1142
+msgid "Background color"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1163
+msgid "settings"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1167
+msgid "No available settings."
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1188
+msgid "Google map code"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1190
+msgid "Example:"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1193
+msgid "Code from"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1195
+msgid "Full width"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1217
+msgid ""
+"This module will display the entire content of the standard wordpress "
+"editor. Please note that you can use this module only once on the page."
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1240
+msgid "This module displays the social sharing buttons."
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1282
+msgid "Icon"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1283
+msgid ""
+"Please type the letter/symbol which belongs to the specific icon in the "
+"field above.<br>All available icons you can find"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1284
+msgid "Iconbox heading"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1285
+msgid "Iconbox text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1286 core/page-builder/pb-modules.php:1453
+msgid "Link"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1287
+msgid "Target"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1309
+msgid "Project Option Title #1"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1310
+msgid "Project Option Description #1"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1311
+msgid "Project Option Title #2"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1312
+msgid "Project Option Description #2"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1314
+msgid "Project date"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1315
+msgid "Show categories"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1316
+msgid "Show share buttons"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1339
+msgid "Message box heading"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1340
+msgid "Message box text"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1341
+msgid "Box type"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1364
+msgid "Add new list item"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1365
+msgid "List type"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1390
+msgid "Add price item"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1415
+msgid "Price"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1417
+msgid "Period"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1423
+msgid "Add feature"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1453 core/page-builder/pb-modules.php:1455
+msgid "Get it now"
+msgstr ""
+
+#: core/page-builder/pb-modules.php:1455
+msgid "caption"
+msgstr ""
+
+#: functions.php:893
+#, php-format
+msgid "Page %s"
+msgstr ""

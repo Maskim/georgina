@@ -1,0 +1,102 @@
+<wpml-config>
+    <custom-types>
+        <custom-type translate="1">port</custom-type>
+        <custom-type translate="1">team</custom-type>
+        <custom-type translate="1">gallery</custom-type>
+        <custom-type translate="1">testimonials</custom-type>
+        <custom-type translate="1">partners</custom-type>
+    </custom-types>
+    <taxonomies>
+        <taxonomy translate="1">portcat</taxonomy>
+    </taxonomies>
+    <admin-texts>
+        <key name="galaxy_copyright" />
+        <key name="galaxy_tagline_type" />
+        <key name="galaxy_call_us" />
+        <key name="galaxy_translator_top_slogan" />
+        <key name="galaxy_translator_search_value" />
+        <key name="galaxy_translator_reply_value" />
+        <key name="galaxy_post_comment" />
+        <key name="galaxy_translator_awaiting_moder_value" />
+        <key name="galaxy_tranlator_clear" />
+        <key name="galaxy_tranlator_send_message" />
+        <key name="galaxy_translator_header_404" />
+        <key name="galaxy_translator_oops" />
+        <key name="galaxy_translator_text_404" />
+        <key name="galaxy_project_url" />
+        <key name="galaxy_view_project" />
+        <key name="galaxy_translator_portfolio_all" />
+        <key name="galaxy_translator_portfolio" />
+        <key name="galaxy_translator_load_more" />
+        <key name="galaxy_translator_feedback_form_name" />
+        <key name="galaxy_translator_feedback_form_email" />
+        <key name="galaxy_translator_feedback_form_subject" />
+        <key name="galaxy_translator_feedback_form_message" />
+        <key name="galaxy_contacts_subject" />
+        <key name="galaxy_contacts_thanx" />
+        <key name="galaxy_fill_the_required_field" />
+        <key name="galaxy_password_protected" />
+        <key name="galaxy_leave_a_comment" />
+        <key name="galaxy_you_must_logged_in" />
+        <key name="galaxy_logged_in_as" />
+        <key name="galaxy_log_out" />
+        <key name="galaxy_comment_form_is_closed" />
+        <key name="galaxy_comments_number" />
+        <key name="galaxy_posted_by" />
+        <key name="galaxy_read_more_link" />
+        <key name="galaxy_tags_caption" />
+        <key name="galaxy_comment_form_name" />
+        <key name="galaxy_comment_form_email" />
+        <key name="galaxy_comment_form_url" />
+        <key name="galaxy_comment_form_message" />
+        <key name="galaxy_back_button" />
+        <key name="galaxy_translate_pages" />
+        <key name="galaxy_translator_site_feeds" />
+        <key name="galaxy_translator_main_rss_feed" />
+        <key name="galaxy_translator_comment_rss_feed" />
+        <key name="galaxy_translator_pages" />
+        <key name="galaxy_translator_posts" />
+        <key name="galaxy_translator_time_spent" />
+        <key name="galaxy_translator_skills_needed" />
+        <key name="galaxy_translate_related_projects" />
+        <key name="galaxy_translate_related_posts" />
+        <key name="galaxy_translate_home" />
+    </admin-texts>
+    <language-switcher-settings>
+        <key name="icl_lang_sel_config">
+            <key name="font-current-normal">#444444</key>
+            <key name="font-current-hover">#000000</key>
+            <key name="background-current-normal">#ffffff</key>
+            <key name="background-current-hover">#eeeeee</key>
+            <key name="font-other-normal">#444444</key>
+            <key name="font-other-hover">#000000</key>
+            <key name="background-other-normal">#ffffff</key>
+            <key name="background-other-hover">#eeeeee</key>
+            <key name="border">#cdcdcd</key>
+        </key>
+        <key name="icl_lang_sel_footer_config">
+            <key name="font-current-normal">#444444</key>
+            <key name="font-current-hover">#000000</key>
+            <key name="background-current-normal">#ffffff</key>
+            <key name="background-current-hover">#eeeeee</key>
+            <key name="font-other-normal">#444444</key>
+            <key name="font-other-hover">#000000</key>
+            <key name="background-other-normal">#ffffff</key>
+            <key name="background-other-hover">#eeeeee</key>
+            <key name="border">#cdcdcd</key>
+        </key>
+        <key name="icl_language_switcher_sidebar">0</key>
+        <key name="icl_widget_title_show">0</key>
+        <key name="icl_lang_sel_type">dropdown</key>
+        <key name="icl_lso_link_empty">0</key>
+        <key name="icl_lso_flags">0</key>
+        <key name="icl_lso_native_lang">1</key>
+        <key name="icl_lso_display_lang">1</key>
+        <key name="icl_lang_sel_footer">0</key>
+        <key name="icl_post_availability">0</key>
+        <key name="icl_post_availability_position">below</key>
+        <key name="icl_post_availability_text">This post is also available in: %s</key>
+    </language-switcher-settings>
+</wpml-config>
+
+
