@@ -93,11 +93,11 @@ if (!function_exists('eltd_styles')) {
 			$style_dynamic_deps_array = array('eltd_woocommerce', 'eltd_woocommerce_responsive');
 		}
 
-        if (file_exists(dirname(__FILE__) ."/css/style_dynamic.css") && eltd_is_css_folder_writable() && !is_multisite()) {
-            wp_enqueue_style("eltd_style_dynamic", ELTD_ROOT . "/css/style_dynamic.css", $style_dynamic_deps_array, filemtime(dirname(__FILE__) ."/css/style_dynamic.css")); //it must be included after woocommerce styles so it can override it
-        } else {
-            wp_enqueue_style("eltd_style_dynamic", ELTD_ROOT . "/css/style_dynamic.php", $style_dynamic_deps_array); //it must be included after woocommerce styles so it can override it
-        }
+		if (file_exists(dirname(__FILE__) ."/css/style_dynamic.css") && eltd_is_css_folder_writable() && !is_multisite()) {
+			wp_enqueue_style("eltd_style_dynamic", ELTD_ROOT . "/css/style_dynamic.css", $style_dynamic_deps_array, filemtime(dirname(__FILE__) ."/css/style_dynamic.css")); //it must be included after woocommerce styles so it can override it
+		} else {
+			wp_enqueue_style("eltd_style_dynamic", ELTD_ROOT . "/css/style_dynamic.php", $style_dynamic_deps_array); //it must be included after woocommerce styles so it can override it
+		}
 
 		//include icon collections styles
 		if(is_array($eltdIconCollections->iconCollections) && count($eltdIconCollections->iconCollections)) {
@@ -526,7 +526,13 @@ if (!function_exists('eltd_scripts')) {
 		wp_enqueue_script("isotope", ELTD_ROOT."/js/jquery.isotope.min.js",array(),false,true);
 
 	   //include google map api script
-		wp_enqueue_script("google_map_api", "https://maps.googleapis.com/maps/api/js?sensor=false", array(), false, true);
+        if (isset($eltd_options['google_maps_api_key']) && ($eltd_options['google_maps_api_key'] != "")) {
+            $google_maps_api_key = $eltd_options['google_maps_api_key'];
+            wp_enqueue_script("google_map_api", "https://maps.googleapis.com/maps/api/js?key=" . $google_maps_api_key,array(),false,true);
+        }
+        else {
+            wp_enqueue_script("google_map_api", "https://maps.googleapis.com/maps/api/js", array(), false, true);
+        }
 
         if (file_exists(dirname(__FILE__) ."/js/default_dynamic.js") && eltd_is_js_folder_writable() && !is_multisite()) {
             wp_enqueue_script("eltd_default_dynamic", ELTD_ROOT."/js/default_dynamic.js",array(), filemtime(dirname(__FILE__) ."/js/default_dynamic.js"),true);
@@ -1149,7 +1155,7 @@ if(!function_exists('eltd_get_page_id')) {
 	 * @see eltd_is_woocommerce_shop()
 	 */
 	function eltd_get_page_id() {
-		if(eltd_is_woocommerce_installed() && eltd_is_woocommerce_shop()) {
+		if(eltd_is_woocommerce_installed() && (eltd_is_woocommerce_shop() || is_singular('product'))){
 			return eltd_get_woo_shop_page_id();
 		}
 

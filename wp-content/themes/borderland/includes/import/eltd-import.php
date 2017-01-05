@@ -8,7 +8,7 @@ class Elated_Import {
 
     public $message = "";
     public $attachments = false;
-    function Elated_Import() {
+    function __construct() {
         add_action('admin_menu', array(&$this, 'eltd_admin_import'));
         add_action('admin_init', array(&$this, 'eltd_register_theme_settings'));
 
@@ -43,28 +43,24 @@ class Elated_Import {
         }
     }
 
-    public function import_content($file){
-        if (!class_exists('WP_Importer')) {
-            ob_start();
-            $class_wp_importer = ABSPATH . 'wp-admin/includes/class-wp-importer.php';
-            require_once($class_wp_importer);
-            require_once(get_template_directory() . '/includes/import/class.wordpress-importer.php');
-            $eltd_import = new WP_Import();
-            set_time_limit(0);
-            $path = get_template_directory() . '/includes/import/files/' . $file;
+      public function import_content($file){
+        ob_start();
+        $class_wp_importer = ABSPATH . 'wp-admin/includes/class-wp-importer.php';
+        require_once($class_wp_importer);
+        require_once(get_template_directory() . '/includes/import/class.wordpress-importer.php');
+        $eltd_import = new WP_Import();
+        set_time_limit(0);
+        $path = get_template_directory() . '/includes/import/files/' . $file;
 
-            $eltd_import->fetch_attachments = $this->attachments;
-            $returned_value = $eltd_import->import($file);
-            if(is_wp_error($returned_value)){
-                $this->message = __("An Error Occurred During Import", "eltd");
-            }
-            else {
-                $this->message = __("Content imported successfully", "eltd");
-            }
-            ob_get_clean();
-        } else {
-            $this->message = __("Error loading files", "eltd");
+        $eltd_import->fetch_attachments = $this->attachments;
+        $returned_value = $eltd_import->import($file);
+        if(is_wp_error($returned_value)){
+            $this->message = __("An Error Occurred During Import", "eltd");
         }
+        else {
+            $this->message = __("Content imported successfully", "eltd");
+        }
+        ob_get_clean();
     }
 
     public function import_widgets($file, $file2){

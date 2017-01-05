@@ -10,7 +10,7 @@ $panel6 = new ElatedPanel("Header Position", "header_position");
 $headerandfooterPage->addChild("panel6",$panel6);
 	$vertical_area = new ElatedField("yesno","vertical_area","no","Switch to Side Menu","Enabling this option will switch to a Side Menu area (default is Top Menu)", array(),
 		array("dependence" => true,
-            "dependence_hide_on_yes" => "#eltdf_header_panel,#eltdf_top_menu_panel,#eltdf_header_top_panel,#eltdf_enable_search_panel,#eltdf_enable_side_area_panel,#eltdf_enable_popup_menu_panel,#qodef_language_switcher",
+            "dependence_hide_on_yes" => "#eltdf_header_panel,#eltdf_top_menu_panel,#eltdf_header_top_panel,#eltdf_enable_search_panel,#eltdf_enable_side_area_panel,#eltdf_enable_popup_menu_panel,#eltdf_language_switcher",
             "dependence_show_on_yes" => "#eltdf_vertical_areas_panel"));
 	$panel6->addChild("vertical_area",$vertical_area);
 

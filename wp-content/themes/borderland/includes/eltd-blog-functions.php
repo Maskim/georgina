@@ -373,7 +373,7 @@ if (!function_exists('eltd_the_excerpt_max_charlength')) {
 			$via = 	"";
 		}
 
-		$excerpt = urlencode(get_the_excerpt());
+		$excerpt = get_the_excerpt();
 		$charlength = 140 - (mb_strlen($via) + $charlength);
 
 		if ( mb_strlen( $excerpt ) > $charlength ) {

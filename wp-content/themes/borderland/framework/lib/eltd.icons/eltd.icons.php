@@ -55,6 +55,7 @@ class ElatedIconCollections {
             "heading" => "Icon pack",
             "param_name" => $this->iconPackParamName,
             "value" => $iconCollectionsVC,
+            'save_always' => true,
             "description" => ""
         );
 
@@ -73,6 +74,7 @@ class ElatedIconCollections {
                     "heading" => "Icon",
                     "param_name" => $iconCollectionPrefix . $collection->param,
                     "value" => $collection->getIconsArray(),
+                    'save_always' => true,
                     "description" => "",
                     "dependency" => array('element' => $this->iconPackParamName, 'value' => array($key))
                 );
@@ -96,6 +98,7 @@ class ElatedIconCollections {
             "heading" => "Icon pack",
             "param_name" => $this->iconPackParamName,
             "value" => $iconCollectionsVC,
+            'save_always' => true,
             "description" => ""
         );
 
@@ -118,6 +121,7 @@ class ElatedIconCollections {
                     "heading" => "Icon",
                     "param_name" => $iconCollectionPrefix . $collection->param,
                     "value" => $collection->getSocialIconsArrayVC(),
+                    'save_always' => true,
                     "description" => "",
                     "dependency" => array('element' => $this->iconPackParamName, 'value' => array($key))
                 );

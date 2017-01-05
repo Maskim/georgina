@@ -89,8 +89,8 @@
 		//remove last & character
 		dataArrayString = dataArrayString.substr(0, dataArrayString.length - 1);
 
-		if($('input[name=eltd_menu_options]').length) {
-			$('input[name=eltd_menu_options]').val(encodeURIComponent(dataArrayString));
+		if($('input[name="eltd_menu_options"]').length) {
+			$('input[name="eltd_menu_options"]').val(encodeURIComponent(dataArrayString));
 		} else {
 			//generate hidden input field html with serialized string value
 			var hiddenMenuItem = '<input type="hidden" name="eltd_menu_options" value="'+encodeURIComponent(dataArrayString)+'">';

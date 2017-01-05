@@ -30,6 +30,7 @@
 		eltdInitPortfolioItemAcc();
 		eltdfInitDatePicker();
         eltdShowHidePostFormats();
+		eltdRemoveVCDeprecatedClass();
 
 
     });
@@ -547,7 +548,7 @@
 				btn.siblings('.eltdf-media-image-holder').find('img').attr('src', '');
 
 				//reset meta fields
-				btn.siblings('.eltdf-media-meta-fields').find('input[type=hidden]').each(function(e) {
+				btn.siblings('.eltdf-media-meta-fields').find('input[type="hidden"]').each(function(e) {
 					$(this).val('');
 				});
 
@@ -1090,7 +1091,7 @@
 				btn.siblings('.eltdf-media-image-holder').find('img').attr('src', '');
 
 				//reset meta fields
-				btn.siblings('.eltdf-media-meta-fields').find('input[type=hidden]').each(function(e) {
+				btn.siblings('.eltdf-media-meta-fields').find('input[type="hidden"]').each(function(e) {
 					$(this).val('');
 				});
 
@@ -1152,5 +1153,11 @@
         });
 
     }
+
+	function eltdRemoveVCDeprecatedClass() {
+		$('.wpb-layout-element-button').each( function() {
+			$(this).removeClass('vc_element-deprecated');
+		})
+	}
 
 })(jQuery);

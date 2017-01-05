@@ -18,8 +18,7 @@
         <?php
         }
         ?>
-        <li <?php if($is_import_page) { echo "class='active'"; } ?>><a href="<?php echo esc_url(get_admin_url().'admin
-        .php?page=eltd_theme_menu_tabimport'); ?>"><i
+        <li <?php if($is_import_page) { echo "class='active'"; } ?>><a href="<?php echo esc_url(get_admin_url().'admin.php?page=eltd_theme_menu_tabimport'); ?>"><i
                     class="fa fa-download eltdf-tooltip eltdf-inline-tooltip left" data-placement="top" data-toggle="tooltip" title="Import"></i><span>Import</span></a></li>
     </ul>
 </div> <!-- close div.eltdf-tabs-navigation-wrapper -->

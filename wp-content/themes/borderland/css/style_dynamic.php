@@ -163,7 +163,9 @@ header("Content-type: text/css; charset=utf-8");
     .eltd_team.below_image .eltd_team_social_holder_between .social_share_icon_shape .social_share_icon,
     .eltd_team_social_holder_between .eltd_social_icon_holder .eltd_icon_stack,
 	.vc_grid-container .vc_grid-filter.vc_grid-filter-color-grey > .vc_grid-filter-item:hover span,
-	.vc_grid-container .vc_grid-filter.vc_grid-filter-color-grey > .vc_grid-filter-item.vc_active span {
+	.vc_grid-container .vc_grid-filter.vc_grid-filter-color-grey > .vc_grid-filter-item.vc_active span,
+    .woocommerce-account .woocommerce-MyAccount-navigation ul li.is-active a,
+    .woocommerce-account .woocommerce-MyAccount-navigation ul li a:hover{
 		color: <?php echo esc_attr($eltd_options['first_color']); ?>;
     }
 
@@ -16782,6 +16784,7 @@ if (isset($eltd_options['subtitle_span_left_padding']) && !empty($eltd_options['
     .woocommerce-page .content input[type="text"]:not(.eltd_search_field):not(.qty),
     .woocommerce .content input[type="email"],
     .woocommerce-page .content input[type="email"],
+    .woocommerce-page .content input[type="tel"],
     .woocommerce .content textarea,
     .woocommerce-page .content textarea,
     .woocommerce .content input[type="password"],
@@ -16810,6 +16813,7 @@ if (isset($eltd_options['subtitle_span_left_padding']) && !empty($eltd_options['
     .woocommerce-page .content input[type="text"]:not(.eltd_search_field):not(.qty),
     .woocommerce .content input[type="email"],
     .woocommerce-page .content input[type="email"],
+    .woocommerce-page .content input[type="tel"],
     .woocommerce .content textarea,
     .woocommerce-page .content textarea,
     .woocommerce .content input[type="password"],
@@ -16837,6 +16841,7 @@ if (isset($eltd_options['subtitle_span_left_padding']) && !empty($eltd_options['
     .woocommerce-page .content input[type="text"]:not(.eltd_search_field):not(.qty):focus,
     .woocommerce .content input[type="email"]:focus,
     .woocommerce-page .content input[type="email"]:focus,
+    .woocommerce-page .content input[type="tel"]:focus,
     .woocommerce .content textarea:focus,
     .woocommerce-page .content textarea:focus,
     .woocommerce .content input[type="password"]:focus,

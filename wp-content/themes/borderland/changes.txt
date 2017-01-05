@@ -1,3 +1,66 @@
+1.12
+- Added Woocommerce 2.6.11 compatibility
+- Updated Layer Slider to 6.1.0
+- Updated Font Awesome to 4.7.0
+
+1.11
+- Added Woocommerce 2.6.8 compatibility
+- Updated Visual Composer to 5.0.1
+- Updated Layer Slider to 6.0.6
+
+1.10
+- Added Woocommerce 2.6.4 compatibility
+- Added field for entering Google Maps API key  
+- Updated Font Awesome icons
+- Updated Visual Composer to 4.12.1
+- Updated Layer Slider to 5.6.9
+
+1.9
+- Added Woocommerce 2.6.1 compatibility
+- Updated Visual Composer to 4.12
+- Updated Layer Slider to 5.6.8
+- Fixed Social Share functionality
+- Fixed Language Switcher settings panel in Header Options
+
+1.8.1
+- Updated Visual Composer to 4.11.2.1
+- Updated Layer Slider to 5.6.6
+
+1.8
+- Added WordPress 4.5 compatibility
+
+1.7
+- Added WooCommerce 2.5.5 compatibility
+- Updated Visual Composer to 4.11.1
+- Fixed issue with Side Area slide with content option
+- Fixed bud with deleting custom widget area
+
+1.6
+- Added WooCommerce 2.4.12 compatibility
+- Updated Visual Composer to 4.9.1
+- Fixed spacing issue causing 404 error in WP admin
+- Fixed Google Map Warning for Sensor parameter no longer being required
+- Fixed bug with Portfolio List Columns option
+- Fixed bug with Elated Carousel Number of items showing option
+- Fixed issue with Blockquote element now rendering default blockquote text
+- Fixed Lightbox for Vimeo Videos bug in Single Portfolio
+
+1.5.2
+- Updated Visual Composer to 4.7.4
+- Updated Layer Slider to 5.6.2
+
+1.5.1
+- Fixed issue with saving values in Countdown
+- Fixed issue with VC Text Block
+
+1.5
+- Added WooCommerce 2.4.6 compatibility
+- Added new option for title height on single post
+- Updated Visual Composer to 4.6.2
+- Updated Layer Slider to 5.5.1
+- Updated Font Awesome to version 4.4.0
+- Fixed bug with title options in single product pages
+
 1.4
 - Added Behance icon in Social Icons shortcode for Font Awesome icon pack
 - Added singular labels option to countdown shortcode

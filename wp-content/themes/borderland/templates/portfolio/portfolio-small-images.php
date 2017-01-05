@@ -79,6 +79,7 @@ if (is_array($portfolio_images)){
 
 							<?php
 							$portfolio_video_type = "";
+							$protocol = is_ssl() ? "https:" : "http:";
 							if (isset($portfolio_image['portfoliovideotype'])) $portfolio_video_type = $portfolio_image['portfoliovideotype'];
 							switch ($portfolio_video_type){
 								case "youtube": ?>
@@ -114,7 +115,7 @@ if (is_array($portfolio_images)){
                                             $video_title = $xml[0]['title'];
                                             $thumbnail = $xml[0]['thumbnail_large'];
 										?>
-                                        <a class="lightbox_single_portfolio" title="<?php echo esc_attr($video_title); ?>" href="//vimeo.com/<?php echo esc_attr($vidID); ?>" rel="prettyPhoto[single_pretty_photo]">
+                                        <a class="lightbox_single_portfolio" title="<?php echo esc_attr($video_title); ?>" href="<?php echo $protocol;?>//vimeo.com/<?php echo esc_attr($vidID); ?>" rel="prettyPhoto[single_pretty_photo]">
 											<i class="fa fa-play"></i>
 											<img width="100%" src="<?php echo esc_url($thumbnail); ?>"/>
 										</a>

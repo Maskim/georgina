@@ -95,7 +95,15 @@ wp_enqueue_script( 'wpb_composer_front_js' );
 
 $el_class = $this->getExtraClass($el_class);
 
-$css_class =  apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'vc_row wpb_row section '.get_row_css_class().$el_class, $this->settings['base']);
+$css_classes = array(
+	'vc_row',
+	'wpb_row', //deprecated
+	'section',
+	$el_class,
+	//vc_shortcode_custom_css_class( $css ),
+);
+
+$css_class = preg_replace( '/\s+/', ' ', apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, implode( ' ', array_filter( $css_classes ) ), $this->settings['base'], $atts ) );
 
 if($type == "grid"){
 	$css_class_type =  " grid_section";

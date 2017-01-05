@@ -1,3 +1,6 @@
+body{
+	-webkit-overflow-scrolling: auto!important;
+}
 .full_width{
 	position: static;
 }

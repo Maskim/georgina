@@ -283,3 +283,6 @@ if(!function_exists('eltd_woocommerce_share')) {
 
     add_action('woocommerce_product_meta_end', 'eltd_woocommerce_share');
 }
+
+/* removes double links around products on lists and related items */
+remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);

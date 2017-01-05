@@ -319,6 +319,9 @@ $eltdFramework->eltdMetaBoxes->addMetaBox("post_title",$eltdTitle);
 		"yes_zoom" => "Yes, with zoom out"
 	));
 	$eltd_responsive_title_image_container->addChild("eltd_fixed-title-image",$eltd_fixed_title_image);
+	
+	$eltd_title_height = new ElatedMetaField("text","eltd_title-height","","Title Height (px)","Set a height for Title Area in pixels", array(), array("col_width" => 3));
+	$eltd_page_title_area_container->addChild("eltd_title-height",$eltd_title_height);
 
 
 //Separator

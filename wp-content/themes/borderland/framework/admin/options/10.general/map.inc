@@ -315,3 +315,11 @@ $panel_maintenance->addChild("maintenance_container",$maintenance_container);
 
 $maintenance_page = new ElatedField("selectblank","eltd_maintenance_page","",'Maintenance Page','Choose maintenance page to display when user visits your site',$eltd_pages);
 $maintenance_container->addChild("eltd_maintenance_page",$maintenance_page);
+
+// Google Maps API key
+
+$panel5 = new ElatedPanel("Google Maps API key","google_maps_api_key");
+$generalPage->addChild("panel5",$panel5);
+
+	$google_maps_api_key = new ElatedField("text","google_maps_api_key","","Google Maps API key","Enter your Google Maps API key");
+	$panel5->addChild("google_maps_api_key",$google_maps_api_key);
