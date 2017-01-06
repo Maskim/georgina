@@ -134,7 +134,7 @@
 		 * @param html
 		 */
 		html2element: function ( html ) {
-			var attributes = {},
+			/*var attributes = {},
 				$template;
 			if ( _.isString( html ) ) {
 				this.template = _.template( html );
@@ -147,6 +147,20 @@
 				attributes[ attr.name ] = attr.value;
 			} );
 			this.$el.attr( attributes ).html( $template.html() );
+			this.setContent();
+			this.renderContent();*/
+
+			var $template,
+				attributes = {},
+				template = html;
+
+			$template = $(template(this.model.toJSON()).trim());
+
+			_.each($template.get(0).attributes, function(attr) {
+				attributes[attr.name] = attr.value
+			});
+
+			this.$el.attr(attributes).html($template.html());
 			this.setContent();
 			this.renderContent();
 
