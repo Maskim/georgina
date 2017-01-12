@@ -150,23 +150,28 @@
 			this.setContent();
 			this.renderContent();*/
 
-			var $template,
-				attributes = {},
-				template = html;
-
-			$template = $(template(this.model.toJSON()).trim());
-
-			_.each($template.get(0).attributes, function(attr) {
-				attributes[attr.name] = attr.value
+			var attributes = {},
+				$template;
+			if (_.isString(html)) {
+				this.template = _.template(html);
+			} else {
+				try {
+					this.template = _.template(html());
+				} catch (err) {
+					this.template = html;
+				}
+			}
+			$template = $(this.template(this.model.toJSON()).trim());
+			_.each($template.get(0).attributes, function (attr) {
+				attributes[attr.name] = attr.value;
 			});
-
 			this.$el.attr(attributes).html($template.html());
 			this.setContent();
 			this.renderContent();
 
 		},
 		render: function () {
-			var $shortcode_template_el = $( '#vc_shortcode-template-' + this.model.get( 'shortcode' ) );
+			/*var $shortcode_template_el = $( '#vc_shortcode-template-' + this.model.get( 'shortcode' ) );
 			if ( $shortcode_template_el.is( 'script' ) ) {
 				this.html2element( _.template( $shortcode_template_el.html(),
 					this.model.toJSON(),
@@ -180,6 +185,35 @@
 						action: 'wpb_get_element_backend_html',
 						data_element: this.model.get( 'shortcode' ),
 						data_width: _.isUndefined( params.width ) ? '1/1' : params.width
+					},
+					dataType: 'html',
+					context: this
+				} ).done( function ( html ) {
+					this.html2element( html );
+				} );
+			}
+			this.model.view = this;
+			this.$controls_buttons = this.$el.find( '.vc_controls > :first' );
+			return this;*/
+			var $shortcode_template_el = $( '#vc_shortcode-template-' + this.model.get( 'shortcode' ) );
+			if ( $shortcode_template_el.is( 'script' ) ) {
+				var newHtmlCode =  _.template( $shortcode_template_el.html(),
+					this.model.toJSON(),
+					vc.templateOptions.default );
+				if(!_.isString(newHtmlCode)){
+					newHtmlCode = $shortcode_template_el.html();
+				}
+				this.html2element( newHtmlCode );
+			} else {
+				var params = this.model.get( 'params' );
+				$.ajax( {
+					type: 'POST',
+					url: window.ajaxurl,
+					data: {
+						action: 'wpb_get_element_backend_html',
+						data_element: this.model.get( 'shortcode' ),
+						data_width: _.isUndefined( params.width ) ? '1/1' : params.width,
+						_vcnonce: window.vcAdminNonce
 					},
 					dataType: 'html',
 					context: this
