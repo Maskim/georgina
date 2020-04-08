@@ -1,3 +1,0 @@
-<form name="search_form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="search_form">
-    <input type="text" name="s" value="<?php (gt3_get_theme_option("translator_status") == "enable") ? gt3_the_text("translator_search_value") : _e('Search the site...','theme_localization'); ?>" title="<?php (gt3_get_theme_option("translator_status") == "enable") ? gt3_the_text("translator_search_value") : _e('Search the site...','theme_localization'); ?>" class="field_search">
-</form>
