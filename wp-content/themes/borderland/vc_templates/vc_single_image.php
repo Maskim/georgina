@@ -1,7 +1,7 @@
 <?php
 // Code in else part is because of compatibility for older versions of VC.
 
-if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
+if(version_compare(borderland_elated_get_vc_version(), '4.7.4') >= 0) {
 
 	/**
 	 * Shortcode attributes
@@ -239,7 +239,7 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	</div>
 ';
 
-	echo $output;
+	echo borderland_elated_get_module_part($output);
 
 
 } else {
@@ -282,7 +282,7 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	}
 
 	$img = wpb_getImageBySize(array('attach_id' => $img_id, 'thumb_size' => $img_size, 'class' => 'vc_single_image-img'));
-	if ($img == NULL) $img['thumbnail'] = '<img class="vc_img-placeholder vc_single_image-img ' . $style . $border_color . '" src="' . vc_asset_url('vc/no_image.png') . '" />'; //' <small>'.__('This is image placeholder, edit your page to replace it.', 'js_composer').'</small>';
+	if ($img == NULL) $img['thumbnail'] = '<img class="vc_img-placeholder vc_single_image-img ' . $style . $border_color . '" src="' . vc_asset_url('vc/no_image.png') . '" />';
 
 	$el_class = $this->getExtraClass($el_class);
 
@@ -346,5 +346,5 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	$output .= "\n\t\t" . '</div>';
 	$output .= "\n\t" . '</div> ' . $this->endBlockComment('.wpb_single_image');
 
-	print $output;
+	echo borderland_elated_get_module_part( $output );
 }

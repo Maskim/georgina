@@ -37,4 +37,4 @@ if($image_src != "") {
     $html .= '</div>';
 }
 
-print $html;
+echo borderland_elated_get_module_part( $html );

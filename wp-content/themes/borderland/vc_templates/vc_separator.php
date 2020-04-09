@@ -57,4 +57,4 @@ $output .= '<div class="'.$separator_classes.' " style="'.implode(';', $separato
 
 $output .= '</div>'.$this->endBlockComment('separator')."\n";
 
-print $output;
+echo borderland_elated_get_module_part( $output );

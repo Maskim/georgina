@@ -1,7 +1,7 @@
 <?php
 
-if(!function_exists('eltd_get_portfolio_image_meta')) {
-	function eltd_get_portfolio_image_meta($image_src) {
+if(!function_exists('borderland_elated_get_portfolio_image_meta')) {
+	function borderland_elated_get_portfolio_image_meta($image_src) {
 		global $wpdb;
 
 		//init variables
@@ -27,14 +27,14 @@ if(!function_exists('eltd_get_portfolio_image_meta')) {
 	}
 }
 
-if (!function_exists('eltdComparePortfolioImages')) {
+if (!function_exists('borderland_elated_compare_portfolio_images')) {
 	/**
 	 * Function that compares two portfolio image for sorting
 	 * @param $a int first image
 	 * @param $b int second image
 	 * @return int result of comparison
 	 */
-	function eltdComparePortfolioImages($a, $b){
+	function borderland_elated_compare_portfolio_images($a, $b){
 		if (isset($a['portfolioimgordernumber']) && isset($b['portfolioimgordernumber'])) {
 			if ($a['portfolioimgordernumber'] == $b['portfolioimgordernumber']) {
 				return 0;
@@ -46,14 +46,14 @@ if (!function_exists('eltdComparePortfolioImages')) {
 	}
 }
 
-if (!function_exists('eltdComparePortfolioOptions')){
+if (!function_exists('borderland_elated_compare_portfolio_options')){
 	/**
 	 * Function that compares two portfolio options for sorting
 	 * @param $a int first option
 	 * @param $b int second option
 	 * @return int result of comparison
 	 */
-	function eltdComparePortfolioOptions($a, $b){
+	function borderland_elated_compare_portfolio_options($a, $b){
 		if (isset($a['optionlabelordernumber']) && isset($b['optionlabelordernumber'])) {
 			if ($a['optionlabelordernumber'] == $b['optionlabelordernumber']) {
 				return 0;

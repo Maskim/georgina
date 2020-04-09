@@ -7,7 +7,9 @@
 
 
                 <form method="post" class="eltd_ajax_form">
-                    <div class="eltdf-page-form">
+                    <?php wp_nonce_field("eltd_ajax_save_nonce","eltd_ajax_save_nonce") ?>
+
+                        <div class="eltdf-page-form">
                         <?php $page->render(); ?>
                     </div>
                 </form>

@@ -1,6 +1,6 @@
 <?php
 
-global $eltdIconCollections;
+$icon_collections = borderland_elated_icon_collections();
 
 $args = array(
     "type"                          => "",
@@ -10,9 +10,6 @@ $args = array(
 	'without_double_border'			=> "",
     "border_color"                  => "",
     "border_width"                  => "",
-//	"icon_pack"             		=> "",
-//	"fa_icon"               		=> "",
-//	"fe_icon"               		=> "",
     "size"                          => "",
     "icon_color"                    => "",
     "image"                         => "",
@@ -34,7 +31,7 @@ $args = array(
 
 );
 
-$args = array_merge($args, $eltdIconCollections->getShortcodeParams());
+$args = array_merge($args, $icon_collections->getShortcodeParams());
 
 extract(shortcode_atts($args, $atts));
 
@@ -90,7 +87,7 @@ if($background_image != "") {
 
 if($background_color != "") {
     if($background_transparency !="") {
-        $bg_color = eltd_hex2rgb($background_color);
+        $bg_color = borderland_elated_hex2rgb($background_color);
         $circle_style .= "background-color: rgba(". $bg_color[0]."," . $bg_color[1] . "," . $bg_color[2] . "," . $background_transparency . ");";
     } else {
         
@@ -179,7 +176,7 @@ if($type == "image_type"){
 
 } else if ($type == "icon_type"){
     
-    $icon_collection_obj = $eltdIconCollections->getIconCollection($icon_pack);
+    $icon_collection_obj = $icon_collections->getIconCollection($icon_pack);
     
     if (method_exists($icon_collection_obj, 'render')) {
         
@@ -228,4 +225,4 @@ if($title != "" || $text != ""){
 
 $html .= '</li>';
 
-print $html;
+echo borderland_elated_get_module_part( $html );

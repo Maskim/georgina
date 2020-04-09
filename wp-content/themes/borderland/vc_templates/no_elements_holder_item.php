@@ -131,5 +131,5 @@ if($item_padding_1000_1300 !== "" || $item_padding_768_1000 !== "" || $item_padd
 }
 $html .= do_shortcode($content);
 $html .= '</div></div></div>';
-print $html;
+echo borderland_elated_get_module_part( $html );
 

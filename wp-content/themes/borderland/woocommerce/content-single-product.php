@@ -10,38 +10,30 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woothemes.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     1.6.4
+ * @see     https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce/Templates
+ * @version 3.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-global $eltd_options;
+defined( 'ABSPATH' ) || exit;
 
-$products_info_style_type = "accordions";
-if(isset($eltd_options['woo_products_info_style'])) {
-	$products_info_style_type = $eltd_options['woo_products_info_style'];
+global $product;
+
+/**
+ * Hook: woocommerce_before_single_product.
+ *
+ * @hooked wc_print_notices - 10
+ */
+do_action( 'woocommerce_before_single_product' );
+
+if ( post_password_required() ) {
+	echo get_the_password_form(); // WPCS: XSS ok.
+	return;
 }
+
+$products_info_style_type = borderland_elated_options()->getOptionValue( 'woo_products_info_style' ) ? borderland_elated_options()->getOptionValue( 'woo_products_info_style' ) : "accordions";
 ?>
-
-
-
-<?php
-	/**
-	 * woocommerce_before_single_product hook
-	 *
-	 * @hooked wc_print_notices - 10
-	 */
-	 do_action( 'woocommerce_before_single_product' );
-
-	 if ( post_password_required() ) {
-	 	echo get_the_password_form();
-	 	return;
-	 }
-?>
-
-<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
 	<div class="single_product_image_wrapper">
 		<?php
@@ -71,20 +63,14 @@ if(isset($eltd_options['woo_products_info_style'])) {
 				do_action( 'woocommerce_single_product_summary' );
 			?>
 		</div><!-- .summary-inner -->
-		<?php
-			if($products_info_style_type == "accordions"){
-				do_action( 'woocommerce_after_single_product_summary' );
-			}
-		?>
-	</div><!-- .summary -->	
-	<?php
-		if($products_info_style_type == "vertical_tabs"){
+		<?php if ( $products_info_style_type == "accordions" ) {
 			do_action( 'woocommerce_after_single_product_summary' );
-		}
-	?>
-	<?php do_action( 'eltd_woocommerce_related_products' ); ?>
-	</div><!-- #product-<?php the_ID(); ?> -->
-	<meta itemprop="url" content="<?php the_permalink(); ?>" />
-
+		} ?>
+	</div><!-- .summary -->
+	<?php if ( $products_info_style_type == "vertical_tabs" ) {
+		do_action( 'woocommerce_after_single_product_summary' );
+	} ?>
+	<?php do_action( 'borderland_elated_action_woocommerce_related_products' ); ?>
+</div>
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>

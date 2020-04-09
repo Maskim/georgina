@@ -1,105 +1,73 @@
-<?php get_header(); ?>
-<?php 
-global $wp_query;
-$id = $wp_query->get_queried_object_id();
+<?php
+get_header();
 
-if ( get_query_var('paged') ) { $paged = get_query_var('paged'); }
-elseif ( get_query_var('page') ) { $paged = get_query_var('page'); }
-else { $paged = 1; }
-
-$sidebar = $eltd_options['category_blog_sidebar'];
-
-if(isset($eltd_options['blog_page_range']) && $eltd_options['blog_page_range'] != ""){
-	$blog_page_range = esc_attr($eltd_options['blog_page_range']);
-} else{
-	$blog_page_range = $wp_query->max_num_pages;
-}
-
+$borderland_sidebar = borderland_elated_get_sidebar_layout();
 ?>
-	
-	<?php if(get_post_meta($id, "eltd_page_scroll_amount_for_sticky", true)) { ?>
-		<script>
-			var page_scroll_amount_for_sticky = <?php echo esc_attr(get_post_meta($id, "eltd_page_scroll_amount_for_sticky", true)); ?>;
-		</script>
-	<?php } ?>
-
-	<?php get_template_part( 'title' ); ?>
-	
 	<div class="container">
-	<?php if($eltd_options['overlapping_content'] == 'yes') {?>
-		<div class="overlapping_content"><div class="overlapping_content_inner">
-	<?php } ?>
+<?php if ( borderland_elated_options()->getOptionValue( 'overlapping_content' ) == 'yes' ) { ?>
+	<div class="overlapping_content">
+	<div class="overlapping_content_inner">
+<?php } ?>
 	<div class="container_inner default_template_holder clearfix">
-		<?php if(($sidebar == "default")||($sidebar == "")) : ?>
+		<?php if ( ( $borderland_sidebar == "default" ) || ( $borderland_sidebar == "" ) ) : ?>
 			<div class="blog_holder blog_standard_type">
-				<?php if(have_posts()) : while ( have_posts() ) : the_post(); ?>
-						<?php 
-							get_template_part('templates/blog/blog_search', 'loop');
-						?>
+				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+					<?php get_template_part( 'templates/blog/blog_search', 'loop' ); ?>
 				<?php endwhile; ?>
-				<?php if($eltd_options['pagination'] != "0") : ?>
-					<?php eltd_pagination($wp_query->max_num_pages, $blog_page_range, $paged); ?>
-				<?php endif; ?>
 				<?php else: //If no posts are present ?>
-						<div class="entry posts_no_found_holder">
-							<h5><?php _e('No posts were found.', 'eltd'); ?></h5>
-						</div>
+					<div class="entry posts_no_found_holder">
+						<h5><?php esc_html_e( 'No posts were found.', 'borderland' ); ?></h5>
+					</div>
 				<?php endif; ?>
-			</div>	
-		<?php elseif($sidebar == "1" || $sidebar == "2"): ?>
-			<div class="<?php if($sidebar == "1"):?>two_columns_66_33<?php elseif($sidebar == "2") : ?>two_columns_75_25<?php endif; ?> background_color_sidebar grid2 clearfix">
+				<?php borderland_elated_get_blog_pagination( borderland_elated_return_global_wp_query() ); ?>
+			</div>
+		<?php elseif ( $borderland_sidebar == "1" || $borderland_sidebar == "2" ): ?>
+			<div class="<?php if ( $borderland_sidebar == "1" ): ?>two_columns_66_33<?php elseif ( $borderland_sidebar == "2" ) : ?>two_columns_75_25<?php endif; ?> background_color_sidebar grid2 clearfix">
 				<div class="column1 content_left_from_sidebar">
 					<div class="column_inner">
 						<div class="blog_holder blog_standard_type">
-							<?php if(have_posts()) : while ( have_posts() ) : the_post(); ?>
-									<?php 
-										get_template_part('templates/blog/blog_search', 'loop');
-									?>
+							<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+								<?php get_template_part( 'templates/blog/blog_search', 'loop' ); ?>
 							<?php endwhile; ?>
-							<?php if($eltd_options['pagination'] != "0") : ?>
-								<?php eltd_pagination($wp_query->max_num_pages, $blog_page_range, $paged); ?>
-							<?php endif; ?>
 							<?php else: //If no posts are present ?>
 								<div class="entry posts_no_found_holder">
-									<h5><?php _e('No posts were found.', 'eltd'); ?></h5>
+									<h5><?php esc_html_e( 'No posts were found.', 'borderland' ); ?></h5>
 								</div>
 							<?php endif; ?>
-						</div>	
+							<?php borderland_elated_get_blog_pagination( borderland_elated_return_global_wp_query() ); ?>
+						</div>
 					</div>
 				</div>
 				<div class="column2">
-					<?php get_sidebar(); ?>	
+					<?php get_sidebar(); ?>
 				</div>
 			</div>
-	<?php elseif($sidebar == "3" || $sidebar == "4"): ?>
-			<div class="<?php if($sidebar == "3"):?>two_columns_33_66<?php elseif($sidebar == "4") : ?>two_columns_25_75<?php endif; ?> background_color_sidebar grid2 clearfix">
+		<?php elseif ( $borderland_sidebar == "3" || $borderland_sidebar == "4" ): ?>
+			<div class="<?php if ( $borderland_sidebar == "3" ): ?>two_columns_33_66<?php elseif ( $borderland_sidebar == "4" ) : ?>two_columns_25_75<?php endif; ?> background_color_sidebar grid2 clearfix">
 				<div class="column1">
-				<?php get_sidebar(); ?>	
+					<?php get_sidebar(); ?>
 				</div>
 				<div class="column2 content_right_from_sidebar">
 					<div class="column_inner">
 						<div class="blog_holder blog_standard_type">
-							<?php if(have_posts()) : while ( have_posts() ) : the_post(); ?>
-								<?php 
-									get_template_part('templates/blog/blog_search', 'loop');
-								?>
+							<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+								<?php get_template_part( 'templates/blog/blog_search', 'loop' ); ?>
 							<?php endwhile; ?>
-							<?php if($eltd_options['pagination'] != "0") : ?>
-								<?php eltd_pagination($wp_query->max_num_pages, $blog_page_range, $paged); ?>
-							<?php endif; ?>
 							<?php else: //If no posts are present ?>
 								<div class="entry posts_no_found_holder">
-									<h5><?php _e('No posts were found.', 'eltd'); ?></h5>
+									<h5><?php esc_html_e( 'No posts were found.', 'borderland' ); ?></h5>
 								</div>
 							<?php endif; ?>
-						</div>	
+							<?php borderland_elated_get_blog_pagination( borderland_elated_return_global_wp_query() ); ?>
+						</div>
 					</div>
 				</div>
 			</div>
 		<?php endif; ?>
 	</div>
-	<?php if($eltd_options['overlapping_content'] == 'yes') {?>
-		</div></div>
-	<?php } ?>
-</div>
+<?php if ( borderland_elated_options()->getOptionValue( 'overlapping_content' ) == 'yes' ) { ?>
+	<div class="overlapping_content">
+	<div class="overlapping_content_inner">
+<?php } ?>
+	</div>
 <?php get_footer(); ?>

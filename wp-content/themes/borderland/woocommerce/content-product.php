@@ -10,46 +10,36 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woothemes.com/document/template-structure/
- * @author  WooThemes
+ * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates
- * @version 2.6.1
+ * @version 3.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+defined( 'ABSPATH' ) || exit;
 
-global $product ,$eltd_options;
+global $product;
 
-// Ensure visibility
+// Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
-    return;
+	return;
 }
 
-$products_list_type = 'type1';
-if(isset($eltd_options['woo_products_list_type'])){
-	$products_list_type = $eltd_options['woo_products_list_type'];
+$eltd_products_list_type = 'type1';
+if ( borderland_elated_options()->getOptionValue( 'woo_products_list_type' ) ) {
+	$eltd_products_list_type = borderland_elated_options()->getOptionValue( 'woo_products_list_type' );
 }
 
-$product_image_src =  wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full');
+$eltd_product_image_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 
-$woo_products_enable_lighbox_icon_yes_no = "yes";
-
-if(isset($eltd_options['woo_products_enable_lighbox_icon'])){
-	$woo_products_enable_lighbox_icon_yes_no =  $eltd_options['woo_products_enable_lighbox_icon'];
-}
-
-$hide_separator = "no";
-if(isset($eltd_options['woo_products_title_separator_hide_title_separator'])){
-	$hide_separator = $eltd_options['woo_products_title_separator_hide_title_separator'];
+$eltd_hide_separator = "no";
+if ( borderland_elated_options()->getOptionValue( 'woo_products_title_separator_hide_title_separator' ) ) {
+	$eltd_hide_separator = borderland_elated_options()->getOptionValue( 'woo_products_title_separator_hide_title_separator' );
 }
 ?>
-
-<?php switch($products_list_type) { 
+<?php switch($eltd_products_list_type) { 
 	
 	case 'type1': ?>
-	<li <?php post_class(); ?>>
+	<li <?php wc_product_class( '', $product ); ?>>
 			<a href="<?php the_permalink(); ?>" class="product_info_overlay"></a>
 			<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 			<div class="top-product-section">
@@ -70,7 +60,7 @@ if(isset($eltd_options['woo_products_title_separator_hide_title_separator'])){
 				</div>
 				<div class="product_info_box">
 					<span class="product-categories">
-						<?php echo wp_kses($product->get_categories(), array(
+						<?php echo wp_kses(wc_get_product_category_list($product), array(
 							'a' => array(
 								'href' => true,
 								'rel' => true,
@@ -83,7 +73,7 @@ if(isset($eltd_options['woo_products_title_separator_hide_title_separator'])){
 					<a href="<?php the_permalink(); ?>" class="product-category">            
 						<span class="product-title"><?php the_title(); ?></span>
 					</a>
-					<?php if($hide_separator == "no") { ?>
+					<?php if($eltd_hide_separator == "no") { ?>
 						<div class="separator_holder"><span class="separator medium"></span></div>
 					<?php } ?>
 					<div class="shop_price_lightbox_holder">
@@ -96,9 +86,9 @@ if(isset($eltd_options['woo_products_title_separator_hide_title_separator'])){
 							 */
 							do_action( 'woocommerce_after_shop_loop_item_title' );
 						?>
-						<?php if($woo_products_enable_lighbox_icon_yes_no == "yes") { ?>
+						<?php if( borderland_elated_options()->getOptionValue( 'woo_products_enable_lighbox_icon' ) == "yes") { ?>
 							<div class="shop_lightbox">
-								<a class="product_lightbox" title="<?php echo esc_attr(the_title()); ?>" href="<?php echo esc_url($product_image_src[0]); ?>" data-rel="prettyPhoto[single_pretty_photo]">
+								<a class="product_lightbox" title="<?php echo esc_attr(the_title()); ?>" href="<?php echo esc_url($eltd_product_image_src[0]); ?>" data-rel="prettyPhoto[single_pretty_photo]">
 									<span class="fa-search"></span>
 								</a>
 							</div>
@@ -110,8 +100,7 @@ if(isset($eltd_options['woo_products_title_separator_hide_title_separator'])){
 
 <?php break; 
 case 'type2': ?>
-
-	<li <?php post_class(); ?>>
+	<li <?php wc_product_class( '', $product ); ?>>
 		<a href="<?php the_permalink(); ?>" class="product_info_overlay"></a>
 		<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 			<div class="top-product-section">
@@ -124,7 +113,7 @@ case 'type2': ?>
 			</div>
 			<div class="product_info_box">
 				<span class="product-categories">
-					<?php echo wp_kses($product->get_categories(), array(
+					<?php echo wp_kses(wc_get_product_category_list($product), array(
 						'a' => array(
 							'href' => true,
 							'rel' => true,
@@ -137,7 +126,7 @@ case 'type2': ?>
 				<a href="<?php the_permalink(); ?>" class="product-category">            
 					<div class="title_price_holder">
 						<span class="product-title"><?php the_title(); ?></span>
-						<?php if($hide_separator == "no") { ?>
+						<?php if($eltd_hide_separator == "no") { ?>
 							<div class="separator_holder"><span class="separator medium"></span></div>
 						<?php } ?>						
 						<?php do_action( 'woocommerce_after_shop_loop_item_title' ); ?>

@@ -1,3 +1,83 @@
+2.2
+- Added WooCommerce 3.7.0 compatibility
+- Updated Layer Slider to 6.9.2
+- Fixed Custom Sidebar issue
+- Minor Improvements
+
+2.1
+- Added WooCommerce 3.6.5 compatibility
+- Updated Layer Slider to 6.8.4
+- Updated WPBakery Page Builder to 6.0.5
+
+2.0.4
+- Added WooCommerce 3.6.1 compatibility
+
+2.0.3
+- Updated Elated CPT plugin to 1.1.3
+- Improved theme functions
+- Fixed sidebar layout area for pages
+
+2.0.2
+- Updated Elated CPT plugin to 1.1.2
+- Updated languages eltd-cpt.pot and borderland.pot files
+- Fixed meta box styles and functionality for WordPress 5.x
+- Fixed minor bugs
+
+2.0.1
+- Updated Elated CPT plugin to 1.1.1
+- Fixed Elated CPT error activation
+- Fixed bugs
+
+2.0 (Major update)
+- Added WordPress 5.x compatibility
+- Updated Elated CPT plugin to 1.1
+- Updated Borderland Child Theme to 1.1
+- Updated Layer Slider to 6.8.1
+- Updated WPBakery Page Builder to 5.7
+- Updated borderland.pot languages file
+- Improved theme templates, modules and functions
+- Improved theme security
+- Escaped all variables, text domains etc.
+- Renamed all functions, hooks, templates with unique name
+- Removed unnecessary functions, variables etc.
+- Removed custom_css.php and custom_js.php files and improved logic to add custom code as inline
+- Fixed theme text domain
+- Fixed bugs
+
+1.17
+- Added WordPress 5 compatibility
+- Added WooCommerce 3.5.3 compatibility
+- Updated WPBakery Page Builder to 5.6
+- Updated Envato Market to 2.0.1
+
+1.16
+- Added WooCommerce 3.4.4 compatibility
+- Added compatibility with Gutenberg plugin
+- Updated WPBakery Page Builder to 5.5.2
+- Updated Layer Slider to 6.7.6
+- Fixed issue with http/https links
+
+1.15
+- Added compatibility with PHP 7.2 
+- Updated Visual Composer to 5.4.7
+- Updated Layer Slider to 6.7.1
+- Updated Envato Market to 2.0.0
+
+1.14
+- Added Woocommerce 3.2.5 compatibility
+- Added Envato Market plugin as required
+- Added recommended plugins (WooCommerce and Contact Form 7)
+- Updated WPbakery Page Builder to 5.4.5
+- Updated Layer Slider to 6.6.4
+- Fixed potential security issue when saving theme options
+- Improved import functionality
+
+1.13
+- Added Woocommerce 3+ compatibility
+- Updated Visual Composer to 5.1.1
+- Updated Layer Slider to 6.4.0
+- Fixed Image Gallery flex slider navigation
+
 1.12
 - Added Woocommerce 2.6.11 compatibility
 - Updated Layer Slider to 6.1.0

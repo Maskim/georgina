@@ -1,3 +1,7 @@
 .eltdf-page a:focus, .eltdf-page a:hover {
   text-decoration: none;
 }
+
+.wp-picker-container .iris-picker {
+  box-sizing: content-box;
+}

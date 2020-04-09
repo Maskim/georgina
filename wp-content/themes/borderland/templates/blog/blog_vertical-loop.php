@@ -1,48 +1,43 @@
 <?php
-global $eltd_options;
-global $more;
-$more = 0;
-$category = get_post_meta($id, "eltd_choose-blog-category", true);
-
 $blog_show_categories = "no";
-if (isset($eltd_options['blog_vertical_loop_type_show_categories'])){
-    $blog_show_categories = $eltd_options['blog_vertical_loop_type_show_categories'];
+if (borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_categories' )){
+    $blog_show_categories = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_categories' );
 }
 
 $blog_show_comments = "yes";
-if (isset($eltd_options['blog_vertical_loop_type_show_comments'])){
-    $blog_show_comments = $eltd_options['blog_vertical_loop_type_show_comments'];
+if (borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_comments' )){
+    $blog_show_comments = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_comments' );
 }
 $blog_show_author = "yes";
-if (isset($eltd_options['blog_vertical_loop_type_show_author'])){
-    $blog_show_author = $eltd_options['blog_vertical_loop_type_show_author'];
+if (borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_author' )){
+    $blog_show_author = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_author' );
 }
 $blog_show_like = "yes";
-if (isset($eltd_options['blog_vertical_loop_type_show_like'])) {
-    $blog_show_like = $eltd_options['blog_vertical_loop_type_show_like'];
+if (borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_like' )) {
+    $blog_show_like = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_like' );
 }
 $blog_show_ql_icon_mark = "yes";
 $blog_title_holder_icon_class = "";
-if (isset($eltd_options['blog_vertical_loop_type_show_ql_mark'])) {
-    $blog_show_ql_icon_mark = $eltd_options['blog_vertical_loop_type_show_ql_mark'];
+if (borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_ql_mark' )) {
+    $blog_show_ql_icon_mark = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_ql_mark' );
 }
 if($blog_show_ql_icon_mark == "yes"){
     $blog_title_holder_icon_class = " with_icon_right";
 }
 
 $blog_show_date = "yes";
-if (isset($eltd_options['blog_vertical_loop_type_show_date'])) {
-    $blog_show_date = $eltd_options['blog_vertical_loop_type_show_date'];
+if (borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_date' )) {
+    $blog_show_date = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_date' );
 }
 $blog_show_social_share = "no";
 $blog_social_share_type = "dropdown";
-if(isset($eltd_options['blog_vertical_loop_type_select_share_option'])){
-    $blog_social_share_type = $eltd_options['blog_vertical_loop_type_select_share_option'];
+if(borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_select_share_option' )){
+    $blog_social_share_type = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_select_share_option' );
 }
-if (isset($eltd_options['enable_social_share'])&& ($eltd_options['enable_social_share']) =="yes"){
-    if (isset($eltd_options['post_types_names_post'])&& $eltd_options['post_types_names_post'] =="post"){
-        if (isset($eltd_options['blog_vertical_loop_type_show_share'])&& $blog_social_share_type == "dropdown") {
-            $blog_show_social_share = $eltd_options['blog_vertical_loop_type_show_share'];
+if (borderland_elated_options()->getOptionValue( 'enable_social_share' ) =="yes"){
+    if (borderland_elated_options()->getOptionValue( 'post_types_names_post' ) =="post"){
+        if (borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' )&& $blog_social_share_type == "dropdown") {
+            $blog_show_social_share = borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' );
         }
     }
 }
@@ -59,7 +54,7 @@ if($paged == 1){
 	$preload_background_class = "";
 }
 
-$number_of_pages = intval($wp_query->max_num_pages);
+$number_of_pages = intval(borderland_elated_return_global_wp_query()->max_num_pages);
 if($paged - 2 == 0){
 	$previous_page = $number_of_pages;
 }else if($paged - 2 < 0){
@@ -100,7 +95,7 @@ switch ($_post_format) {
 							</div>
 						</div>
                         <div class="post_image_inner">
-							<a class="<?php echo $preload_background_class; ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>');"></a>
+							<a class="<?php echo esc_attr( $preload_background_class ); ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>');"></a>
 							<div class="post_image_title"><div class="post_image_title_inner"><div class="grid_section"><div class="section_inner"><h2><?php the_title(); ?></h2></div></div></div></div>
 						</div>
                     </div>
@@ -119,15 +114,15 @@ switch ($_post_format) {
                                 </h2>								
                                 <?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>
                                     <div class="post_info">
-                                        <?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+                                        <?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
                                     </div>
                                 <?php } ?>
 								
                                 <?php the_content(); ?>
-                                <?php if(isset($eltd_options['blog_vertical_loop_type_show_share']) && $eltd_options['blog_vertical_loop_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+                                <?php if(borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
                                     echo do_shortcode('[no_social_share_list]'); // XSS OK
                                 }; ?>
-								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php _e('Post a comment', 'eltd'); ?></a>
+								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php esc_html_e('Post a comment', 'borderland'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -164,7 +159,7 @@ switch ($_post_format) {
 							</div>
 						</div>
 						<div class="post_image_inner">
-							<a class="<?php echo $preload_background_class; ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
+							<a class="<?php echo esc_attr( $preload_background_class ); ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
 							<div class="post_image_title"><div class="post_image_title_inner"><div class="grid_section"><div class="section_inner"><h2><?php the_title(); ?></h2></div></div></div></div>
 						</div>
                     </div>
@@ -183,15 +178,15 @@ switch ($_post_format) {
                                 </h2>
                                 <?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>
                                     <div class="post_info">
-                                        <?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+                                        <?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
                                     </div>
                                 <?php } ?>
 								
                                 <?php the_content(); ?>
-                                <?php if(isset($eltd_options['blog_vertical_loop_type_show_share']) && $eltd_options['blog_vertical_loop_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+                                <?php if(borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
                                     echo do_shortcode('[no_social_share_list]'); // XSS OK
                                 }; ?>
-								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php _e('Post a comment', 'eltd'); ?></a>
+								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php esc_html_e('Post a comment', 'borderland'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -228,7 +223,7 @@ switch ($_post_format) {
 							</div>
 						</div>
 						<div class="post_image_inner">
-							<a class="<?php echo $preload_background_class; ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
+							<a class="<?php echo esc_attr( $preload_background_class ); ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
 							<div class="post_image_title"><div class="post_image_title_inner"><div class="grid_section"><div class="section_inner"><h2><?php the_title(); ?></h2></div></div></div></div>
 						</div>
                     </div>
@@ -253,16 +248,16 @@ switch ($_post_format) {
                                     </div>
                                     <?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>
                                         <div class="post_info">
-                                            <?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+                                            <?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
                                         </div>
                                     <?php } ?>
 
-                                    <?php if(isset($eltd_options['blog_vertical_loop_type_show_share']) && $eltd_options['blog_vertical_loop_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+                                    <?php if(borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
                                         echo do_shortcode('[no_social_share_list]'); // XSS OK
                                     }; ?>
                                 </div>
                                 <?php the_content();?>
-								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php _e('Post a comment', 'eltd'); ?></a>
+								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php esc_html_e('Post a comment', 'borderland'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -299,7 +294,7 @@ switch ($_post_format) {
 							</div>
 						</div>
 						<div class="post_image_inner">
-							<a class="<?php echo $preload_background_class; ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
+							<a class="<?php echo esc_attr( $preload_background_class ); ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
 							<div class="post_image_title"><div class="post_image_title_inner"><div class="grid_section"><div class="section_inner"><h2><?php the_title(); ?></h2></div></div></div></div>
 						</div>
                     </div>
@@ -319,15 +314,15 @@ switch ($_post_format) {
 								
                                 <?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>
                                     <div class="post_info">
-                                        <?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+                                        <?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
                                     </div>
                                 <?php } ?>
 								
                                 <?php the_content(); ?>
-                                <?php if(isset($eltd_options['blog_vertical_loop_type_show_share']) && $eltd_options['blog_vertical_loop_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+                                <?php if(borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
                                     echo do_shortcode('[no_social_share_list]'); // XSS OK
                                 }; ?>
-								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php _e('Post a comment', 'eltd'); ?></a>
+								<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php esc_html_e('Post a comment', 'borderland'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -364,7 +359,7 @@ switch ($_post_format) {
 							</div>
 						</div>
 						<div class="post_image_inner">
-							<a class="<?php echo $preload_background_class; ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>');"></a>
+							<a class="<?php echo esc_attr( $preload_background_class ); ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo esc_url(wp_get_attachment_url(get_post_thumbnail_id())); ?>');"></a>
 							<div class="post_image_title"><div class="post_image_title_inner"><div class="grid_section"><div class="section_inner"><h2><?php the_title(); ?></h2></div></div></div></div>
 						</div>
                     </div>
@@ -392,17 +387,17 @@ switch ($_post_format) {
                                     </div>
                                     <?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>
                                         <div class="post_info">
-                                            <?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+                                            <?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
                                         </div>
                                     <?php } ?>
-                                    <?php if(isset($eltd_options['blog_vertical_loop_type_show_share']) && $eltd_options['blog_vertical_loop_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+                                    <?php if(borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
                                         echo do_shortcode('[no_social_share_list]'); // XSS OK
                                     }; ?>
                                 </div>
                             </div>
                         </div>
                         <?php the_content(); ?>
-						<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php _e('Post a comment', 'eltd'); ?></a>
+						<a class="qbutton  small white loop_more" href="<?php the_permalink(); ?>"><?php esc_html_e('Post a comment', 'borderland'); ?></a>
                     </div>
                 </div>
             </div>
@@ -436,7 +431,7 @@ switch ($_post_format) {
 								</div>
 							</div>
 							<div class="post_image_inner">
-								<a class="<?php echo $preload_background_class; ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
+								<a class="<?php echo esc_attr( $preload_background_class ); ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url('<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>');"></a>
 								<div class="post_image_title"><div class="post_image_title_inner"><div class="grid_section"><div class="section_inner"><h2><?php the_title(); ?></h2></div></div></div></div>
 							</div>
                         </div>
@@ -455,15 +450,15 @@ switch ($_post_format) {
                                     </h2>
                                     <?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>
                                         <div class="post_info">
-                                            <?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+                                            <?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
                                         </div>
                                     <?php } ?>
 									
                                     <?php the_content();?>
-                                    <?php if(isset($eltd_options['blog_vertical_loop_type_show_share']) && $eltd_options['blog_vertical_loop_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+                                    <?php if(borderland_elated_options()->getOptionValue( 'blog_vertical_loop_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
                                         echo do_shortcode('[no_social_share_list]'); // XSS OK
                                     }; ?>
-									<a class="qbutton small white loop_more" href="<?php the_permalink(); ?>"><?php _e('Post a comment', 'eltd'); ?></a>
+									<a class="qbutton small white loop_more" href="<?php the_permalink(); ?>"><?php esc_html_e('Post a comment', 'borderland'); ?></a>
                                 </div>
                             </div>
                         </div>

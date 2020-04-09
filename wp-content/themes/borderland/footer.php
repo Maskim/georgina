@@ -1,18 +1,14 @@
 <?php
-global $eltd_options;
 
-extract(eltd_get_footer_options());
+extract(borderland_elated_get_footer_options());
 
-?>
-
-<?php get_template_part('content-bottom-area'); ?>
+get_template_part('content-bottom-area'); ?>
 
     </div> <!-- close div.content_inner -->
 </div>  <!-- close div.content -->
 
-<?php
-if(isset($eltd_options['paspartu']) && $eltd_options['paspartu'] == 'yes'){?>
-        <?php if(isset($eltd_options['vertical_area']) && $eltd_options['vertical_area'] =='yes' && isset($eltd_options['vertical_menu_inside_paspartu']) && $eltd_options['vertical_menu_inside_paspartu'] == 'no') { ?>
+<?php if( borderland_elated_options()->getOptionValue( 'paspartu' ) == 'yes'){?>
+        <?php if( borderland_elated_options()->getOptionValue( 'vertical_area' ) =='yes' && borderland_elated_options()->getOptionValue( 'vertical_menu_inside_paspartu' ) == 'no') { ?>
 			</div> <!-- paspartu_middle_inner close div -->
 		<?php } ?>
 		</div> <!-- paspartu_inner close div -->
@@ -20,16 +16,15 @@ if(isset($eltd_options['paspartu']) && $eltd_options['paspartu'] == 'yes'){?>
 <?php
 }
 ?>
-
-<footer <?php eltd_class_attribute($footer_classes); ?>>
+<?php if($display_footer_top || $display_footer_text) { ?>
+<footer <?php borderland_elated_class_attribute($footer_classes); ?>>
 	<div class="footer_inner clearfix">
-		<?php
-		if($display_footer_top) {
+		<?php if($display_footer_top) {
 			if($footer_top_border_color != ''){ ?>
 				<?php if($footer_top_border_in_grid != '') { ?>
 					<div class="footer_ingrid_border_holder_outer">
 				<?php } ?>
-						<div class="footer_top_border_holder <?php echo esc_attr($footer_top_border_in_grid); ?>" <?php eltd_inline_style($footer_top_border_color); ?>></div>
+						<div class="footer_top_border_holder <?php echo esc_attr($footer_top_border_in_grid); ?>" <?php borderland_elated_inline_style($footer_top_border_color); ?>></div>
 				<?php if($footer_top_border_in_grid != '') { ?>
 					</div>
 				<?php } ?>
@@ -175,7 +170,7 @@ if(isset($eltd_options['paspartu']) && $eltd_options['paspartu'] == 'yes'){?>
 				<?php if($footer_bottom_border_in_grid != '') { ?>
 					<div class="footer_ingrid_border_holder_outer">
 				<?php } ?>
-                		<div class="footer_bottom_border_holder <?php echo esc_attr($footer_bottom_border_in_grid); ?>" <?php eltd_inline_style($footer_bottom_border_color); ?>></div>
+                		<div class="footer_bottom_border_holder <?php echo esc_attr($footer_bottom_border_in_grid); ?>" <?php borderland_elated_inline_style($footer_bottom_border_color); ?>></div>
 				<?php if($footer_bottom_border_in_grid != '') { ?>
 					</div>
 				<?php } ?>
@@ -241,14 +236,12 @@ if(isset($eltd_options['paspartu']) && $eltd_options['paspartu'] == 'yes'){?>
                 </div>
 			</div>
             <?php if($footer_bottom_border_bottom_color != ''){ ?>
-				<div class="footer_bottom_border_bottom_holder <?php echo esc_attr($footer_top_border_in_grid); ?>" <?php eltd_inline_style($footer_bottom_border_bottom_color); ?>></div>
+				<div class="footer_bottom_border_bottom_holder <?php echo esc_attr($footer_top_border_in_grid); ?>" <?php borderland_elated_inline_style($footer_bottom_border_bottom_color); ?>></div>
 			<?php } ?>
 		<?php endif; ?>
-
-		
-
 	</div>
 </footer>
+<?php } ?>
 </div> <!-- close div.wrapper_inner  -->
 </div> <!-- close div.wrapper -->
 <?php wp_footer(); ?>

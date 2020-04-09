@@ -1,9 +1,9 @@
 <?php
 /*
-   Class: ElatedFramework
+   Class: BorderlandElatedFramework
    A class that initializes Elated Framework
 */
-class ElatedFramework {
+class BorderlandElatedFramework {
 
     private static $instance;
     public $eltdOptions;
@@ -11,8 +11,8 @@ class ElatedFramework {
     private $skin;
 
     private function __construct() {
-        $this->eltdOptions = ElatedOptions::get_instance();
-        $this->eltdMetaBoxes = ElatedMetaBoxes::get_instance();
+        $this->eltdOptions = BorderlandElatedOptions::get_instance();
+        $this->eltdMetaBoxes = BorderlandElatedMetaBoxes::get_instance();
     }
     
     public static function get_instance() {
@@ -29,12 +29,12 @@ class ElatedFramework {
         return $this->skin;
     }
 
-	public function setSkin(ElatedSkinAbstract $skinObject) {
+	public function setSkin(BorderlandElatedSkinAbstract $skinObject) {
 		$this->skin = $skinObject;
 	}
 }
 
-class ElatedSkinManager {
+class BorderlandElatedSkinManager {
     private $skin;
 
     public function __construct() {
@@ -45,10 +45,8 @@ class ElatedSkinManager {
         if($skinName !== '') {
             if(file_exists(get_template_directory().'/framework/admin/skins/'.$skinName.'/skin.php')) {
                 require_once get_template_directory().'/framework/admin/skins/'.$skinName.'/skin.php';
-
-                $skinName = ucfirst($skinName).'Skin';
-
-                $this->skin = new $skinName();
+                
+                $this->skin = new BorderlandElatedSkin();
             }
         } else {
             $this->skin = false;
@@ -64,7 +62,7 @@ class ElatedSkinManager {
     }
 }
 
-abstract class ElatedSkinAbstract {
+abstract class BorderlandElatedSkinAbstract {
 	protected $skinName;
     protected $styles;
     protected $scripts;
@@ -110,7 +108,7 @@ abstract class ElatedSkinAbstract {
 			return $this->icons[$icon];
 		}
 
-		return ELTD_ROOT.'/img/favicon.ico';
+		return BORDERLAND_ROOT.'/img/favicon.ico';
 	}
 
 	public function getMenuItemPosition($itemPosition) {
@@ -123,8 +121,8 @@ abstract class ElatedSkinAbstract {
 
 	public function setShortcodeJSParams() { ?>
 		<script>
-			window.eltdSCIcon = '<?php echo eltd_get_skin_uri().'/assets/img/admin-logo-icon.png'; ?>';
-			window.eltdSCLabel = '<?php echo esc_html(ucfirst($this->skinName)); ?> Shortcodes';
+			window.eltdSCIcon = '<?php echo borderland_elated_get_skin_uri().'/assets/img/admin-logo-icon.png'; ?>';
+			window.eltdSCLabel = '<?php echo esc_html( ucfirst( $this->skinName ) ); ?> <?php esc_html_e( 'Shortcodes', 'borderland' ) ?>';
 		</script>
 	<?php }
 
@@ -146,62 +144,78 @@ abstract class ElatedSkinAbstract {
 
 
 /*
-   Class: ElatedOptions
+   Class: BorderlandElatedOptions
    A class that initializes Elated Options
 */
-class ElatedOptions {
-
-    private static $instance;
-    public $adminPages;
-    public $options;
-
-    private function __construct() {
-        $this->adminPages = array();
-        $this->options = array();
-    }
-    
-		public static function get_instance() {
+class BorderlandElatedOptions {
+	
+	private static $instance;
+	public $adminPages;
+	public $options;
+	
+	private function __construct() {
+		$this->adminPages = array();
+		$this->options    = array();
+	}
+	
+	public static function get_instance() {
 		
-			if ( null == self::$instance ) {
-				self::$instance = new self;
-			}
-		
-			return self::$instance;
-		
+		if ( null == self::$instance ) {
+			self::$instance = new self;
 		}
-
-    public function addAdminPage($key, $page) {
-        $this->adminPages[$key] = $page;
-    }
-
-    public function getAdminPage($key) {
-        return $this->adminPages[$key];
-    }
-
-    public function getAdminPageFromSlug($slug) {
-			foreach ($this->adminPages as $key=>$page ) {
-				if ($page->slug == $slug)
-					return $page;
+		
+		return self::$instance;
+		
+	}
+	
+	public function addAdminPage( $key, $page ) {
+		$this->adminPages[ $key ] = $page;
+	}
+	
+	public function getAdminPage( $key ) {
+		return $this->adminPages[ $key ];
+	}
+	
+	public function getAdminPageFromSlug( $slug ) {
+		foreach ( $this->adminPages as $key => $page ) {
+			if ( $page->slug == $slug ) {
+				return $page;
 			}
-      return;
-    }
-
-    public function addOption($key, $value) {
-        $this->options[$key] = $value;
-    }
-
-    public function getOption($key) {
-			if(isset($this->options[$key]))
-        return $this->options[$key];
-      return;
-    }
+		}
+		
+		return;
+	}
+	
+	public function addOption( $key, $value ) {
+		$this->options[ $key ] = $value;
+	}
+	
+	public function getOption( $key ) {
+		if ( isset( $this->options[ $key ] ) ) {
+			return $this->options[ $key ];
+		}
+		
+		return;
+	}
+	
+	public function getOptionValue( $key ) {
+		global $borderland_elated_options;
+		
+		if ( is_array( $borderland_elated_options ) && array_key_exists( $key, $borderland_elated_options ) ) {
+			return $borderland_elated_options[ $key ];
+		} elseif ( array_key_exists( $key, $this->options ) ) {
+			return $this->getOption( $key );
+		}
+		
+		return false;
+	}
 }
 
 /*
-   Class: ElatedAdminPage
+   Class: BorderlandElatedAdminPage
    A class that initializes Elated Admin Page
 */
-class ElatedAdminPage implements iLayoutNode {
+class BorderlandElatedAdminPage implements iLayoutNode {
 
     public $layout;
     private $factory;
@@ -209,11 +223,11 @@ class ElatedAdminPage implements iLayoutNode {
     public $title;
     public $icon;
 
-    function __construct($slug="", $title="", $icon = "") {
+    function __construct($slug="", $title_name="", $icon = "") {
         $this->layout = array();
-        $this->factory = new ElatedFieldFactory();
+        $this->factory = new BorderlandElatedFieldFactory();
         $this->slug = $slug;
-        $this->title = $title;
+        $this->title = $title_name;
         $this->icon = $icon;
     }
 
@@ -241,10 +255,10 @@ class ElatedAdminPage implements iLayoutNode {
 }
 
 /*
-   Class: ElatedMetaBoxes
+   Class: BorderlandElatedMetaBoxes
    A class that initializes Elated Meta Boxes
 */
-class ElatedMetaBoxes {
+class BorderlandElatedMetaBoxes {
 
     private static $instance;
     public $metaBoxes;
@@ -285,10 +299,10 @@ class ElatedMetaBoxes {
 }
 
 /*
-   Class: ElatedMetaBox
+   Class: BorderlandElatedMetaBox
    A class that initializes Elated Meta Box
 */
-class ElatedMetaBox implements iLayoutNode {
+class BorderlandElatedMetaBox implements iLayoutNode {
 
     public $layout;
 	private $factory;
@@ -297,11 +311,11 @@ class ElatedMetaBox implements iLayoutNode {
 	public $hidden_property;
 	public $hidden_values = array();
 
-    function __construct($scope="", $title="",$hidden_property="", $hidden_values = array()) {
+    function __construct($scope="", $title_name="",$hidden_property="", $hidden_values = array()) {
         $this->layout = array();
-		$this->factory = new ElatedFieldFactory();
+		$this->factory = new BorderlandElatedFieldFactory();
 		$this->scope = $scope;
-		$this->title = $this->setTitle($title);
+		$this->title = $this->setTitle($title_name);
 		$this->hidden_property = $hidden_property;
 		$this->hidden_values = $hidden_values;
     }
@@ -329,14 +343,21 @@ class ElatedMetaBox implements iLayoutNode {
     }
 
 	public function setTitle($label) {
-		global $eltdFramework;
+		global $borderland_elated_framework;
 
-		return $eltdFramework->getSkin()->getSkinLabel().' '.$label;
+		return $borderland_elated_framework->getSkin()->getSkinLabel().' '.$label;
  	}
 }
 
-global $eltdFramework;
-
-$eltdFramework = ElatedFramework::get_instance();
-$eltdSkinManager = new ElatedSkinManager();
-$eltdFramework->setSkin($eltdSkinManager->getSkin());
+if ( ! function_exists( 'borderland_elated_init_framework_variable' ) ) {
+	function borderland_elated_init_framework_variable() {
+		global $borderland_elated_framework;
+		
+		$borderland_elated_framework = BorderlandElatedFramework::get_instance();
+		
+		$eltdSkinManager = new BorderlandElatedSkinManager();
+		$borderland_elated_framework->setSkin( $eltdSkinManager->getSkin() );
+	}
+	
+	add_action( 'borderland_elated_action_before_options_map', 'borderland_elated_init_framework_variable' );
+}

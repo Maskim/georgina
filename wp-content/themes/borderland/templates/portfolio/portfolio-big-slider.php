@@ -1,9 +1,4 @@
 <?php
-//get global variables
-global $wp_query;
-global $eltd_options;
-global $wpdb;
-
 //init variables
 $portfolio_images 			= get_post_meta(get_the_ID(), "eltd_portfolio_images", true);
 $lightbox_single_project 	= 'no';
@@ -12,32 +7,32 @@ $portfolio_title_style          = '';
 
 
 //is lightbox turned on for single project?
-if (isset($eltd_options['lightbox_single_project'])) {
-	$lightbox_single_project = $eltd_options['lightbox_single_project'];
+if (borderland_elated_options()->getOptionValue( 'lightbox_single_project' )) {
+	$lightbox_single_project = borderland_elated_options()->getOptionValue( 'lightbox_single_project' );
 }
 
 //set title tag
-if (isset($eltd_options['portfolio_title_tag'])) {
-    $portfolio_title_tag = $eltd_options['portfolio_title_tag'];
+if (borderland_elated_options()->getOptionValue( 'portfolio_title_tag' )) {
+    $portfolio_title_tag = borderland_elated_options()->getOptionValue( 'portfolio_title_tag' );
 }
 
 //set style for title
-if ((isset($eltd_options['portfolio_title_margin_bottom']) && $eltd_options['portfolio_title_margin_bottom'] != '')
-    || (isset($eltd_options['portfolio_title_color']) && !empty($eltd_options['portfolio_title_color']))){
+if ((borderland_elated_options()->getOptionValue( 'portfolio_title_margin_bottom' ) != '')
+    || (borderland_elated_options()->getOptionValue( 'portfolio_title_color' ))){
 
-    if (isset($eltd_options['portfolio_title_margin_bottom']) && $eltd_options['portfolio_title_margin_bottom'] != '') {
-        $portfolio_title_style .= 'margin-bottom:'.esc_attr($eltd_options['portfolio_title_margin_bottom']).'px;';
+    if (borderland_elated_options()->getOptionValue( 'portfolio_title_margin_bottom' ) != '') {
+        $portfolio_title_style .= 'margin-bottom:'.esc_attr(borderland_elated_options()->getOptionValue( 'portfolio_title_margin_bottom' )).'px;';
     }
 
-    if (isset($eltd_options['portfolio_title_color']) && !empty($eltd_options['portfolio_title_color'])) {
-        $portfolio_title_style .= 'color:'.esc_attr($eltd_options['portfolio_title_color']).';';
+    if (borderland_elated_options()->getOptionValue( 'portfolio_title_color' )) {
+        $portfolio_title_style .= 'color:'.esc_attr(borderland_elated_options()->getOptionValue( 'portfolio_title_color' )).';';
     }
 
 }
 
 //sort portfolio images by user defined input
 if (is_array($portfolio_images)){
-	usort($portfolio_images, "eltdComparePortfolioImages");
+	usort($portfolio_images, "borderland_elated_compare_portfolio_images");
 }
 ?>
 
@@ -67,7 +62,7 @@ if (is_array($portfolio_images)){
 				<?php if($portfolio_image['portfolioimg'] != ""){ ?>
 					<?php
 
-					list($id, $title, $alt) = eltd_get_portfolio_image_meta($portfolio_image['portfolioimg']);
+					list($id, $title, $alt) = borderland_elated_get_portfolio_image_meta($portfolio_image['portfolioimg']);
 
 					?>
 					<li class="slide">
@@ -81,12 +76,12 @@ if (is_array($portfolio_images)){
 					switch ($portfolio_video_type){
 						case "youtube": ?>
 							<li class="slide">
-								<iframe width="100%" src="//www.youtube.com/embed/<?php echo esc_attr($portfolio_image['portfoliovideoid']);  ?>?wmode=transparent" wmode="Opaque" frameborder="0" allowfullscreen></iframe>
+								<iframe width="100%" src="https://www.youtube.com/embed/<?php echo esc_attr($portfolio_image['portfoliovideoid']);  ?>?wmode=transparent" wmode="Opaque" frameborder="0" allowfullscreen></iframe>
 							</li>
 							<?php	break;
 						case "vimeo": ?>
 							<li class="slide">
-								<iframe src="//player.vimeo.com/video/<?php echo esc_attr($portfolio_image['portfoliovideoid']);  ?>?title=0&amp;byline=0&amp;portrait=0" width="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+								<iframe src="https://player.vimeo.com/video/<?php echo esc_attr($portfolio_image['portfoliovideoid']);  ?>?title=0&amp;byline=0&amp;portrait=0" width="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 							</li>
 							<?php break;
 						case "self": ?>
@@ -100,7 +95,7 @@ if (is_array($portfolio_images)){
 										<object width="320" height="240" type="application/x-shockwave-flash" data="<?php echo esc_url(get_template_directory_uri().'/js/flashmediaelement.swf'); ?>">
 											<param name="movie" value="<?php echo esc_url(get_template_directory_uri().'/js/flashmediaelement.swf'); ?>" />
 											<param name="flashvars" value="controls=true&file=<?php echo esc_url($portfolio_image['portfoliovideomp4']); ?>" />
-											<img src="<?php echo esc_url($portfolio_image['portfoliovideoimage']); ?>" width="1920" height="800" title="No video playback capabilities" alt="Video thumb" />
+											<img src="<?php echo esc_url($portfolio_image['portfoliovideoimage']); ?>" width="1920" height="800" title="<?php esc_attr_e( 'No video playback capabilities', 'borderland' ); ?>" alt="<?php esc_attr_e( 'Video thumb', 'borderland' ); ?>" />
 										</object>
 									</video>
 								</div></div>
@@ -116,7 +111,7 @@ if (is_array($portfolio_images)){
 	<div class="column1">
 		<div class="column_inner">
 			<div class="portfolio_single_text_holder">
-				<<?php echo esc_attr($portfolio_title_tag); ?> class="portfolio_single_text_title" <?php eltd_inline_style($portfolio_title_style); ?>><span><?php the_title(); ?></span></<?php echo esc_attr($portfolio_title_tag); ?>>
+				<<?php echo esc_attr($portfolio_title_tag); ?> class="portfolio_single_text_title" <?php borderland_elated_inline_style($portfolio_title_style); ?>><span><?php the_title(); ?></span></<?php echo esc_attr($portfolio_title_tag); ?>>
 				<?php the_content(); ?>
 			</div>
 		</div>

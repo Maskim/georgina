@@ -10,32 +10,30 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woothemes.com/document/template-structure/
- * @author  WooThemes
+ * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates
- * @version 2.2
+ * @version 3.4.4
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
+
+if ( ! wc_coupons_enabled() ) { // @codingStandardsIgnoreLine.
+	return;
 }
 
-if ( ! wc_coupons_enabled() ) {
-    return;
-}
-
-if ( empty( WC()->cart->applied_coupons ) ) {
-    $info_message = apply_filters( 'woocommerce_checkout_coupon_message', __( 'Have a coupon?', 'woocommerce' ) . ' <a href="#" class="showcoupon">' . __( 'Click here to enter your code', 'woocommerce' ) . '</a>' );
-    wc_print_notice( $info_message, 'notice' );
-}
 ?>
+<div class="woocommerce-form-coupon-toggle">
+	<?php wc_print_notice( apply_filters( 'woocommerce_checkout_coupon_message', esc_html__( 'Have a coupon?', 'borderland' ) . ' <a href="#" class="showcoupon">' . esc_html__( 'Click here to enter your code', 'borderland' ) . '</a>' ), 'notice' ); ?>
+</div>
 
-<form class="checkout_coupon" method="post" style="display:none">
-
+<form class="checkout_coupon woocommerce-form-coupon" method="post" style="display:none">
+	
+	<p><?php esc_html_e( 'If you have a coupon code, please apply it below.', 'borderland' ); ?></p>
+	
 	<div class="coupon">
-		<input type="text" name="coupon_code" class="input-text" placeholder="<?php _e( 'Enter coupon code', 'woocommerce' ); ?>" id="coupon_code" value="" />
-		<input type="submit" class="button" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+		<input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e( 'Enter coupon code', 'borderland' ); ?>" id="coupon_code" value="" />
+		<input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply Coupon', 'borderland' ); ?>" />
 	</div>
-
+	
 	<div class="clear"></div>
 </form>

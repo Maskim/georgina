@@ -763,7 +763,7 @@ function loadResource(url) {
 
 if (window.history.pushState) {
     /* the below code is to override back button to get the ajax content without reload*/
-    $j(window).bind('popstate', function() {
+    $j(window).on('popstate', function() {
         "use strict";
 
         var url = location.href;

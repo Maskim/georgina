@@ -4,7 +4,8 @@ $j(document).ready(function() {
 
     $j('.price_slider_wrapper').parents('.widget').addClass('widget_price_filter');
     initSelect2();
-    initAddToCartPlusMinus()
+    initAddToCartPlusMinus();
+    qodeInitSingleProductLightbox();
 });
 
 function initSelect2() {
@@ -35,7 +36,7 @@ function initAddToCartPlusMinus(){
         // Change the value
         if ( $j( this ).is( '.plus' ) ) {
 
-            if ( max && ( max == currentVal || currentVal > max ) ) {
+            if ( max && ( max === currentVal || currentVal > max ) ) {
                 $qty.val( max );
             } else {
                 $qty.val( currentVal + parseFloat( step ) );
@@ -43,7 +44,7 @@ function initAddToCartPlusMinus(){
 
         } else {
 
-            if ( min && ( min == currentVal || currentVal < min ) ) {
+            if ( min && ( min === currentVal || currentVal < min ) ) {
                 $qty.val( min );
             } else if ( currentVal > 0 ) {
                 $qty.val( currentVal - parseFloat( step ) );
@@ -53,4 +54,47 @@ function initAddToCartPlusMinus(){
         // Trigger change event
         $qty.trigger( 'change' );
     });
+}
+
+/*
+ ** Init Product Single Pretty Photo attributes
+ */
+function qodeInitSingleProductLightbox() {
+    "use strict";
+    
+    var item = $j('.woocommerce.single-product .product .images:not(.qode-add-gallery-and-zoom-support) .woocommerce-product-gallery__image');
+    
+    if(item.length) {
+        item.each(function() {
+            var thisItem = $j(this).children('a');
+            
+            thisItem.attr('data-rel', 'prettyPhoto[woo_single_pretty_photo]');
+            
+            $j('a[data-rel]').each(function() {
+                $j(this).attr('rel', $j(this).data('rel'));
+            });
+            
+            $j("a[rel^='prettyPhoto']").prettyPhoto({
+                animation_speed: 'normal', /* fast/slow/normal */
+                slideshow: false, /* false OR interval time in ms */
+                autoplay_slideshow: false, /* true/false */
+                opacity: 0.80, /* Value between 0 and 1 */
+                show_title: true, /* true/false */
+                allow_resize: true, /* Resize the photos bigger than viewport. true/false */
+                horizontal_padding: 0,
+                default_width: 960,
+                default_height: 540,
+                counter_separator_label: '/', /* The separator for the gallery counter 1 "of" 2 */
+                theme: 'pp_default', /* light_rounded / dark_rounded / light_square / dark_square / facebook */
+                hideflash: false, /* Hides all the flash object on a page, set to TRUE if flash appears over prettyPhoto */
+                wmode: 'opaque', /* Set the flash wmode attribute */
+                autoplay: true, /* Automatically start videos: True/False */
+                modal: false, /* If set to true, only the close button will close the window */
+                overlay_gallery: false, /* If set to true, a gallery will overlay the fullscreen image on mouse over */
+                keyboard_shortcuts: true, /* Set to false if you open forms inside prettyPhoto */
+                deeplinking: false,
+                social_tools: false,
+            });
+        });
+    }
 }

@@ -1,5 +1,5 @@
 <?php
-if(version_compare(eltd_get_vc_version(), '4.6.2') >= 0) {
+if(version_compare( borderland_elated_get_vc_version(), '4.6.2') >= 0) {
 	$height = $el_class = $background_image = $image_repeat = '';
 	$atts = vc_map_get_attributes($this->getShortcode(), $atts);
 	extract($atts);
@@ -27,7 +27,7 @@ $height = $value . $unit;
 
 $inline_css = ( (float) $height >= 0.0 ) ? ' style="height: '.$height.'"' : '';
 
-if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
+if(version_compare( borderland_elated_get_vc_version(), '4.7.4') >= 0) {
 	$class = 'vc_empty_space ' . $this->getExtraClass( $el_class ). vc_shortcode_custom_css_class( $css, ' ' );
 } else {
 	$class .= $this->getExtraClass( $el_class );
@@ -35,7 +35,7 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $class, $this->settings['base'], $atts );
 
 ?>
-    <div class="<?php echo esc_attr(trim($css_class)); ?>" <?php print $inline_css;
+    <div class="<?php echo esc_attr(trim($css_class)); ?>" <?php echo borderland_elated_get_module_part( $inline_css );
 
 
     ?> ><span class="vc_empty_space_inner"><div class="empty_space_image"
@@ -50,7 +50,7 @@ $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $class, $this->s
                         $html .= 'background-repeat:'.$image_repeat.';"';
                     }
                 }
-                print $html;
+                echo borderland_elated_get_module_part( $html );
                 ?> ></div>
 </span></div>
-<?php print $this->endBlockComment('empty_space')."\n";
+<?php echo borderland_elated_get_module_part( $this )->endBlockComment('empty_space')."\n";

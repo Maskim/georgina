@@ -28,9 +28,13 @@ $j(window).resize(function() {
 function fitAudio(){
 	"use strict";
 
-	$j('audio.blog_audio').mediaelementplayer({
-		audioWidth: '100%'
-	});
+	var holder = $j('audio.blog_audio');
+	
+	if(holder.length){
+		$j('audio.blog_audio').mediaelementplayer({
+			audioWidth: '100%'
+		});
+	}
 }
 /*
  **	Init masonry layout for blog template
@@ -39,7 +43,6 @@ function initBlog(){
 	"use strict";
 
 	if($j('.blog_holder.masonry').length){
-
 		var $container = $j('.blog_holder.masonry');
 
 		$container.isotope({
@@ -51,7 +54,7 @@ function initBlog(){
 			}
 		});
 
-		$j('.filter').click(function(){
+		$j('.filter').on('click', function(){
 			var selector = $j(this).attr('data-filter');
 			$container.isotope({ filter: selector });
 			return false;
@@ -124,7 +127,7 @@ function initBlogMasonryFullWidth(){
 
 		var $container = $j('.masonry_full_width');
 
-		$j('.filter').click(function(){
+		$j('.filter').on('click', function(){
 			var selector = $j(this).attr('data-filter');
 			$container.isotope({ filter: selector });
 			return false;

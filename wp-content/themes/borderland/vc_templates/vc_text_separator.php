@@ -1,7 +1,7 @@
 <?php
 $output = $title = $title_align = $el_class = '';
 extract(shortcode_atts(array(
-    'title' => __("Title", "js_composer"),
+    'title' => esc_html__("Title", "borderland"),
     'title_size' => '',
     'title_color' => '',
     'text_in_box' => 'yes',
@@ -203,4 +203,4 @@ $output .= '<div class="'.$css_class.' '.$text_position.'">';
     $output .='</div>'; // end separator_wrapper
 $output .= '</div>'.$this->endBlockComment('separator')."\n"; // end separator_content
 
-print $output;
+echo borderland_elated_get_module_part( $output );

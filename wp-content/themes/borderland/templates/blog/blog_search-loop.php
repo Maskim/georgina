@@ -1,11 +1,3 @@
-<?php 
-global $eltd_options;
-
-$blog_hide_author = "";
-if (isset($eltd_options['blog_hide_author'])) {
-    $blog_hide_author = $eltd_options['blog_hide_author'];
-}
-?>
 <article id="post-<?php the_ID(); ?>">
 	<div class="post_content_holder">
 		<?php if ( has_post_thumbnail() ) { ?>
@@ -24,13 +16,13 @@ if (isset($eltd_options['blog_hide_author'])) {
 					<?php $category = get_the_category(get_the_ID()); ?>
 					<?php if(!empty($category)){ ?>
 						<span class="post_category">
-							<span><?php _e('In', 'eltd'); ?></span>
+							<span><?php esc_html_e('In', 'borderland'); ?></span>
 							<span><?php the_category(', '); ?></span>
 						</span>
 					<?php } ?>
-					<?php if($blog_hide_author == "no") { ?>
+					<?php if(borderland_elated_options()->getOptionValue( 'blog_hide_author' ) == "no") { ?>
 						<span class="post_author">
-						<span><?php _e('By', 'eltd'); ?></span>
+						<span><?php esc_html_e('By', 'borderland'); ?></span>
 							<a class="post_author_link" href="<?php echo esc_url(get_author_posts_url( get_the_author_meta( 'ID' ) )); ?>"><span><?php the_author_meta('display_name'); ?></span></a>
 						</span>
 					<?php } ?>	

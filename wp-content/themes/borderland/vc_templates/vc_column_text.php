@@ -1,6 +1,6 @@
 <?php
 
-if (version_compare(eltd_get_vc_version(), '4.5.9') >= 0) {
+if (version_compare(borderland_elated_get_vc_version(), '4.5.9') >= 0) {
 	/**
 	 * Shortcode attributes
 	 * @var $atts
@@ -30,7 +30,7 @@ if (version_compare(eltd_get_vc_version(), '4.5.9') >= 0) {
 	$output .= "\n\t\t" . '</div> ' . $this->endBlockComment('.wpb_wrapper');
 	$output .= "\n\t" . '</div> ' . $this->endBlockComment($this->getShortcode());
 
-	echo $output;
+	echo borderland_elated_get_module_part($output);
 
 } else {
 
@@ -52,6 +52,6 @@ if (version_compare(eltd_get_vc_version(), '4.5.9') >= 0) {
 	$output .= "\n\t\t" . '</div> ' . $this->endBlockComment( '.wpb_wrapper' );
 	$output .= "\n\t" . '</div> ' . $this->endBlockComment( '.wpb_text_column' );
 
-	echo $output;
+	echo borderland_elated_get_module_part($output);
 
 }

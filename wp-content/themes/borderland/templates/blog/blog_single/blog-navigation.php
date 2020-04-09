@@ -1,13 +1,11 @@
 <?php
-global $eltd_options;
-
 $enable_blog_navigation = false;
-if (isset($eltd_options['blog_single_navigation']) && $eltd_options['blog_single_navigation'] == "yes"){
+if (borderland_elated_options()->getOptionValue( 'blog_single_navigation' ) == "yes"){
     $enable_blog_navigation = true;
 }
 
 $navigation_blog_through_category = false;
-if (isset($eltd_options['blog_navigation_through_same_category']) && $eltd_options['blog_navigation_through_same_category'] == "yes")
+if (borderland_elated_options()->getOptionValue( 'blog_navigation_through_same_category' ) == "yes")
     $navigation_blog_through_category = true;
 
 ?>

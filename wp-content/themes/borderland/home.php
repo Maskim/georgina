@@ -1,93 +1,51 @@
-<?php get_header(); ?>
 <?php
-global $wp_query;
-$id = $wp_query->get_queried_object_id();
-if(get_post_meta($id, "eltd_show-sidebar", true) == ''){
-		$sidebar = $eltd_options['category_blog_sidebar'];
-}
-else{
-	$sidebar = get_post_meta($id, "eltd_show-sidebar", true);
-}
+get_header();
 
-if(get_post_meta($id, "eltd_page_background_color", true) != ""){
-	$background_color = 'background-color: '.esc_attr(get_post_meta($id, "eltd_page_background_color", true));
-}else{
-	$background_color = "";
-}
-
+$borderland_sidebar = borderland_elated_get_sidebar_layout();
 ?>
-
-	<?php if(get_post_meta($id, "eltd_page_scroll_amount_for_sticky", true)) { ?>
-		<script>
-		var page_scroll_amount_for_sticky = <?php echo esc_attr(get_post_meta($id, "eltd_page_scroll_amount_for_sticky", true)); ?>;
-		</script>
-	<?php } ?>
-
-	<?php get_template_part( 'title' ); ?>
-	<?php get_template_part('slider'); ?>
-
-<?php if(isset($eltd_options['blog_style'])&& ($eltd_options['blog_style'] == 3)){ ?>
-		
-		<?php 
-		$blog_style = '';
-		if($eltd_options['blog_style'] == 3){
-			$blog_style = ' blog_masonry_full_width_template';
-		}
-		?>
-		
-		<div class="full_width <?php echo esc_attr($blog_style)?>">
+<?php if ( borderland_elated_options()->getOptionValue( 'blog_style' ) == 3 ) { ?>
+	<div class="full_width blog_masonry_full_width_template">
 		<div class="full_width_inner">
-
-			<?php
-			get_template_part('templates/blog/blog-structure', 'loop');
-			?>
-
+			<?php get_template_part( 'templates/blog/blog-structure', 'loop' ); ?>
 		</div>
 	</div>
-
-	<?php } else { ?>
-
-	<div class="container"<?php eltd_inline_style($background_color); ?>>
-		<?php if($eltd_options['overlapping_content'] == 'yes') {?>
-			<div class="overlapping_content"><div class="overlapping_content_inner">
-		<?php } ?>
-		<div class="container_inner default_template_holder clearfix">
-			<?php if(($sidebar == "default")||($sidebar == "")) : ?>
-				<?php
-					get_template_part('templates/blog/blog', 'structure');
-				?>
-			<?php elseif($sidebar == "1" || $sidebar == "2"): ?>
-				<div class="<?php if($sidebar == "1"):?>two_columns_66_33<?php elseif($sidebar == "2") : ?>two_columns_75_25<?php endif; ?> background_color_sidebar grid2 clearfix">
-					<div class="column1 content_left_from_sidebar">
-						<div class="column_inner">
-							<?php
-								get_template_part('templates/blog/blog', 'structure');
-							?>
+<?php } else { ?>
+	<div class="container">
+		<?php if ( borderland_elated_options()->getOptionValue( 'overlapping_content' ) == 'yes' ) { ?>
+		<div class="overlapping_content">
+			<div class="overlapping_content_inner">
+				<?php } ?>
+				<div class="container_inner default_template_holder clearfix">
+					<?php if ( $borderland_sidebar == "default" || $borderland_sidebar == "" ) : ?>
+						<?php get_template_part( 'templates/blog/blog', 'structure' ); ?>
+					<?php elseif ( $borderland_sidebar == "1" || $borderland_sidebar == "2" ): ?>
+						<div class="<?php if ( $borderland_sidebar == "1" ): ?>two_columns_66_33<?php elseif ( $borderland_sidebar == "2" ) : ?>two_columns_75_25<?php endif; ?> background_color_sidebar grid2 clearfix">
+							<div class="column1 content_left_from_sidebar">
+								<div class="column_inner">
+									<?php get_template_part( 'templates/blog/blog', 'structure' ); ?>
+								</div>
+							</div>
+							<div class="column2">
+								<?php get_sidebar(); ?>
+							</div>
 						</div>
-					</div>
-					<div class="column2">
-						<?php get_sidebar(); ?>
-					</div>
-				</div>
-		<?php elseif($sidebar == "3" || $sidebar == "4"): ?>
-				<div class="<?php if($sidebar == "3"):?>two_columns_33_66<?php elseif($sidebar == "4") : ?>two_columns_25_75<?php endif; ?> background_color_sidebar grid2 clearfix">
-					<div class="column1">
-					<?php get_sidebar(); ?>
-					</div>
-					<div class="column2 content_right_from_sidebar">
-						<div class="column_inner">
-							<?php
-								get_template_part('templates/blog/blog', 'structure');
-							?>
+					<?php elseif ( $borderland_sidebar == "3" || $borderland_sidebar == "4" ): ?>
+						<div class="<?php if ( $borderland_sidebar == "3" ): ?>two_columns_33_66<?php elseif ( $borderland_sidebar == "4" ) : ?>two_columns_25_75<?php endif; ?> background_color_sidebar grid2 clearfix">
+							<div class="column1">
+								<?php get_sidebar(); ?>
+							</div>
+							<div class="column2 content_right_from_sidebar">
+								<div class="column_inner">
+									<?php get_template_part( 'templates/blog/blog', 'structure' ); ?>
+								</div>
+							</div>
 						</div>
-					</div>
+					<?php endif; ?>
 				</div>
-			<?php endif; ?>
+				<?php if ( borderland_elated_options()->getOptionValue( 'overlapping_content' ) == 'yes' ) { ?>
+			</div>
 		</div>
-		<?php if($eltd_options['overlapping_content'] == 'yes') {?>
-			</div></div>
 		<?php } ?>
 	</div>
-
-	<?php } ?>
+<?php } ?>
 <?php get_footer(); ?>

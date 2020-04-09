@@ -48,5 +48,5 @@ $eltd_splitted_item_data = "data-header_style='".$header_style."'"; //render emp
 $html .= "<div class='ms-section' ".$eltd_splitted_item_style." ".$eltd_splitted_item_data." >";
 $html .= do_shortcode($content);
 $html .= "</div>";
-print $html;
+echo borderland_elated_get_module_part( $html );
 

@@ -20,10 +20,10 @@ if($background_color != "") {
 
 $html = "";
 
-$html .= '<div class="vertical_split_slider_preloader" '.$eltd_preloader_style.'><div class="ajax_loader"><div class="ajax_loader_1">'.eltd_loading_spinners(true).'</div></div></div>';
+$html .= '<div class="vertical_split_slider_preloader" '.$eltd_preloader_style.'><div class="ajax_loader"><div class="ajax_loader_1">'.borderland_elated_loading_spinners(true).'</div></div></div>';
 $html .= '<div class="vertical_split_slider">';
 $html .= do_shortcode($content);
 $html .= '</div>';
 
-print $html;
+echo borderland_elated_get_module_part( $html );
 

@@ -44,4 +44,4 @@ $html = "<div class='eltd_elements_holder" . $elements_holder_class . "' ". $ele
 $html .= do_shortcode($content);
 $html .= '</div>';
 
-print $html;
+echo borderland_elated_get_module_part( $html );

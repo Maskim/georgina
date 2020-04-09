@@ -10,61 +10,59 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woothemes.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     2.2.2
+ * @see     https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce/Templates
+ * @version 3.3.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
-global $wp_query;
-global $eltd_options;
+$total   = isset( $total ) ? $total : wc_get_loop_prop( 'total_pages' );
+$current = isset( $current ) ? $current : wc_get_loop_prop( 'current_page' );
+$base    = isset( $base ) ? $base : esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) );
+$format  = isset( $format ) ? $format : '';
 
-if ( $wp_query->max_num_pages <= 1 ) {
+if ( $total <= 1 ) {
 	return;
 }
 
 $prev_text = '<i class="fa fa-angle-left"></i>';
-if (isset($eltd_options['pagination_arrows_type']) && $eltd_options['pagination_arrows_type'] != '') {
-	$icon_navigation_class = $eltd_options['pagination_arrows_type'];
-	$direction_nav_classes = eltd_horizontal_slider_icon_classes($icon_navigation_class);
-	$prev_text = '<span class="pagination_arrow ' . $direction_nav_classes['left_icon_class']. '"></span>';
+if ( borderland_elated_options()->getOptionValue( 'pagination_arrows_type' ) != '' ) {
+	$icon_navigation_class = borderland_elated_options()->getOptionValue( 'pagination_arrows_type' );
+	$direction_nav_classes = borderland_elated_horizontal_slider_icon_classes( $icon_navigation_class );
+	$prev_text             = '<span class="pagination_arrow ' . $direction_nav_classes['left_icon_class'] . '"></span>';
 }
 
 $next_text = '<i class="fa fa-angle-right"></i>';
-if (isset($eltd_options['pagination_arrows_type']) && $eltd_options['pagination_arrows_type'] != '') {
-	$icon_navigation_class = $eltd_options['pagination_arrows_type'];
-	$direction_nav_classes = eltd_horizontal_slider_icon_classes($icon_navigation_class);
-	$next_text = '<span class="pagination_arrow ' . $direction_nav_classes['right_icon_class']. '"></span>';
+if ( borderland_elated_options()->getOptionValue( 'pagination_arrows_type' ) != '' ) {
+	$icon_navigation_class = borderland_elated_options()->getOptionValue( 'pagination_arrows_type' );
+	$direction_nav_classes = borderland_elated_horizontal_slider_icon_classes( $icon_navigation_class );
+	$next_text             = '<span class="pagination_arrow ' . $direction_nav_classes['right_icon_class'] . '"></span>';
 }
 
 $pagination_classes = '';
-if( isset($eltd_options['pagination_type']) && $eltd_options['pagination_type'] == 'standard' ) {
-	if( isset($eltd_options['pagination_standard_position']) && $eltd_options['pagination_standard_position'] !== '' ) {
-		$pagination_classes .= "standard_".esc_attr($eltd_options['pagination_standard_position']);
-	}
-}
-elseif ( isset($eltd_options['pagination_type']) && $eltd_options['pagination_type'] == 'arrows_on_sides' ) {
+if ( borderland_elated_options()->getOptionValue( 'pagination_type' ) == 'standard' && borderland_elated_options()->getOptionValue( 'pagination_standard_position' ) !== '' ) {
+	$pagination_classes .= "standard_" . esc_attr( borderland_elated_options()->getOptionValue( 'pagination_standard_position' ) );
+} elseif ( borderland_elated_options()->getOptionValue( 'pagination_type' ) == 'arrows_on_sides' ) {
 	$pagination_classes .= "arrows_on_sides";
 }
-?>
 
-<nav class="woocommerce-pagination  <?php echo esc_attr($pagination_classes);?>">
+?>
+<nav class="woocommerce-pagination <?php echo esc_attr( $pagination_classes ); ?>">
 	<?php
-		echo paginate_links( apply_filters( 'woocommerce_pagination_args', array(
-			'base'         => esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
-			'format'       => '',
-			'add_args'     => '',
-			'current'      => max( 1, get_query_var( 'paged' ) ),
-			'total'        => $wp_query->max_num_pages,
-			'prev_text'    => $prev_text,
-			'next_text'    => $next_text,
-			'type'         => 'list',
-			'end_size'     => 3,
-			'mid_size'     => 3
-		) ) );
+	echo paginate_links( apply_filters( 'woocommerce_pagination_args', array( // WPCS: XSS ok.
+	      'base'         => $base,
+	      'format'       => $format,
+	      'add_args'     => false,
+	      'current'      => max( 1, $current ),
+	      'total'        => $total,
+          'prev_text'    => $prev_text,
+          'next_text'    => $next_text,
+	      'type'         => 'list',
+	      'end_size'     => 3,
+	      'mid_size'     => 3,
+	) ) );
 	?>
 </nav>

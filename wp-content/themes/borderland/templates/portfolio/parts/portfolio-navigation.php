@@ -1,13 +1,11 @@
 <?php
-global $eltd_options;
-
 $enable_navigation = true;
-if (isset($eltd_options['portfolio_hide_pagination']) && $eltd_options['portfolio_hide_pagination'] == "yes"){
+if (borderland_elated_options()->getOptionValue( 'portfolio_hide_pagination' ) == "yes"){
     $enable_navigation = false;
 }
 
 $navigation_through_category = false;
-if (isset($eltd_options['portfolio_navigation_through_same_category']) && $eltd_options['portfolio_navigation_through_same_category'] == "yes")
+if (borderland_elated_options()->getOptionValue( 'portfolio_navigation_through_same_category' ) == "yes")
     $navigation_through_category = true;
 ?>
 
@@ -15,23 +13,23 @@ if (isset($eltd_options['portfolio_navigation_through_same_category']) && $eltd_
 
 $icon_navigation_class = "fa fa-angle-";
 
-if (isset($eltd_options['portfolio_single_navigation_arrows_type']) && $eltd_options['portfolio_single_navigation_arrows_type'] != '') {
-    $icon_navigation_class = $eltd_options['portfolio_single_navigation_arrows_type'];
+if (borderland_elated_options()->getOptionValue( 'portfolio_single_navigation_arrows_type' ) != '') {
+    $icon_navigation_class = borderland_elated_options()->getOptionValue( 'portfolio_single_navigation_arrows_type' );
 }
 
-$direction_nav_classes = eltd_horizontal_slider_icon_classes($icon_navigation_class);
+$direction_nav_classes = borderland_elated_horizontal_slider_icon_classes($icon_navigation_class);
 
 
 $back_to_button_code = '<i class="fa fa-th"></i>';
 
-if ($eltd_options['portfolio_back_to_button_choice'] == 'icon'){
-    if (isset($eltd_options['portfolio_back_to_button_icon']) && $eltd_options['portfolio_back_to_button_icon'] != '') {
-        $back_to_button = $eltd_options['portfolio_back_to_button_icon'];
+if (borderland_elated_options()->getOptionValue( 'portfolio_back_to_button_choice' ) == 'icon'){
+    if (borderland_elated_options()->getOptionValue( 'portfolio_back_to_button_icon' ) != '') {
+        $back_to_button = borderland_elated_options()->getOptionValue( 'portfolio_back_to_button_icon' );
         $back_to_button_code = '<span class="' . $back_to_button . '"></span>';
     }
 }
-elseif ($eltd_options['portfolio_back_to_button_choice'] == 'custom_icon') {
-    if (isset($eltd_options['portfolio_back_to_button_custom_icon']) && $eltd_options['portfolio_back_to_button_custom_icon'] != '') {
+elseif (borderland_elated_options()->getOptionValue( 'portfolio_back_to_button_choice' ) == 'custom_icon') {
+    if (borderland_elated_options()->getOptionValue( 'portfolio_back_to_button_custom_icon' ) != '') {
         $back_to_button_code = '<span class="portfolio_single_nav_custom"></span>';
     }
 }

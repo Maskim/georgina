@@ -10,16 +10,16 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woothemes.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     2.3.2
+ * @see     https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce/Templates
+ * @version 3.6.0
  */
-global $product;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
+
+global $product;
 
 if ( ! comments_open() ) {
 	return;
@@ -47,12 +47,12 @@ if ( ! comments_open() ) {
 
 		<?php else : ?>
 
-			<p class="woocommerce-noreviews"><?php _e( 'There are no reviews yet.', 'woocommerce' ); ?></p>
+			<p class="woocommerce-noreviews"><?php esc_html_e( 'There are no reviews yet.', 'borderland' ); ?></p>
 
 		<?php endif; ?>
 	</div>
 
-	<?php if ( get_option( 'woocommerce_review_rating_verification_required' ) === 'no' || wc_customer_bought_product( '', get_current_user_id(), $product->id ) ) : ?>
+	<?php if ( get_option( 'woocommerce_review_rating_verification_required' ) === 'no' || wc_customer_bought_product( '', get_current_user_id(), $product->get_id() ) ) : ?>
 
 		<div id="review_form_wrapper">
 			<div id="review_form">
@@ -60,33 +60,37 @@ if ( ! comments_open() ) {
 					$commenter = wp_get_current_commenter();
 
 					$comment_form = array(
-						'title_reply'          => have_comments() ? __( 'Add a review', 'woocommerce' ) : __( 'Be the first to review', 'woocommerce' ) . ' &ldquo;' . get_the_title() . '&rdquo;',
-						'title_reply_to'       => __( 'Leave a Reply to %s', 'woocommerce' ),
+						'title_reply'          => have_comments() ? esc_html__( 'Add a review', 'borderland' ) : esc_html__( 'Be the first to review', 'borderland' ) . ' &ldquo;' . get_the_title() . '&rdquo;',
+						'title_reply_to'       => esc_html__( 'Leave a Reply to %s', 'borderland' ),
 						'comment_notes_before' => '',
 						'comment_notes_after'  => '',
 						'fields'               => array(
-							'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'woocommerce' ) . ' <span class="required">*</span></label> ' .
+							'author' => '<p class="comment-form-author">' . '<label for="author">' . esc_html__( 'Name', 'borderland' ) . ' <span class="required">*</span></label> ' .
 							            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" /></p>',
-							'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'woocommerce' ) . ' <span class="required">*</span></label> ' .
+							'email'  => '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'borderland' ) . ' <span class="required">*</span></label> ' .
 							            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" aria-required="true" /></p>',
 						),
-						'label_submit'  => __( 'Submit', 'woocommerce' ),
+						'label_submit'  => esc_html__( 'Submit', 'borderland' ),
 						'logged_in_as'  => '',
 						'comment_field' => ''
 					);
+				
+					if ( $account_page_url = wc_get_page_permalink( 'myaccount' ) ) {
+						$comment_form['must_log_in'] = '<p class="must-log-in">' . sprintf( esc_html__( 'You must be <a href="%s">logged in</a> to post a review.', 'borderland' ), esc_url( $account_page_url ) ) . '</p>';
+					}
 
 					if ( get_option( 'woocommerce_enable_review_rating' ) === 'yes' ) {
-						$comment_form['comment_field'] = '<p class="comment-form-rating"><label for="rating">' . __( 'Your Rating', 'woocommerce' ) .'</label><select name="rating" id="rating">
-							<option value="">' . __( 'Rate&hellip;', 'woocommerce' ) . '</option>
-							<option value="5">' . __( 'Perfect', 'woocommerce' ) . '</option>
-							<option value="4">' . __( 'Good', 'woocommerce' ) . '</option>
-							<option value="3">' . __( 'Average', 'woocommerce' ) . '</option>
-							<option value="2">' . __( 'Not that bad', 'woocommerce' ) . '</option>
-							<option value="1">' . __( 'Very Poor', 'woocommerce' ) . '</option>
+						$comment_form['comment_field'] = '<p class="comment-form-rating"><label for="rating">' . esc_html__( 'Your Rating', 'borderland' ) .'</label><select name="rating" id="rating">
+							<option value="">' . esc_html__( 'Rate&hellip;', 'borderland' ) . '</option>
+							<option value="5">' . esc_html__( 'Perfect', 'borderland' ) . '</option>
+							<option value="4">' . esc_html__( 'Good', 'borderland' ) . '</option>
+							<option value="3">' . esc_html__( 'Average', 'borderland' ) . '</option>
+							<option value="2">' . esc_html__( 'Not that bad', 'borderland' ) . '</option>
+							<option value="1">' . esc_html__( 'Very Poor', 'borderland' ) . '</option>
 						</select></p>';
 					}
 
-					$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . __( 'Your Review', 'woocommerce' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>';
+					$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'Your Review', 'borderland' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>';
 
 					comment_form( apply_filters( 'woocommerce_product_review_comment_form_args', $comment_form ) );
 				?>
@@ -95,7 +99,7 @@ if ( ! comments_open() ) {
 
 	<?php else : ?>
 
-		<p class="woocommerce-verification-required"><?php _e( 'Only logged in customers who have purchased this product may leave a review.', 'woocommerce' ); ?></p>
+		<p class="woocommerce-verification-required"><?php esc_html_e( 'Only logged in customers who have purchased this product may leave a review.', 'borderland' ); ?></p>
 
 	<?php endif; ?>
 

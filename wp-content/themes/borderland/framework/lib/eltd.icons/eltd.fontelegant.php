@@ -1,6 +1,6 @@
 <?php
 
-class ElatedIconsFontElegant implements iIconCollection {
+class BorderlandElatedIconsFontElegant implements iIconCollection {
 
 	public $icons;
 	public $title;
@@ -14,7 +14,7 @@ class ElatedIconsFontElegant implements iIconCollection {
 		$this->param = $param;
 		$this->setIconsArray();
 		$this->setSocialIconsArray();
-		$this->styleUrl = ELTD_ROOT . "/css/elegant-icons/style.min.css";
+		$this->styleUrl = BORDERLAND_ROOT . "/css/elegant-icons/style.min.css";
 	}
 
 	private function setIconsArray() {

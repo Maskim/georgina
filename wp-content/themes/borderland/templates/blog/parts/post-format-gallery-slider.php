@@ -1,7 +1,7 @@
 <div class="flexslider">
 	<ul class="slides">
 		<?php
-		$array_id = eltd_gallery_post_format_ids_images(get_the_content());
+		$array_id = borderland_elated_gallery_post_format_ids_images(get_the_content());
 
 		if($array_id !==false){
 			foreach($array_id as $img_id){ ?>

@@ -1,9 +1,4 @@
 <?php
-//get global variables
-global $wp_query;
-global $eltd_options;
-global $wpdb;
-
 //init variables
 $portfolio_images 			= get_post_meta(get_the_ID(), "eltd_portfolio_images", true);
 $lightbox_single_project 	= 'no';
@@ -15,39 +10,39 @@ $portfolio_gallery_image_hover_separator = '';
 
 
 //is lightbox turned on for single project?
-if (isset($eltd_options['lightbox_single_project'])) {
-	$lightbox_single_project = $eltd_options['lightbox_single_project'];
+if (borderland_elated_options()->getOptionValue( 'lightbox_single_project' )) {
+	$lightbox_single_project = borderland_elated_options()->getOptionValue( 'lightbox_single_project' );
 }
 
 //set title tag
-if (isset($eltd_options['portfolio_title_tag'])) {
-    $portfolio_title_tag = $eltd_options['portfolio_title_tag'];
+if (borderland_elated_options()->getOptionValue( 'portfolio_title_tag' )) {
+    $portfolio_title_tag = borderland_elated_options()->getOptionValue( 'portfolio_title_tag' );
 }
 
 //gallery hover type (image, or text)
-if (isset($eltd_options['portfolio_gallery_image_hover_style'])) {
-    $portfolio_gallery_hover_type = $eltd_options['portfolio_gallery_image_hover_style'];
+if (borderland_elated_options()->getOptionValue( 'portfolio_gallery_image_hover_style' )) {
+    $portfolio_gallery_hover_type = borderland_elated_options()->getOptionValue( 'portfolio_gallery_image_hover_style' );
 }
 
 //gallery hover separator with text
-if (isset($eltd_options['portfolio_gallery_image_hover_separator'])) {
-    $portfolio_gallery_image_hover_separator = $eltd_options['portfolio_gallery_image_hover_separator'];
+if (borderland_elated_options()->getOptionValue( 'portfolio_gallery_image_hover_separator' )) {
+    $portfolio_gallery_image_hover_separator = borderland_elated_options()->getOptionValue( 'portfolio_gallery_image_hover_separator' );
 }
 //is lightbox turned on for video single project?
-if (isset($eltd_options['lightbox_video_single_project'])) {
-    $lightbox_video_single_project = $eltd_options['lightbox_video_single_project'];
+if (borderland_elated_options()->getOptionValue( 'lightbox_video_single_project' )) {
+    $lightbox_video_single_project = borderland_elated_options()->getOptionValue( 'lightbox_video_single_project' );
 }
 
 //set style for title
-if ((isset($eltd_options['portfolio_title_margin_bottom']) && $eltd_options['portfolio_title_margin_bottom'] != '')
-    || (isset($eltd_options['portfolio_title_color']) && !empty($eltd_options['portfolio_title_color']))){
+if ((borderland_elated_options()->getOptionValue( 'portfolio_title_margin_bottom' ) != '')
+    || (borderland_elated_options()->getOptionValue( 'portfolio_title_color' ))){
 
-    if (isset($eltd_options['portfolio_title_margin_bottom']) && $eltd_options['portfolio_title_margin_bottom'] != '') {
-        $portfolio_title_style .= 'margin-bottom:'.esc_attr($eltd_options['portfolio_title_margin_bottom']).'px;';
+    if (borderland_elated_options()->getOptionValue( 'portfolio_title_margin_bottom' ) != '') {
+        $portfolio_title_style .= 'margin-bottom:'.esc_attr(borderland_elated_options()->getOptionValue( 'portfolio_title_margin_bottom' )).'px;';
     }
 
-    if (isset($eltd_options['portfolio_title_color']) && !empty($eltd_options['portfolio_title_color'])) {
-        $portfolio_title_style .= 'color:'.esc_attr($eltd_options['portfolio_title_color']).';';
+    if (borderland_elated_options()->getOptionValue( 'portfolio_title_color' )) {
+        $portfolio_title_style .= 'color:'.esc_attr(borderland_elated_options()->getOptionValue( 'portfolio_title_color' )).';';
     }
 
 }
@@ -55,13 +50,13 @@ if ((isset($eltd_options['portfolio_title_margin_bottom']) && $eltd_options['por
 
 //sort portfolio images by user defined input
 if (is_array($portfolio_images)){
-	usort($portfolio_images, "eltdComparePortfolioImages");
+	usort($portfolio_images, "borderland_elated_compare_portfolio_images");
 }
 
 if(get_post_meta(get_the_ID(), "eltd_choose-number-of-portfolio-columns", true) !== "") {
 	$columns_number = 'v'.get_post_meta(get_the_ID(), "eltd_choose-number-of-portfolio-columns", true);
-} elseif(isset($eltd_options['portfolio_columns_number']) && $eltd_options['portfolio_columns_number'] !== '') {
-	$columns_number = 'v'.$eltd_options['portfolio_columns_number'];
+} elseif(borderland_elated_options()->getOptionValue( 'portfolio_columns_number' ) !== '') {
+	$columns_number = 'v'.borderland_elated_options()->getOptionValue( 'portfolio_columns_number' );
 }
 
 ?>
@@ -119,9 +114,9 @@ if(get_post_meta(get_the_ID(), "eltd_choose-number-of-portfolio-columns", true) 
 			<?php if($portfolio_image['portfolioimg'] != ""){ ?>
 				<?php
 
-				list($id, $title, $alt) = eltd_get_portfolio_image_meta($portfolio_image['portfolioimg']);
+				list($id, $title, $alt) = borderland_elated_get_portfolio_image_meta($portfolio_image['portfolioimg']);
 
-                $single_image_id = eltd_get_attachment_id_from_url($portfolio_image['portfolioimg']);
+                $single_image_id = borderland_elated_get_attachment_id_from_url($portfolio_image['portfolioimg']);
                 if(!empty($single_image_id)){
                     $single_image_gallery_thumb_size = get_post_meta(get_the_ID(), 'eltd_choose-portfolio-image-size', true);
                     $single_image_size = (!empty($single_image_gallery_thumb_size)) ? get_post_meta(get_the_ID(), 'eltd_choose-portfolio-image-size', true) : 'full';
@@ -186,35 +181,31 @@ if(get_post_meta(get_the_ID(), "eltd_choose-number-of-portfolio-columns", true) 
 				switch ($portfolio_video_type){
 					case "youtube": ?>
                         <?php if($lightbox_video_single_project == "yes"){ ?>
-                            <?php
-                            $vidID = esc_attr($portfolio_image['portfoliovideoid']);
-                            $thumbnail = "//img.youtube.com/vi/".$vidID."/maxresdefault.jpg";
-                            ?>
-                            <a class="lightbox_single_portfolio <?php echo esc_attr($columns_number); ?>" title="<?php echo esc_attr($portfolio_image['portfoliotitle']); ?>" href="//www.youtube.com/watch?feature=player_embedded&v=<?php echo esc_attr($vidID); ?>" rel="prettyPhoto[single_pretty_photo]">
-                                <i class="fa fa-play"></i>
-                                <img width="100%" src="<?php echo esc_url($thumbnail); ?>"/>
+							<a class="lightbox_single_portfolio <?php echo esc_attr($columns_number); ?>" title="<?php echo esc_attr( $portfolio_image['portfoliotitle'] ); ?>" href="https://www.youtube.com/watch?feature=player_embedded&v=<?php echo esc_attr( $portfolio_image['portfoliovideoid'] ); ?>" data-rel="prettyPhoto[single_pretty_photo]">
+								<i class="fa fa-play"></i>
+								<img width="100%" src="https://img.youtube.com/vi/<?php echo esc_attr( $portfolio_image['portfoliovideoid'] ); ?>/maxresdefault.jpg" alt="<?php echo esc_attr( $portfolio_image['portfoliotitle'] ); ?>"/>
 							</a>
 						<?php } else { ?>
 							<a class="lightbox_single_portfolio <?php echo esc_attr($columns_number); ?>" href="#">
-								<iframe width="100%" src="//www.youtube.com/embed/<?php echo esc_attr($portfolio_image['portfoliovideoid']);  ?>?wmode=transparent" wmode="Opaque" frameborder="0" allowfullscreen></iframe>
+								<iframe width="100%" src="https://www.youtube.com/embed/<?php echo esc_attr($portfolio_image['portfoliovideoid']);  ?>?wmode=transparent" wmode="Opaque" frameborder="0" allowfullscreen></iframe>
 							</a>
 						<?php } ?>
 						<?php	break;
 					case "vimeo": ?>
                         <?php if($lightbox_video_single_project == "yes"){ ?>
-                            <?php
-                            $vidID = esc_attr($portfolio_image['portfoliovideoid']);
-                            $xml = unserialize(@file_get_contents("http://vimeo.com/api/v2/video/$vidID.php"));
-                            $thumbnail = $xml[0]['thumbnail_large'];
-                            $video_title = $xml[0]['title'];
-                            ?>
-							<a class="lightbox_single_portfolio <?php echo esc_attr($columns_number); ?>" title="<?php echo esc_attr($portfolio_image['portfoliotitle']); ?>" href="//vimeo.com/<?php echo esc_attr($portfolio_image['portfoliovideoid']); ?>" rel="prettyPhoto[single_pretty_photo]">
-                                <i class="fa fa-play"></i>
-                                <img width="100%" src="<?php echo esc_url($thumbnail); ?>"/>
+							<?php
+							$videoid = $portfolio_image['portfoliovideoid'];
+							$xml     = simplexml_load_file( "https://vimeo.com/api/v2/video/" . $videoid . ".xml" );
+							$xml     = $xml->video;
+							$xml_pic = $xml->thumbnail_large;
+							?>
+							<a class="lightbox_single_portfolio <?php echo esc_attr($columns_number); ?>" title="<?php echo esc_attr( $portfolio_image['portfoliotitle'] ); ?>" href="https://vimeo.com/<?php echo esc_attr( $portfolio_image['portfoliovideoid'] ); ?>" data-rel="prettyPhoto[single_pretty_photo]">
+								<i class="fa fa-play"></i>
+								<img width="100%" src="<?php echo esc_url( $xml_pic ); ?>" alt="<?php echo esc_attr( $portfolio_image['portfoliotitle'] ); ?>"/>
 							</a>
 						<?php } else { ?>
 							<a class="lightbox_single_portfolio <?php echo esc_attr($columns_number); ?>" href="">
-                                <iframe src="//player.vimeo.com/video/<?php echo esc_attr($portfolio_image['portfoliovideoid']); ?>?title=0&amp;byline=0&amp;portrait=0" width="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                <iframe src="https://player.vimeo.com/video/<?php echo esc_attr($portfolio_image['portfoliovideoid']); ?>?title=0&amp;byline=0&amp;portrait=0" width="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 							</a>
 						<?php } ?>
 
@@ -232,7 +223,7 @@ if(get_post_meta(get_the_ID(), "eltd_choose-number-of-portfolio-columns", true) 
 										<object width="320" height="240" type="application/x-shockwave-flash" data="<?php echo esc_url(get_template_directory_uri().'/js/flashmediaelement.swf'); ?>">
 											<param name="movie" value="<?php echo esc_url(get_template_directory_uri().'/js/flashmediaelement.swf'); ?>" />
 											<param name="flashvars" value="controls=true&file=<?php echo esc_url($portfolio_image['portfoliovideomp4']); ?>" />
-											<img src="<?php echo esc_url($portfolio_image['portfoliovideoimage']); ?>" width="1920" height="800" title="No video playback capabilities" alt="Video thumb" />
+											<img src="<?php echo esc_url($portfolio_image['portfoliovideoimage']); ?>" width="1920" height="800" title="<?php esc_attr_e( 'No video playback capabilities', 'borderland' ); ?>" alt="<?php esc_attr_e( 'Video thumb', 'borderland' ); ?>" />
 										</object>
 									</video>
 								</div>
@@ -249,7 +240,7 @@ if(get_post_meta(get_the_ID(), "eltd_choose-number-of-portfolio-columns", true) 
 	<div class="column1">
 		<div class="column_inner">
 			<div class="portfolio_single_text_holder">
-				<<?php echo esc_attr($portfolio_title_tag); ?> class="portfolio_single_text_title" <?php eltd_inline_style($portfolio_title_style); ?>><span><?php the_title(); ?></span></<?php echo esc_attr($portfolio_title_tag); ?>>
+				<<?php echo esc_attr($portfolio_title_tag); ?> class="portfolio_single_text_title" <?php borderland_elated_inline_style($portfolio_title_style); ?>><span><?php the_title(); ?></span></<?php echo esc_attr($portfolio_title_tag); ?>>
 				<?php the_content(); ?>
 			</div>
 		</div>

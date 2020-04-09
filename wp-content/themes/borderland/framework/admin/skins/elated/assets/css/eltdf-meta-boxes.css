@@ -77,3 +77,12 @@ div.inside > div > div > div.eltdf-page-form-section:first-child {
   border-top: none; }
 
 /*# sourceMappingURL=eltdf-meta-boxes.css.map */
+
+
+.block-editor .postbox {
+    margin: 20px !important;
+}
+
+.block-editor .edit-post-layout__metaboxes {
+    background: #f2f2f2 !important;
+}

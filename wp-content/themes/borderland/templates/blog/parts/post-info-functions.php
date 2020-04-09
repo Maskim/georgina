@@ -1,6 +1,6 @@
 <?php
-if(!function_exists('eltd_post_info')){
-	function eltd_post_info($config){
+if(!function_exists('borderland_elated_post_info')){
+	function borderland_elated_post_info($config){
 		$default_config = array(
 			'date' => '',
 			'category' => '',
