@@ -1,51 +1,61 @@
 <?php
-/**
- * @package Elated CPT
- * @version 1.0.3
- */
 /*
 Plugin Name: Elated CPT
 Description: Plugin that adds all custom post types that are needed by Elated theme
 Author: Elated Themes
-Version: 1.0.3
+Version: 1.1.3
 */
-
-require_once 'bootstrap.php';
-
-/**
- * Function that sets plugin text domain to eltd_cpt
- *
- * @see load_plugin_textdomain()
- */
-function eltdcpt_text_domain() {
-    load_plugin_textdomain('eltd_cpt', false, ELTD_CORE_REL_PATH.'/languages');
+if ( ! class_exists( 'ElatedCPT' ) ) {
+	class ElatedCPT {
+		private static $instance;
+		
+		public function __construct() {
+			require_once 'constants.php';
+			require_once 'helpers/helper.php';
+			
+			// Make plugin available for translation
+			add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+			
+			// Add plugin's body classes
+			add_filter( 'body_class', array( $this, 'add_body_classes' ) );
+			
+			add_action( 'after_setup_theme', array( $this, 'init' ), 5 );
+		}
+		
+		public static function get_instance() {
+			if ( self::$instance == null ) {
+				self::$instance = new self();
+			}
+			
+			return self::$instance;
+		}
+		
+		function load_plugin_textdomain() {
+			load_plugin_textdomain( 'eltd-cpt', false, ELATED_CPT_REL_PATH . '/languages' );
+		}
+		
+		function add_body_classes( $classes ) {
+			$classes[] = 'eltd-core-' . ELATED_CPT_VERSION;
+			
+			return $classes;
+		}
+		
+		function init() {
+			
+			if ( borderland_elated_cpt_is_installed( 'theme' ) ) {
+				include_once ELATED_CPT_MODULES_PATH . '/helper.php';
+				include_once ELATED_CPT_MODULES_PATH . '/import/eltd-import.php';
+				
+				add_action( 'init', array( $this, 'cpt_activation' ), 0 );
+			}
+		}
+		
+		function cpt_activation() {
+			EltdCPT::getInstance()->registerCPT();
+			
+			flush_rewrite_rules();
+		}
+	}
+	
+	ElatedCPT::get_instance();
 }
-
-add_action('plugins_loaded', 'eltdcpt_text_domain');
-
-/**
- * Function that adds class to body element so we can easily see which version of plugin is installed
- * @param $classes array of existing body classes
- * @return array array of body classes with our body class added
- */
-function eltdcpt_body_class($classes) {
-    $classes[] = 'eltd-core-'.ELTD_CORE_VERSION;
-
-    return $classes;
-}
-
-add_action('body_class', 'eltdcpt_body_class');
-
-/**
- * Function that calls CPT registration method when plugin is activated.
- * Rewrite rules needs to flushed so our custom slug for CPT can work properly
- * without saving permalinks in Settings page
- *
- * @see EltdCPT::registerCPT()
- */
-function eltdcpt_activation() {
-    EltdCPT::getInstance()->registerCPT();
-    flush_rewrite_rules();
-}
-
-register_activation_hook(__FILE__, 'eltdcpt_activation');

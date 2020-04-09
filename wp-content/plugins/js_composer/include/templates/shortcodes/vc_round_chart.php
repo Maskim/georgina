@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Shortcode attributes
  * @var $title
  * @var $el_class
+ * @var $el_id
  * @var $type
  * @var $style
  * @var $legend
@@ -19,9 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $css
  * @var $css_animation
  * Shortcode class
- * @var $this WPBakeryShortCode_Vc_Round_Chart
+ * @var WPBakeryShortCode_Vc_Round_Chart $this
  */
-$el_class = $title = $type = $style = $legend = $animation = $tooltips = $stroke_color = $stroke_width = $values = $css = $css_animation = $custom_stroke_color = '';
+$el_class = $el_id = $title = $type = $style = $legend = $animation = $tooltips = $stroke_color = $stroke_width = $values = $css = $css_animation = $custom_stroke_color = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
@@ -109,7 +110,7 @@ if ( ! empty( $tooltips ) ) {
 }
 
 if ( ! empty( $animation ) ) {
-	$options[] = 'data-vc-animation="' . esc_attr( $animation ) . '"';
+	$options[] = 'data-vc-animation="' . esc_attr( str_replace( 'easein', 'easeIn', $animation ) ) . '"';
 }
 
 if ( ! empty( $stroke_color ) ) {
@@ -138,7 +139,7 @@ foreach ( $values as $k => $v ) {
 	if ( 'custom' === $style ) {
 		if ( ! empty( $v['custom_color'] ) ) {
 			$color = $v['custom_color'];
-			$highlight = vc_colorCreator( $v['custom_color'], - 10 ); //10% darker
+			$highlight = vc_colorCreator( $v['custom_color'], - 10 ); // 10% darker
 		} else {
 			$color = $base_colors['normal']['grey'];
 			$highlight = $base_colors['active']['grey'];
@@ -157,7 +158,7 @@ foreach ( $values as $k => $v ) {
 }
 
 $options[] = 'data-vc-type="' . esc_attr( $type ) . '"';
-$options[] = 'data-vc-values="' . esc_attr( json_encode( $data ) ) . '"';
+$options[] = 'data-vc-values="' . esc_attr( wp_json_encode( $data ) ) . '"';
 
 if ( '' !== $title ) {
 	$title = '<h2 class="wpb_heading">' . $title . '</h4>';
@@ -173,7 +174,9 @@ if ( $legend ) {
 	$legend_html = '<ul class="vc_chart-legend">' . $legend_html . '</ul>';
 	$canvas_html = '<div class="vc_chart-with-legend">' . $canvas_html . '</div>';
 }
-
+if ( ! empty( $el_id ) ) {
+	$options[] = 'id="' . esc_attr( $el_id ) . '"';
+}
 $output = '
 <div class="' . esc_attr( $css_class ) . '" ' . implode( ' ', $options ) . '>
 	' . $title . '
@@ -183,4 +186,4 @@ $output = '
 </div>' . '
 ';
 
-echo $output;
+return $output;
