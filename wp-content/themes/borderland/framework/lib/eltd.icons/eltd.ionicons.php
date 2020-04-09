@@ -1,6 +1,6 @@
 <?php
 
-class ElatedIconsIonIcons implements iIconCollection {
+class BorderlandElatedIconsIonIcons implements iIconCollection {
 
 	public $icons;
 	public $title;
@@ -14,7 +14,7 @@ class ElatedIconsIonIcons implements iIconCollection {
 		$this->param = $param;
 		$this->setIconsArray();
 		$this->setSocialIconsArray();
-		$this->styleUrl = ELTD_ROOT . "/css/ion-icons/css/ionicons.min.css";
+		$this->styleUrl = BORDERLAND_ROOT . "/css/ion-icons/css/ionicons.min.css";
 	}
 
 	public function setIconsArray() {

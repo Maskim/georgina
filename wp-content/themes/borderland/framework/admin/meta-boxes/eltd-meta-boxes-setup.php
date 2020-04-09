@@ -1,18 +1,14 @@
 <?php
 
-add_action('after_setup_theme', 'eltd_meta_boxes_map_init', 1);
-function eltd_meta_boxes_map_init() {
-	global $eltd_options;
-	global $eltdFramework;
-	global $eltd_options_fontstyle;
-	global $eltd_options_fontweight;
-	global $eltd_options_texttransform;
-	global $eltd_options_fontdecoration;
-	global $eltd_options_arrows_type;
-	require_once("page/map.inc");
-	require_once("portfolio/map.inc");
-	require_once("slides/map.inc");
-	require_once("post/map.inc");
-	require_once("testimonials/map.inc");
-	require_once("carousels/map.inc");
+function borderland_elated_meta_boxes_map_init() {
+	global $borderland_elated_framework;
+	
+	require_once( BORDERLAND_FRAMEWORK_ROOT_DIR . "/admin/meta-boxes/page/map.php" );
+	require_once( BORDERLAND_FRAMEWORK_ROOT_DIR . "/admin/meta-boxes/portfolio/map.php" );
+	require_once( BORDERLAND_FRAMEWORK_ROOT_DIR . "/admin/meta-boxes/slides/map.php" );
+	require_once( BORDERLAND_FRAMEWORK_ROOT_DIR . "/admin/meta-boxes/post/map.php" );
+	require_once( BORDERLAND_FRAMEWORK_ROOT_DIR . "/admin/meta-boxes/testimonials/map.php" );
+	require_once( BORDERLAND_FRAMEWORK_ROOT_DIR . "/admin/meta-boxes/carousels/map.php" );
 }
+
+add_action( 'after_setup_theme', 'borderland_elated_meta_boxes_map_init', 1 );

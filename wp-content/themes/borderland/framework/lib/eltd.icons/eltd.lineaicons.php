@@ -1,6 +1,6 @@
 <?php
 
-class ElatedIconsLineaIcons implements iIconCollection {
+class BorderlandElatedIconsLineaIcons implements iIconCollection {
 
 	public $icons;
 	public $title;
@@ -12,7 +12,7 @@ class ElatedIconsLineaIcons implements iIconCollection {
 		$this->title = $title;
 		$this->param = $param;
 		$this->setIconsArray();
-		$this->styleUrl = ELTD_ROOT . "/css/linea-icons/style.css";
+		$this->styleUrl = BORDERLAND_ROOT . "/css/linea-icons/style.css";
 	}
 
 	public function setIconsArray() {

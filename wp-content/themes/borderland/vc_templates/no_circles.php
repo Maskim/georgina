@@ -44,4 +44,4 @@ $html .= '</ul>';
 
 $html .= '</div>'; //close div.eltd_circles_shortcode
 
-print $html;
+echo borderland_elated_get_module_part( $html );

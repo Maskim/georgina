@@ -1,60 +1,55 @@
 <?php
-global $eltd_options;
-global $more;
-$more = 0;
-
-
 $blog_show_categories = "no";
-if (isset($eltd_options['blog_standard_type_show_categories'])){
-	$blog_show_categories = $eltd_options['blog_standard_type_show_categories'];
+if (borderland_elated_options()->getOptionValue( 'blog_standard_type_show_categories' )){
+	$blog_show_categories = borderland_elated_options()->getOptionValue( 'blog_standard_type_show_categories' );
 }
 
 $blog_show_comments = "yes";
-if (isset($eltd_options['blog_standard_type_show_comments'])){
-    $blog_show_comments = $eltd_options['blog_standard_type_show_comments'];
+if (borderland_elated_options()->getOptionValue( 'blog_standard_type_show_comments' )){
+    $blog_show_comments = borderland_elated_options()->getOptionValue( 'blog_standard_type_show_comments' );
 }
 $blog_show_author = "yes";
-if (isset($eltd_options['blog_standard_type_show_author'])){
-    $blog_show_author = $eltd_options['blog_standard_type_show_author'];
+if (borderland_elated_options()->getOptionValue( 'blog_standard_type_show_author' )){
+    $blog_show_author = borderland_elated_options()->getOptionValue( 'blog_standard_type_show_author' );
 }
 $blog_show_like = "yes";
-if (isset($eltd_options['blog_standard_type_show_like'])) {
-    $blog_show_like = $eltd_options['blog_standard_type_show_like'];
+if (borderland_elated_options()->getOptionValue( 'blog_standard_type_show_like' )) {
+    $blog_show_like = borderland_elated_options()->getOptionValue( 'blog_standard_type_show_like' );
 }
 $blog_show_ql_icon_mark = "yes";
 $blog_title_holder_icon_class = "";
-if (isset($eltd_options['blog_standard_type_show_ql_mark'])) {
-    $blog_show_ql_icon_mark = $eltd_options['blog_standard_type_show_ql_mark'];
+if (borderland_elated_options()->getOptionValue( 'blog_standard_type_show_ql_mark' )) {
+    $blog_show_ql_icon_mark = borderland_elated_options()->getOptionValue( 'blog_standard_type_show_ql_mark' );
 }
 if($blog_show_ql_icon_mark == "yes"){
 	$blog_title_holder_icon_class = " with_icon_right";
 }
 
 $blog_show_date = "yes";
-if (isset($eltd_options['blog_standard_type_show_date'])) {
-    $blog_show_date = $eltd_options['blog_standard_type_show_date'];
+if (borderland_elated_options()->getOptionValue( 'blog_standard_type_show_date' )) {
+    $blog_show_date = borderland_elated_options()->getOptionValue( 'blog_standard_type_show_date' );
 }
 $blog_show_read_more_button = "yes";
-if(isset($eltd_options['blog_standard_type_read_more_button'])){
-	$blog_show_read_more_button =  $eltd_options['blog_standard_type_read_more_button'];
+if(borderland_elated_options()->getOptionValue( 'blog_standard_type_read_more_button' )){
+	$blog_show_read_more_button =  borderland_elated_options()->getOptionValue( 'blog_standard_type_read_more_button' );
 }
 
 $blog_show_social_share = "no";
 $blog_social_share_type = "dropdown";
-if(isset($eltd_options['blog_standard_type_select_share_option'])){
-	$blog_social_share_type = $eltd_options['blog_standard_type_select_share_option'];
+if(borderland_elated_options()->getOptionValue( 'blog_standard_type_select_share_option' )){
+	$blog_social_share_type = borderland_elated_options()->getOptionValue( 'blog_standard_type_select_share_option' );
 }
-if (isset($eltd_options['enable_social_share'])&& ($eltd_options['enable_social_share']) =="yes"){
-    if (isset($eltd_options['post_types_names_post'])&& $eltd_options['post_types_names_post'] =="post"){
-        if (isset($eltd_options['blog_standard_type_show_share'])&& $blog_social_share_type == "dropdown") {
-            $blog_show_social_share = $eltd_options['blog_standard_type_show_share'];
+if (borderland_elated_options()->getOptionValue( 'enable_social_share' ) =="yes"){
+    if (borderland_elated_options()->getOptionValue( 'post_types_names_post' ) =="post"){
+        if (borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' )&& $blog_social_share_type == "dropdown") {
+            $blog_show_social_share = borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' );
         }
     }
 }
 
 $blog_ql_background_image = "no";
-if(isset($eltd_options['blog_standard_type_ql_background_image'])){
-	$blog_ql_background_image = $eltd_options['blog_standard_type_ql_background_image'];
+if(borderland_elated_options()->getOptionValue( 'blog_standard_type_ql_background_image' )){
+	$blog_ql_background_image = borderland_elated_options()->getOptionValue( 'blog_standard_type_ql_background_image' );
 }
 
 $background_image_object = wp_get_attachment_image_src(get_post_thumbnail_id( get_the_ID()), 'blog_image_format_link_quote');
@@ -71,9 +66,9 @@ $_post_format = get_post_format();
 				 <div class="post_image">
 					<?php $_video_type = get_post_meta(get_the_ID(), "video_format_choose", true);?>
 					<?php if($_video_type == "youtube") { ?>
-						<iframe  src="//www.youtube.com/embed/<?php echo esc_attr(get_post_meta(get_the_ID(), "video_format_link", true));  ?>?wmode=transparent" wmode="Opaque" frameborder="0" allowfullscreen></iframe>
+						<iframe  src="https://www.youtube.com/embed/<?php echo esc_attr(get_post_meta(get_the_ID(), "video_format_link", true));  ?>?wmode=transparent" wmode="Opaque" frameborder="0" allowfullscreen></iframe>
 					<?php } elseif ($_video_type == "vimeo"){ ?>
-						<iframe src="//player.vimeo.com/video/<?php echo esc_attr(get_post_meta(get_the_ID(), "video_format_link", true));  ?>?title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+						<iframe src="https://player.vimeo.com/video/<?php echo esc_attr(get_post_meta(get_the_ID(), "video_format_link", true));  ?>?title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 					<?php } elseif ($_video_type == "self"){ ?> 
 						<div class="video"> 
 						    <div class="mobile-video-image" style="background-image: url(<?php echo esc_url(get_post_meta(get_the_ID(), "video_format_image", true));  ?>);"></div>
@@ -85,7 +80,7 @@ $_post_format = get_post_format();
 								    <object width="320" height="240" type="application/x-shockwave-flash" data="<?php echo esc_url(get_template_directory_uri().'/js/flashmediaelement.swf'); ?>">
 								    	<param name="movie" value="<?php echo esc_url(get_template_directory_uri().'/js/flashmediaelement.swf'); ?>" />
 									    <param name="flashvars" value="controls=true&file=<?php echo esc_url(get_post_meta(get_the_ID(), "video_format_mp4", true));  ?>" />
-									    <img src="<?php echo esc_url(get_post_meta(get_the_ID(), "video_format_image", true));  ?>" width="1920" height="800" title="No video playback capabilities" alt="Video thumb" />
+									    <img src="<?php echo esc_url(get_post_meta(get_the_ID(), "video_format_image", true));  ?>" width="1920" height="800" title="<?php esc_attr_e( 'No video playback capabilities', 'borderland' ); ?>" alt="<?php esc_attr_e( 'Video thumb', 'borderland' ); ?>" />
 								    </object>
 							    </video>
 						    </div>
@@ -96,28 +91,34 @@ $_post_format = get_post_format();
                     <div class="post_text_inner">
 						<?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>	
 							<div class="post_info">
-								<?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+								<?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
 							</div>
 						<?php } ?>
-						<h2>
+						<h2 class="post_title_label">
 							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 						</h2>
-						<?php
-							eltd_excerpt();
-						?>						
-						<?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
-							<div class="read_more_wrapper clearfix">
-								<?php
-									eltd_read_more_button('blog_standard_type_read_more_button');
-									if($blog_show_social_share == "yes"){
-										eltd_post_info(array('share' => $blog_show_social_share));
-									}
-								?>
-							</div>
-						<?php } ?>	
-						<?php if(isset($eltd_options['blog_standard_type_show_share']) && $eltd_options['blog_standard_type_show_share'] == "yes" && $blog_social_share_type == "list") {
-							echo do_shortcode('[no_social_share_list]'); // XSS OK
-						}; ?>
+	                    <?php if ( ! borderland_elated_wp_link_pages_exist() ) {
+		                    borderland_elated_excerpt();
+		
+		                    if ( ! post_password_required() ) { ?>
+			                    <?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
+				                    <div class="read_more_wrapper clearfix">
+					                    <?php
+					                    borderland_elated_read_more_button('blog_standard_type_read_more_button');
+					
+					                    if($blog_show_social_share == "yes"){
+						                    borderland_elated_post_info(array('share' => $blog_show_social_share));
+					                    }
+					                    ?>
+				                    </div>
+			                    <?php } ?>
+			                    <?php if(borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
+				                    echo do_shortcode('[no_social_share_list]'); // XSS OK
+			                    } ?>
+		                    <?php }
+	                    } else {
+		                    borderland_elated_wp_link_pages();
+	                    } ?>
                     </div>
                 </div>
 			</div>
@@ -137,35 +138,41 @@ $_post_format = get_post_format();
                 <?php } ?>
 				<div class="audio_image">
 					<audio class="blog_audio" src="<?php echo esc_url(get_post_meta(get_the_ID(), "audio_link", true)) ?>" controls="controls">
-						<?php _e("Your browser don't support audio player","eltd"); ?>
+						<?php esc_html_e("Your browser don't support audio player","borderland"); ?>
 					</audio>
 				</div>
                 <div class="post_text">
                     <div class="post_text_inner">						
 						<?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>	
 							<div class="post_info">
-								<?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+								<?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
 							</div>
 						<?php } ?>
-						<h2>
+						<h2 class="post_title_label">
 							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 						</h2>
-						<?php
-							eltd_excerpt();
-						?>
-						<?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
-								<div class="read_more_wrapper clearfix">
-									<?php
-										eltd_read_more_button('blog_standard_type_read_more_button');
-										if($blog_show_social_share == "yes"){
-											eltd_post_info(array('share' => $blog_show_social_share));
-										}
-									?>
-								</div>
-							<?php } ?>
-						<?php if(isset($eltd_options['blog_standard_type_show_share']) && $eltd_options['blog_standard_type_show_share'] == "yes" && $blog_social_share_type == "list") {
-							echo do_shortcode('[no_social_share_list]'); // XSS OK
-						}; ?>		
+	                    <?php if ( ! borderland_elated_wp_link_pages_exist() ) {
+		                    borderland_elated_excerpt();
+		
+		                    if ( ! post_password_required() ) { ?>
+			                    <?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
+				                    <div class="read_more_wrapper clearfix">
+					                    <?php
+					                    borderland_elated_read_more_button('blog_standard_type_read_more_button');
+					
+					                    if($blog_show_social_share == "yes"){
+						                    borderland_elated_post_info(array('share' => $blog_show_social_share));
+					                    }
+					                    ?>
+				                    </div>
+			                    <?php } ?>
+			                    <?php if(borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
+				                    echo do_shortcode('[no_social_share_list]'); // XSS OK
+			                    } ?>
+		                    <?php }
+	                    } else {
+		                    borderland_elated_wp_link_pages();
+	                    } ?>
                     </div>
                 </div>
 			</div>
@@ -186,13 +193,13 @@ $_post_format = get_post_format();
 							<?php } ?>														
 							<?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>	
 								<div class="post_info clearfix <?php echo esc_attr($blog_title_holder_icon_class); ?>">
-									<?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+									<?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
 								</div>
 							<?php } ?>
 							<div class="post_title">
-								<h3><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>								
+								<h3 class="post_title_label"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>								
 							</div>
-							<?php if(isset($eltd_options['blog_standard_type_show_share']) && $eltd_options['blog_standard_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+							<?php if(borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
 								echo do_shortcode('[no_social_share_list]'); // XSS OK
 							}; ?>
 						</div>
@@ -213,28 +220,34 @@ $_post_format = get_post_format();
                     <div class="post_text_inner">						
 						<?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>	
 							<div class="post_info">
-								<?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+								<?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
 							</div>
 						<?php } ?>
-						<h2>
+						<h2 class="post_title_label">
 							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 						</h2>
-						<?php
-							eltd_excerpt();
-						?>
-						<?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
-								<div class="read_more_wrapper clearfix">
-									<?php
-										eltd_read_more_button('blog_standard_type_read_more_button');
-										if($blog_show_social_share == "yes"){
-											eltd_post_info(array('share' => $blog_show_social_share));
-										}
-									?>
-								</div>
-							<?php } ?>
-						<?php if(isset($eltd_options['blog_standard_type_show_share']) && $eltd_options['blog_standard_type_show_share'] == "yes" && $blog_social_share_type == "list") {
-							echo do_shortcode('[no_social_share_list]'); // XSS OK
-						}; ?>
+	                    <?php if ( ! borderland_elated_wp_link_pages_exist() ) {
+		                    borderland_elated_excerpt();
+		
+		                    if ( ! post_password_required() ) { ?>
+			                    <?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
+				                    <div class="read_more_wrapper clearfix">
+					                    <?php
+					                    borderland_elated_read_more_button('blog_standard_type_read_more_button');
+					
+					                    if($blog_show_social_share == "yes"){
+						                    borderland_elated_post_info(array('share' => $blog_show_social_share));
+					                    }
+					                    ?>
+				                    </div>
+			                    <?php } ?>
+			                    <?php if(borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
+				                    echo do_shortcode('[no_social_share_list]'); // XSS OK
+			                    } ?>
+		                    <?php }
+	                    } else {
+		                    borderland_elated_wp_link_pages();
+	                    } ?>
                     </div>
                 </div>
             </div>
@@ -255,16 +268,16 @@ $_post_format = get_post_format();
 								<?php } ?>								
                                 <?php if($blog_show_author == "yes" || $blog_show_date == "yes" || $blog_show_social_share == "yes" || $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>	
 									<div class="post_info clearfix <?php echo esc_attr($blog_title_holder_icon_class); ?>">
-										<?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+										<?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'share' => $blog_show_social_share, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
 									</div>
 								<?php } ?>
 								<div class="post_title">
-									<h3>
+									<h3 class="post_title_label">
 										<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php echo esc_html(get_post_meta(get_the_ID(), "quote_format", true)); ?></a>
 									</h3>								
 									<span class="quote_author">&mdash; <?php the_title(); ?></span>
 								</div>
-								<?php if(isset($eltd_options['blog_standard_type_show_share']) && $eltd_options['blog_standard_type_show_share'] == "yes" && $blog_social_share_type == "list") {
+								<?php if(borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
 									echo do_shortcode('[no_social_share_list]'); // XSS OK
 								}; ?>   
                             </div>
@@ -289,28 +302,34 @@ $_post_format = get_post_format();
 					<div class="post_text_inner">                            
 							<?php if($blog_show_author == "yes" || $blog_show_date == "yes"|| $blog_show_categories == "yes" || $blog_show_comments == "yes" || $blog_show_like == "yes") { ?>	
 								<div class="post_info">
-									<?php eltd_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
+									<?php borderland_elated_post_info(array('date' => $blog_show_date, 'author' => $blog_show_author, 'category' => $blog_show_categories, 'comments' => $blog_show_comments, 'like' => $blog_show_like)); ?>
 								</div>
 							<?php } ?>
-							<h2>
+							<h2 class="post_title_label">
                                 <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
                             </h2>
-							<?php
-								eltd_excerpt();
-							?>
-							<?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
-								<div class="read_more_wrapper clearfix">
-									<?php
-										eltd_read_more_button('blog_standard_type_read_more_button');
-										if($blog_show_social_share == "yes"){
-											eltd_post_info(array('share' => $blog_show_social_share));
-										}
-									?>
-								</div>
-							<?php } ?>
-							<?php if(isset($eltd_options['blog_standard_type_show_share']) && $eltd_options['blog_standard_type_show_share'] == "yes" && $blog_social_share_type == "list") {
-								echo do_shortcode('[no_social_share_list]'); // XSS OK
-							}; ?>		
+							<?php if ( ! borderland_elated_wp_link_pages_exist() ) {
+								borderland_elated_excerpt();
+								
+								if ( ! post_password_required() ) { ?>
+									<?php if ($blog_show_social_share == "yes" || $blog_show_read_more_button == "yes"){ ?>
+										<div class="read_more_wrapper clearfix">
+											<?php
+											borderland_elated_read_more_button('blog_standard_type_read_more_button');
+											
+											if($blog_show_social_share == "yes"){
+												borderland_elated_post_info(array('share' => $blog_show_social_share));
+											}
+											?>
+										</div>
+									<?php } ?>
+									<?php if(borderland_elated_options()->getOptionValue( 'blog_standard_type_show_share' ) == "yes" && $blog_social_share_type == "list") {
+										echo do_shortcode('[no_social_share_list]'); // XSS OK
+									} ?>
+								<?php }
+							} else {
+								borderland_elated_wp_link_pages();
+							} ?>
                     </div>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 
 .extended-custom-icon{
-	background-image: url('img/vc-extend.png');
+	background-image: url('img/vc-extend.png') !important; /* to override Visual Composer css style */
+	background-size: auto !important; /* to override Visual Composer css style */
 }
 .extended-custom-icon.icon-wpb-elements-holder {
 	 background-position:0px 0px;

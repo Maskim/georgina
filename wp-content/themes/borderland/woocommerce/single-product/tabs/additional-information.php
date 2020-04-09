@@ -10,10 +10,10 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woothemes.com/document/template-structure/
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @author        WooThemes
  * @package       WooCommerce/Templates
- * @version       2.0.0
+ * @version       3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,8 +22,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 
-$heading = apply_filters( 'woocommerce_product_additional_information_heading', __( 'Additional Information', 'woocommerce' ) );
-
-?>
-
-<?php $product->list_attributes(); ?>
+do_action( 'woocommerce_product_additional_information', $product );

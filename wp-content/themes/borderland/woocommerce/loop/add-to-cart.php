@@ -10,38 +10,34 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woothemes.com/document/template-structure/
- * @author 		WooThemes
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @package 	WooCommerce/Templates
- * @version     2.5.0
+ * @version     3.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $product,$eltd_options;
+global $product;
 
 $type = "type1";
-if(isset($eltd_options['woo_products_list_type'])){
-	$type = $eltd_options['woo_products_list_type'];
+if ( borderland_elated_options()->getOptionValue( 'woo_products_list_type' ) ) {
+	$type = borderland_elated_options()->getOptionValue( 'woo_products_list_type' );
 }
 
-$add_to_cart_text= $product->add_to_cart_text();
-
 if ( ! $product->is_in_stock() ) : ?>
-   <div class="product_image_overlay"></div><span class="onsale out-of-stock-button"><span><?php echo apply_filters( 'out_of_stock_add_to_cart_text', __( 'Out of stock', 'woocommerce' ) ); ?></span></span>
+	<div class="product_image_overlay"></div><span class="onsale out-of-stock-button"><span><?php echo apply_filters( 'out_of_stock_add_to_cart_text', esc_html__( 'Out of stock', 'borderland' ) ); ?></span></span>
 <?php else :
-echo apply_filters( 'woocommerce_loop_add_to_cart_link',
-	sprintf( '<div class="product_image_overlay"></div><div class="add-to-cart-button-outer"><div class="add-to-cart-button-inner"><div class="add-to-cart-button-inner2"><a class="product_link_over" href="'.get_permalink($product->id).'"></a><a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="qbutton add-to-cart-button %s">%s</a></div></div></div>',
-		esc_url( $product->add_to_cart_url() ),
-		esc_attr( isset( $quantity ) ? $quantity : 1 ),
-		esc_attr( $product->id ),
-		esc_attr( $product->get_sku() ),
-		esc_attr( isset( $class ) ? $class : 'button' ),
-		esc_html( $add_to_cart_text )
-	),
-$product );
 
-endif;
-?>
+echo apply_filters( 'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+	sprintf( '<div class="product_image_overlay"></div><div class="add-to-cart-button-outer"><div class="add-to-cart-button-inner"><div class="add-to-cart-button-inner2"><a class="product_link_over" href="'.get_permalink($product->get_id()).'"></a><a href="%s" data-quantity="%s" class="qbutton add-to-cart-button %s" %s>%s</a></div></div></div>',
+		esc_url( $product->add_to_cart_url() ),
+		esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+		esc_attr( isset( $args['class'] ) ? $args['class'] : 'button add-to-cart-button' ),
+		isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+		esc_html( $product->add_to_cart_text() )
+	),
+	$product, $args );
+
+endif; ?>

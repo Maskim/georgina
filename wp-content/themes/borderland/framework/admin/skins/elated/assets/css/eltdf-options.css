@@ -84,6 +84,7 @@
       padding: 18px 15px;
       width: 229px; }
     .eltdf-options-page .eltdf-page-header .eltdf-theme-name h1 {
+      color: inherit;
       font-size: 18px;
       margin-bottom: 0; }
     .eltdf-options-page .eltdf-page-header .eltdf-theme-name img {

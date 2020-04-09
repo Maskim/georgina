@@ -10,15 +10,13 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see        https://docs.woothemes.com/document/template-structure/
- * @author     WooThemes
+ * @see        https://docs.woocommerce.com/document/template-structure/
  * @package    WooCommerce/Templates
  * @version    1.6.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+	exit; // Exit if accessed directly.
 }
 
-?>
-<h2 itemprop="name" class="product_title entry-title"><?php the_title(); ?></h2>
+the_title( '<h2 itemprop="name" class="product_title entry-title">', '</h2>' );

@@ -10,52 +10,33 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woothemes.com/document/template-structure/
- * @author 		WooThemes
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @package 	WooCommerce/Templates
- * @version     1.6.4
+ * @version     3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
-global $product, $woocommerce_loop;
-
-if ( ! $upsells = $product->get_upsells() ) {
-    return;
-}
-
-$meta_query = WC()->query->get_meta_query();
-
-$args = array(
-	'post_type'           => 'product',
-	'ignore_sticky_posts' => 1,
-	'no_found_rows'       => 1,
-	'posts_per_page'      => $posts_per_page,
-	'orderby'             => $orderby,
-	'post__in'            => $upsells,
-	'post__not_in'        => array( $product->id ),
-	'meta_query'          => $meta_query
-);
-
-$products                    = new WP_Query( $args );
-$woocommerce_loop['name']    = 'up-sells';
-$woocommerce_loop['columns'] = apply_filters( 'woocommerce_up_sells_columns', $columns );
-
-if ( $products->have_posts() ) : ?>
+if ( $upsells ) : ?>
 
 	<div class="upsells products">
 
-		<h5 class="related-products-title"><?php _e( 'You may also like&hellip;', 'woocommerce' ) ?></h5>
+		<h5 class="related-products-title"><?php esc_html_e( 'You may also like&hellip;', 'borderland' ) ?></h5>
 
 		<?php woocommerce_product_loop_start(); ?>
-
-			<?php while ( $products->have_posts() ) : $products->the_post(); ?>
-
-				<?php wc_get_template_part( 'content', 'product' ); ?>
-
-			<?php endwhile; // end of the loop. ?>
+		
+			<?php foreach ( $upsells as $upsell ) : ?>
+				
+				<?php
+				$post_object = get_post( $upsell->get_id() );
+				
+				setup_postdata( $GLOBALS['post'] =& $post_object );
+				
+				wc_get_template_part( 'content', 'product' ); ?>
+			
+			<?php endforeach; ?>
 
 		<?php woocommerce_product_loop_end(); ?>
 

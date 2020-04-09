@@ -14,4 +14,4 @@ $html .= do_shortcode($content);
 
 $html .= '</div>';
 
-print $html;
+echo borderland_elated_get_module_part( $html );

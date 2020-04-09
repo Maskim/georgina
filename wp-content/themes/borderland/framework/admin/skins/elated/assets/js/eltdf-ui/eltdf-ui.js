@@ -5,7 +5,6 @@
 		eltdfInitSwitch();
 		eltdfInitTooltips();
 		eltdfInitColorpicker();
-		eltdfInitRangeSlider();
 		eltdfInitMediaUploader();
 		eltdfInitGalleryUploader();
 		if ($('.eltdf-page-form').length > 0) {
@@ -31,8 +30,6 @@
 		eltdfInitDatePicker();
         eltdShowHidePostFormats();
 		eltdRemoveVCDeprecatedClass();
-
-
     });
 
 	function eltdFixHeaderAndTitle () {
@@ -151,7 +148,6 @@
 		});
 	}
 
-
 	function eltdChangedInput () {
 		$('.eltdf-tabs-content').on('change keyup keydown', 'input:not([type="submit"]), textarea, select', function (e) {
 			$('.eltdf-input-change').addClass('yes');
@@ -190,7 +186,7 @@
 		$('.eltdf-page-form > div:hidden').each( function() {
 			var $panelID =  $(this).attr('id');
 			$('#eltdf-select-anchor option').each ( function() {
-				if ($(this).data('anchor') == '#'+$panelID) {
+				if ($(this).data('anchor') === '#'+$panelID) {
 					$(this).hide();//hide <li>s
 				}
 			});
@@ -200,10 +196,10 @@
 	function eltdfGetArrayOfHiddenElements(changedElement) {
 		var hidden_elements_string = changedElement.data('hide');
 		hidden_elements_array = [];
+		
+		var hidden_elements_array = new Array(hidden_elements_string);
 		if(typeof hidden_elements_string !== 'undefined' && hidden_elements_string.indexOf(",") >= 0) {
-			var hidden_elements_array = hidden_elements_string.split(',');
-		} else {
-			var hidden_elements_array = new Array(hidden_elements_string);
+			hidden_elements_array = hidden_elements_string.split(',');
 		}
 
 		return hidden_elements_array;
@@ -212,11 +208,10 @@
 	function eltdfGetArrayOfShownElements(changedElement) {
 		//check for links to show
 		var shown_elements_string = changedElement.data('show');
-		shown_elements_array = [];
+		
+		var shown_elements_array = new Array(shown_elements_string);
 		if(typeof shown_elements_string !== 'undefined' && shown_elements_string.indexOf(",") >= 0) {
-			var shown_elements_array = shown_elements_string.split(',');
-		} else {
-			var shown_elements_array = new Array(shown_elements_string);
+			shown_elements_array = shown_elements_string.split(',');
 		}
 
 		return shown_elements_array;
@@ -231,14 +226,14 @@
 			$.each(hidden_elements_array, function(index, value){
 				$('#anchornav a').each ( function() {
 
-					if ($(this).attr('href') == value) {
+					if ($(this).attr('href') === value) {
 						$(this).parent().hide();//hide <li>s
 					}
 				});
 			});
 			$.each(shown_elements_array, function(index, value){
 				$('#anchornav a').each ( function() {
-					if ($(this).attr('href') == value) {
+					if ($(this).attr('href') === value) {
 						$(this).parent().show();//show <li>s
 					}
 				});
@@ -255,14 +250,14 @@
 			$.each(hidden_elements_array, function(index, value){
 				$('#eltdf-select-anchor option').each ( function() {
 
-					if ($(this).data('anchor') == value) {
+					if ($(this).data('anchor') === value) {
 						$(this).hide();//hide option
 					}
 				});
 			});
 			$.each(shown_elements_array, function(index, value){
 				$('#eltdf-select-anchor option').each ( function() {
-					if ($(this).data('anchor') == value) {
+					if ($(this).data('anchor') === value) {
 						$(this).show();//show option
 					}
 				});
@@ -271,16 +266,6 @@
 			$('#eltdf-select-anchor').selectpicker('refresh');
 		});
 	}
-
-	function checkBottomPaddingOfFormWrapDiv(){
-		//check bottom padding of form wrap div, since bottom holder is changing its height because of the info messages
-		setTimeout(function(){
-			$('.eltdf-page-form').css('padding-bottom', $('.form-button-section').height());
-		},350);
-	}
-
-
-
 
 	function eltdfInitSelectChange() {
 		$('select.dependence').on('change', function (e) {
@@ -348,124 +333,6 @@
 		});
 	}
 
-	function eltdfChangeNotification(state) {
-		if(state == 'hide') {
-
-		}
-	}
-
-	/**
-	 * Function that initializes
-	 */
-	function eltdfInitRangeSlider() {
-		if($('.eltdf-slider-range').length) {
-
-			$('.eltdf-slider-range').each(function() {
-				var Link = $.noUiSlider.Link;
-
-				var start       = 0;            //starting position of slider
-				var min         = 0;            //minimal value
-				var max         = 100;          //maximal value of slider
-				var step        = 1;            //number of steps to snap to
-				var orientation = 'horizontal';   //orientation. Could be vertical or horizontal
-				var prefix      = '';           //prefix to the serialized value that is written field
-				var postfix     = '';           //postfix to the serialized value that is written to field
-				var thousand    = '';           //separator for thousand
-				var decimals    = 2;            //number of decimals
-				var mark        = '.';          //decimal separator
-
-				//is data-start attribute set for current instance?
-				if($(this).data('start') != null && $(this).data('start') !== "" && $(this).data('start') != "0.00") {
-					start = $(this).data('start');
-					if (start == "1.00") start = 1;
-					if(parseInt(start) == start){
-						start = parseInt(start);
-					}
-				}
-
-				//is data-min attribute set for current instance?
-				if($(this).data('min') != null && $(this).data('min') !== "") {
-					min = $(this).data('min');
-				}
-
-				//is data-max attribute set for current instance?
-				if($(this).data('max') != null && $(this).data('max') !== "") {
-					max = $(this).data('max');
-				}
-
-				//is data-step attribute set for current instance?
-				if($(this).data('step') != null && $(this).data('step') !== "") {
-					step = $(this).data('step');
-				}
-
-				//is data-orientation attribute set for current instance?
-				if($(this).data('orientation') != null && $(this).data('orientation') !== "") {
-					//define available orientations
-					var availableOrientations = ['horizontal', 'vertical'];
-
-					//is data-orientation value in array of available orientations?
-					if(availableOrientations.indexOf($(this).data('orientation'))) {
-						orientation = $(this).data('orientation');
-					}
-				}
-
-				//is data-prefix attribute set for current instance?
-				if($(this).data('prefix') != null && $(this).data('prefix') !== "") {
-					prefix = $(this).data('prefix');
-				}
-
-				//is data-postfix attribute set for current instance?
-				if($(this).data('postfix') != null && $(this).data('postfix') !== "") {
-					postfix = $(this).data('postfix');
-				}
-
-				//is data-thousand attribute set for current instance?
-				if($(this).data('thousand') != null && $(this).data('thousand') !== "") {
-					thousand = $(this).data('thousand');
-				}
-
-				//is data-decimals attribute set for current instance?
-				if($(this).data('decimals') != null && $(this).data('decimals') !== "") {
-					decimals = $(this).data('decimals');
-				}
-
-				//is data-mark attribute set for current instance?
-				if($(this).data('mark') != null && $(this).data('mark') !== "") {
-					mark = $(this).data('mark');
-				}
-
-				$(this).noUiSlider({
-					start: start,
-					step: step,
-					orientation: orientation,
-					range: {
-						'min': min,
-						'max': max
-					},
-					serialization: {
-						lower: [
-							new Link({
-								target: $(this).prev('.eltdf-slider-range-value')
-							})
-						],
-						format: {
-							// Set formatting
-							thousand: thousand,
-							postfix: postfix,
-							prefix: prefix,
-							decimals: decimals,
-							mark: mark
-						}
-					}
-				}).on({
-					change: function(){
-						$('.eltdf-input-change').addClass('yes');
-					}
-				});
-			});
-		}
-	}
-
 	function eltdfInitMediaUploader() {
 		if($('.eltdf-media-uploader').length) {
 			$('.eltdf-media-uploader').each(function() {
@@ -484,7 +351,7 @@
 				uploadImageHolder   = $(this).find('.eltdf-media-image-holder');
 				removeButton        = $(this).find('.eltdf-media-remove-btn');
 
-				if (uploadImageHolder.find('img').attr('src') != "") {
+				if (uploadImageHolder.find('img').attr('src') !== "") {
 					removeButton.show();
 					eltdfInitMediaRemoveBtn(removeButton);
 				}
@@ -558,15 +425,11 @@
 	}
 
 	function eltdfInitGalleryUploader() {
-
 		var $eltdf_upload_button = jQuery('.eltdf-gallery-upload-btn');
-
 		var $eltdf_clear_button = jQuery('.eltdf-gallery-clear-btn');
 
 		wp.media.customlibEditGallery1 = {
-
 			frame: function() {
-
 				if ( this._frame )
 					return this._frame;
 
@@ -583,7 +446,6 @@
 				});
 
 				this._frame.on('update', function() {
-
 					var controller = wp.media.customlibEditGallery1._frame.states.get('gallery-edit');
 					var library = controller.get('library');
 					// Need to get all the attachment ids for gallery
@@ -596,31 +458,24 @@
 						url: ajaxurl,
 						data: "action=eltd_gallery_upload_get_images&ids=" + ids,
 						success: function(data) {
-
 							$thumbs_wrap.empty().html(data);
-
 						}
 					});
-
 				});
 
 				return this._frame;
 			},
 
 			init: function() {
-
 				$eltdf_upload_button.click(function(event) {
-
 					$thumbs_wrap = $(this).parent().prev().prev();
 					$input_gallery_items = $thumbs_wrap.next();
 
 					event.preventDefault();
 					wp.media.customlibEditGallery1.frame().open();
-
 				});
 
 				$eltdf_clear_button.click(function(event) {
-
 					$thumbs_wrap = $eltdf_upload_button.parent().prev().prev();
 					$input_gallery_items = $thumbs_wrap.next();
 
@@ -633,7 +488,6 @@
 			// Gets initial gallery-edit images. Function modified from wp.media.gallery.edit
 			// in wp-includes/js/media-editor.js.source.html
 			select: function() {
-
 				var shortcode = wp.shortcode.next('gallery', '[gallery ids="' + $input_gallery_items.val() + '"]'),
 					defaultPostId = wp.media.gallery.defaults.id,
 					attachments, selection;
@@ -668,9 +522,7 @@
 				});
 
 				return selection;
-
 			}
-
 		};
 		$(wp.media.customlibEditGallery1.init);
 	}
@@ -698,7 +550,7 @@
 		//hide expand all button if there is no items
 		noPortfolioItemShown();
 		function noPortfolioItemShown()  {
-			if($('.eltdf-portfolio-additional-item').length == 0){
+			if($('.eltdf-portfolio-additional-item').length === 0){
 				$('.eltdf-toggle-all-item').hide();
 			}
 		}
@@ -746,7 +598,7 @@
 		})
 
 		function checkExpandAllBtn() {
-			if($('.eltdf-portfolio-additional-item .eltdf-portfolio-toggle-content:hidden').length == 0){
+			if($('.eltdf-portfolio-additional-item .eltdf-portfolio-toggle-content:hidden').length === 0){
 				$('.eltdf-toggle-all-item').hide();
 			}else{
 				$('.eltdf-toggle-all-item').show();
@@ -782,11 +634,9 @@
 	}
 
 	function eltdfSetIdOnRemoveItem(portfolio,portfolio_num){
-
+		var portfolio_num = portfolio_num;
 		if(portfolio_num == undefined){
-			var portfolio_num = portfolio.attr('rel');
-		}else{
-			var portfolio_num = portfolio_num;
+			portfolio_num = portfolio.attr('rel');
 		}
 
 		portfolio.find('input[type="text"], input[type="hidden"], select, textarea').each(function(){
@@ -795,12 +645,8 @@
 			var new_id = name+"_"+portfolio_num;
 			$(this).attr('name',new_name);
 			$(this).attr('id',new_id);
-
 		});
-
 	}
-
-
 
 	function eltdInitPortfolioMediaAcc() {
 		//remove portfolio media
@@ -824,7 +670,7 @@
 		//hide 'expand all' button if there is no media
 		noPortfolioMedia();
 		function noPortfolioMedia() {
-			if($('.eltdf-portfolio-media').length == 0){
+			if($('.eltdf-portfolio-media').length === 0){
 				$('.eltdf-toggle-all-media').hide();
 			}
 		}
@@ -870,7 +716,7 @@
 			$(this).hide();
 		});
 		function checkExpandAllMediaBtn() {
-			if($('.eltdf-portfolio-media .eltdf-portfolio-toggle-content:hidden').length == 0){
+			if($('.eltdf-portfolio-media .eltdf-portfolio-toggle-content:hidden').length === 0){
 				$('.eltdf-toggle-all-media').hide();
 			}else{
 				$('.eltdf-toggle-all-media').show();
@@ -940,11 +786,9 @@
 	}
 
 	function eltdfSetIdOnRemoveMedia(portfolio,portfolio_num){
-
+		var portfolio_num = portfolio_num;
 		if(portfolio_num == undefined){
-			var portfolio_num = portfolio.attr('rel');
-		}else{
-			var portfolio_num = portfolio_num;
+			portfolio_num = portfolio.attr('rel');
 		}
 
 		portfolio.find('input[type="text"], input[type="hidden"], select, textarea').each(function(){
@@ -953,52 +797,15 @@
 			var new_id = name+"_"+portfolio_num;
 			$(this).attr('name',new_name);
 			$(this).attr('id',new_id);
-
 		});
-
-	}
-
-
-	function eltdfSetIdOnAddPortfolio(addButton,portfolio_num){
-
-		addButton.siblings('.eltdf_portfolio_image:last').find('input[type="text"], input[type="hidden"], select').each(function(){
-			var name = $(this).attr('name');
-			var new_name= name.replace("_x", "[]");
-			var new_id = name.replace("_x", "_"+portfolio_num);
-			$(this).attr('name',new_name);
-			$(this).attr('id',new_id);
-
-		});
-
-		eltdfShowHidePorfolioImageVideoType();
-	}
-
-	function eltdfSetIdOnRemovePortfolio(portfolio,portfolio_num){
-
-		if(portfolio_num == undefined){
-			var portfolio_num = portfolio.attr('rel');
-		}else{
-			var portfolio_num = portfolio_num;
-		}
-
-		portfolio.find('input[type="text"], select').each(function(){
-			var name = $(this).attr('name').split('[')[0];
-			var new_name = name+"[]";
-			var new_id = name+"_"+portfolio_num;
-			$(this).attr('name',new_name);
-			$(this).attr('id',new_id);
-
-		});
-
 	}
 
 	function eltdfShowHidePorfolioImageVideoType(){
 
 		$('.eltdf-portfoliovideotype').each(function(i){
-
 			var $selected = $(this).val();
 
-			if($selected == "self"){
+			if($selected === "self"){
 				$(this).parent().parent().parent().find('.eltdf-video-id-holder').hide();
 				$(this).parent().parent().parent().parent().find('.eltdf-media-uploader').show();
 				$(this).parent().parent().parent().find('.eltdf-video-self-hosted-path-holder').show();
@@ -1028,7 +835,7 @@
 			uploadImageHolder   = $(this).find('.eltdf-media-image-holder');
 			removeButton        = $(this).find('.eltdf-media-remove-btn');
 
-			if (uploadImageHolder.find('img').attr('src') != "") {
+			if (uploadImageHolder.find('img').attr('src') !== "") {
 				removeButton.show();
 				eltdfInitMediaRemoveBtn(removeButton);
 			}
@@ -1110,6 +917,7 @@
 			setTimeout(function(){$('.eltdf-changes-saved').removeClass('yes');}, 3000);
 			return false;
 		});
+		
 		$(document).delegate(".eltd_ajax_form", "submit", function (a) {
 			var b = $(this);
 			var c = {
@@ -1120,10 +928,6 @@
 				cache: !1,
 				type: "POST",
 				data: jQuery.param(c, !0) + "&" + b.serialize()
-//            ,
-//            success: function(data, textStatus, XMLHttpRequest){
-//                alert(data);
-//            }
 			}), a.preventDefault(), a.stopPropagation()
 		})
 	}
@@ -1139,8 +943,6 @@
     }
 
     function eltdShowHidePostFormats(){
-
-
         $('input[name="post_format"]').each(function(){
             $('#eltdf-meta-box-'+ $(this).attr("id")).hide();
         });
@@ -1151,7 +953,6 @@
         $("input[name='post_format']").change(function() {
             eltdShowHidePostFormats();
         });
-
     }
 
 	function eltdRemoveVCDeprecatedClass() {

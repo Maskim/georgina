@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	https://docs.woothemes.com/document/template-structure/
+ * @see 	https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
  * @version 2.4.0
@@ -19,8 +19,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-global $eltd_options;
 
 /**
  * Filter tabs and allow third parties to add their own
@@ -32,21 +30,21 @@ $tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $tabs ) ) : ?>
 
-    <?php if(isset($eltd_options['woo_products_info_style']) && ($eltd_options['woo_products_info_style'])=="vertical_tabs"){?>
+    <?php if( borderland_elated_options()->getOptionValue( 'woo_products_info_style' ) == "vertical_tabs"){?>
 		<div class="eltd_tabs vertical tab_with_text left woocommerce-tabs">
 			<ul class="tabs clearfix tabs-nav">
 				<?php foreach ( $tabs as $key => $tab ) : ?>
-
-					<li class="<?php echo esc_attr($key); ?>_tab">
-						<a href="#tab-<?php echo esc_attr($key); ?>"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ?></a>
+					
+					<li class="<?php echo esc_attr( $key ); ?>_tab" id="tab-title-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
+						<a href="#tab-<?php echo esc_attr( $key ); ?>"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></a>
 					</li>
 
 				<?php endforeach; ?>
 			</ul>
 			<?php foreach ( $tabs as $key => $tab ) : ?>
-
-				<div class="panel entry-content tabs-container" id="tab-<?php echo esc_attr($key); ?>">
-					<?php call_user_func( $tab['callback'], $key, $tab ) ?>
+				
+				<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content tabs-container wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
+					<?php if ( isset( $tab['callback'] ) ) { call_user_func( $tab['callback'], $key, $tab ); } ?>
 				</div>
 
 			<?php endforeach; ?>
@@ -60,7 +58,7 @@ if ( ! empty( $tabs ) ) : ?>
 				</h6>
 				<div class="accordion_content">
 					<div class="accordion_content_inner">
-						<?php call_user_func( $tab['callback'], $key, $tab ) ?>
+						<?php if ( isset( $tab['callback'] ) ) { call_user_func( $tab['callback'], $key, $tab ); } ?>
 					</div>
 				</div>
 

@@ -1,62 +1,59 @@
 <?php
 
-if(!function_exists('eltd_loading_spinners')) {
-    function eltd_loading_spinners($return = false) {
-        global $eltd_options;
-
+if(!function_exists('borderland_elated_loading_spinners')) {
+    function borderland_elated_loading_spinners($return = false) {
         $spinner_html = '';
-        if(isset($eltd_options['loading_animation_spinner'])){
-
-
-            switch ($eltd_options['loading_animation_spinner']) {
+        
+        if(borderland_elated_options()->getOptionValue( 'loading_animation_spinner' )){
+            switch (borderland_elated_options()->getOptionValue( 'loading_animation_spinner' )) {
                 case "pulse":
-                    $spinner_html = eltd_loading_spinner_pulse();
+                    $spinner_html = borderland_elated_loading_spinner_pulse();
                 break;
                 case "double_pulse":
-                    $spinner_html =  eltd_loading_spinner_double_pulse();
+                    $spinner_html =  borderland_elated_loading_spinner_double_pulse();
                 break;
                 case "cube":
-                    $spinner_html =  eltd_loading_spinner_cube();
+                    $spinner_html =  borderland_elated_loading_spinner_cube();
                 break;
                 case "rotating_cubes":
-                    $spinner_html =  eltd_loading_spinner_rotating_cubes();
+                    $spinner_html =  borderland_elated_loading_spinner_rotating_cubes();
                 break;
                 case "stripes":
-                    $spinner_html =  eltd_loading_spinner_stripes();
+                    $spinner_html =  borderland_elated_loading_spinner_stripes();
                 break;
                 case "wave":
-                    $spinner_html =  eltd_loading_spinner_wave();
+                    $spinner_html =  borderland_elated_loading_spinner_wave();
                 break;
                 case "two_rotating_circles":
-                    $spinner_html =  eltd_loading_spinner_two_rotating_circles();
+                    $spinner_html =  borderland_elated_loading_spinner_two_rotating_circles();
                 break;
                 case "five_rotating_circles":
-                    $spinner_html =  eltd_loading_spinner_five_rotating_circles();
+                    $spinner_html =  borderland_elated_loading_spinner_five_rotating_circles();
                 break;
 				case "atom":
-                    $spinner_html = eltd_loading_spinner_atom();
+                    $spinner_html = borderland_elated_loading_spinner_atom();
                 break;
 				case "clock":
-                    $spinner_html = eltd_loading_spinner_clock();
+                    $spinner_html = borderland_elated_loading_spinner_clock();
                 break;
 				case "mitosis":
-                    $spinner_html = eltd_loading_spinner_mitosis();
+                    $spinner_html = borderland_elated_loading_spinner_mitosis();
                 break;
 				case "lines":
-                    $spinner_html = eltd_loading_spinner_lines();
+                    $spinner_html = borderland_elated_loading_spinner_lines();
                 break;
 				case "fussion":
-                    $spinner_html = eltd_loading_spinner_fussion();
+                    $spinner_html = borderland_elated_loading_spinner_fussion();
                 break;
 				case "wave_circles":
-                    $spinner_html = eltd_loading_spinner_wave_circles();
+                    $spinner_html = borderland_elated_loading_spinner_wave_circles();
                 break;
 				case "pulse_circles":
-                    $spinner_html = eltd_loading_spinner_pulse_circles();
+                    $spinner_html = borderland_elated_loading_spinner_pulse_circles();
                 break;
             }
         }else{
-            $spinner_html = eltd_loading_spinner_pulse();
+            $spinner_html = borderland_elated_loading_spinner_pulse();
         }
 
         if($return === true) {
@@ -73,16 +70,16 @@ if(!function_exists('eltd_loading_spinners')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_pulse')) {
-    function eltd_loading_spinner_pulse() {
+if(!function_exists('borderland_elated_loading_spinner_pulse')) {
+    function borderland_elated_loading_spinner_pulse() {
         $html = '';
         $html .= '<div class="pulse"></div>';
         return $html;
     }
 }
 
-if(!function_exists('eltd_loading_spinner_double_pulse')) {
-    function eltd_loading_spinner_double_pulse() {
+if(!function_exists('borderland_elated_loading_spinner_double_pulse')) {
+    function borderland_elated_loading_spinner_double_pulse() {
         $html = '';
         $html .= '<div class="double_pulse">';
         $html .= '<div class="double-bounce1"></div>';
@@ -93,16 +90,16 @@ if(!function_exists('eltd_loading_spinner_double_pulse')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_cube')) {
-    function eltd_loading_spinner_cube() {
+if(!function_exists('borderland_elated_loading_spinner_cube')) {
+    function borderland_elated_loading_spinner_cube() {
         $html = '';
         $html .= '<div class="cube"></div>';
         return $html;
     }
 }
 
-if(!function_exists('eltd_loading_spinner_rotating_cubes')) {
-    function eltd_loading_spinner_rotating_cubes() {
+if(!function_exists('borderland_elated_loading_spinner_rotating_cubes')) {
+    function borderland_elated_loading_spinner_rotating_cubes() {
         $html = '';
         $html .= '<div class="rotating_cubes">';
         $html .= '<div class="cube1"></div>';
@@ -113,8 +110,8 @@ if(!function_exists('eltd_loading_spinner_rotating_cubes')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_stripes')) {
-    function eltd_loading_spinner_stripes() {
+if(!function_exists('borderland_elated_loading_spinner_stripes')) {
+    function borderland_elated_loading_spinner_stripes() {
         $html = '';
         $html .= '<div class="stripes">';
         $html .= '<div class="rect1"></div>';
@@ -127,8 +124,8 @@ if(!function_exists('eltd_loading_spinner_stripes')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_wave')) {
-    function eltd_loading_spinner_wave() {
+if(!function_exists('borderland_elated_loading_spinner_wave')) {
+    function borderland_elated_loading_spinner_wave() {
         $html = '';
         $html .= '<div class="wave">';
         $html .= '<div class="bounce1"></div>';
@@ -140,8 +137,8 @@ if(!function_exists('eltd_loading_spinner_wave')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_two_rotating_circles')) {
-    function eltd_loading_spinner_two_rotating_circles() {
+if(!function_exists('borderland_elated_loading_spinner_two_rotating_circles')) {
+    function borderland_elated_loading_spinner_two_rotating_circles() {
         $html = '';
         $html .= '<div class="two_rotating_circles">';
         $html .= '<div class="dot1"></div>';
@@ -152,8 +149,8 @@ if(!function_exists('eltd_loading_spinner_two_rotating_circles')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_five_rotating_circles')) {
-    function eltd_loading_spinner_five_rotating_circles() {
+if(!function_exists('borderland_elated_loading_spinner_five_rotating_circles')) {
+    function borderland_elated_loading_spinner_five_rotating_circles() {
         $html = '';
         $html .= '<div class="five_rotating_circles">';
         $html .= '<div class="spinner-container container1">';
@@ -179,8 +176,8 @@ if(!function_exists('eltd_loading_spinner_five_rotating_circles')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_atom')) {
-    function eltd_loading_spinner_atom(){
+if(!function_exists('borderland_elated_loading_spinner_atom')) {
+    function borderland_elated_loading_spinner_atom(){
         $html = '';
         $html .= '<div class="atom">';
         $html .= '<div class="ball ball-1"></div>';
@@ -192,8 +189,8 @@ if(!function_exists('eltd_loading_spinner_atom')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_clock')) {
-    function eltd_loading_spinner_clock(){
+if(!function_exists('borderland_elated_loading_spinner_clock')) {
+    function borderland_elated_loading_spinner_clock(){
         $html = '';
         $html .= '<div class="clock">';
         $html .= '<div class="ball ball-1"></div>';
@@ -205,8 +202,8 @@ if(!function_exists('eltd_loading_spinner_clock')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_mitosis')) {
-    function eltd_loading_spinner_mitosis(){
+if(!function_exists('borderland_elated_loading_spinner_mitosis')) {
+    function borderland_elated_loading_spinner_mitosis(){
         $html = '';
         $html .= '<div class="mitosis">';
         $html .= '<div class="ball ball-1"></div>';
@@ -218,8 +215,8 @@ if(!function_exists('eltd_loading_spinner_mitosis')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_lines')) {
-    function eltd_loading_spinner_lines(){
+if(!function_exists('borderland_elated_loading_spinner_lines')) {
+    function borderland_elated_loading_spinner_lines(){
         $html = '';
         $html .= '<div class="lines">';
         $html .= '<div class="line1"></div>';
@@ -231,8 +228,8 @@ if(!function_exists('eltd_loading_spinner_lines')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_fussion')) {
-    function eltd_loading_spinner_fussion(){
+if(!function_exists('borderland_elated_loading_spinner_fussion')) {
+    function borderland_elated_loading_spinner_fussion(){
         $html = '';
         $html .= '<div class="fussion">';
         $html .= '<div class="ball ball-1"></div>';
@@ -244,8 +241,8 @@ if(!function_exists('eltd_loading_spinner_fussion')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_wave_circles')) {
-    function eltd_loading_spinner_wave_circles(){
+if(!function_exists('borderland_elated_loading_spinner_wave_circles')) {
+    function borderland_elated_loading_spinner_wave_circles(){
         $html = '';
         $html .= '<div class="wave_circles">';
         $html .= '<div class="ball ball-1"></div>';
@@ -257,8 +254,8 @@ if(!function_exists('eltd_loading_spinner_wave_circles')) {
     }
 }
 
-if(!function_exists('eltd_loading_spinner_pulse_circles')) {
-    function eltd_loading_spinner_pulse_circles(){
+if(!function_exists('borderland_elated_loading_spinner_pulse_circles')) {
+    function borderland_elated_loading_spinner_pulse_circles(){
         $html = '';
         $html .= '<div class="pulse_circles">';
         $html .= '<div class="ball ball-1"></div>';

@@ -1,7 +1,6 @@
 <?php
 
-global $eltdIconCollections;
-global $eltd_options;
+$icon_collections = borderland_elated_icon_collections();
 
 $output = $el_class = $el_id = '';
 
@@ -37,8 +36,8 @@ $args = array(
 	'padding_bottom' => '',
 	'side_padding' => '',
 	'text_align' => 'left',
-	'more_button_label' =>'Expand Section',
-	'less_button_label'=>'Contract Section',
+	'more_button_label' =>esc_html__( 'Expand Section', 'borderland' ),
+	'less_button_label'=>esc_html__( 'Contract Section', 'borderland' ),
 	'button_position'=>'center',
 	'color'=>'',
 	'hover_color'=>'',
@@ -59,7 +58,7 @@ $args = array(
     'el_id' => ''
 );
 
-$args = array_merge($args, $eltdIconCollections->getShortcodeParams('content_menu_'));
+$args = array_merge($args, $icon_collections->getShortcodeParams('content_menu_'));
 
 extract(shortcode_atts($args, $atts));
 $el_class = esc_attr($el_class);
@@ -179,7 +178,7 @@ if($content_menu_title != ""){
 $menu_icon = '';
 if ($icon_pack !== '' && $in_content_menu !== '') {
 
-    $item_collection_icon_obj = $eltdIconCollections->getIconCollection($icon_pack);
+    $item_collection_icon_obj = $icon_collections->getIconCollection($icon_pack);
 
     if (method_exists($item_collection_icon_obj, 'render')) {
         
@@ -290,7 +289,7 @@ if($row_type == 'row') {
             $output .='<object width="320" height="240" type="application/x-shockwave-flash" data="'.get_template_directory_uri().'/js/flashmediaelement.swf">
 										<param name="movie" value="'.get_template_directory_uri().'/js/flashmediaelement.swf" />
 										<param name="flashvars" value="controls=true&file='.$video_mp4.'" />
-										<img src="'.$v_image.'" width="1920" height="800" title="No video playback capabilities" alt="Video thumb" />
+										<img src="'.$v_image.'" width="1920" height="800" title="' . esc_attr__( 'No video playback capabilities', 'borderland' ) . '"  alt="' . esc_attr__( 'Video thumb', 'borderland' ) . '"  />
 								</object>
 						</video>';
         } else {
@@ -309,7 +308,7 @@ if($row_type == 'row') {
             $output .='<object width="320" height="240" type="application/x-shockwave-flash" data="'.get_template_directory_uri().'/js/flashmediaelement.swf">
 												<param name="movie" value="'.get_template_directory_uri().'/js/flashmediaelement.swf" />
 												<param name="flashvars" value="controls=true&amp;file='.$video_mp4.'" />
-												<img src="'.$v_image.'" width="1920" height="800" title="No video playback capabilities" alt="Video thumb" />
+												<img src="'.$v_image.'" width="1920" height="800" title="' . esc_attr__( 'No video playback capabilities', 'borderland' ) . '"  alt="' . esc_attr__( 'Video thumb', 'borderland' ) . '"  />
 										</object>
 								</video>
 						</div>';
@@ -447,12 +446,12 @@ if($row_type == 'row') {
 	if($logo_in_content_menu == 'logo_in_content_menu'){
 		$output .= '<div class="logo">';
 			
-			if(isset($eltd_options['content_menu_logo_image']) && $eltd_options['content_menu_logo_image'] != ""){
-				$logo_image = $eltd_options['content_menu_logo_image'];
-			}else if(isset($eltd_options['logo_image']) && $eltd_options['logo_image'] != ""){
-				$logo_image = $eltd_options['logo_image'];
+			if(borderland_elated_options()->getOptionValue( 'content_menu_logo_image' ) != ""){
+				$logo_image = borderland_elated_options()->getOptionValue( 'content_menu_logo_image' );
+			}else if(borderland_elated_options()->getOptionValue( 'logo_image' ) != ""){
+				$logo_image = borderland_elated_options()->getOptionValue( 'logo_image' );
 			}
-			$output .= '<a href="'.esc_url(home_url('/')).'"><img src="'.esc_url($logo_image).'" alt="Logo"/></a>';
+			$output .= '<a href="'.esc_url(home_url('/')).'"><img src="'.esc_url($logo_image).'" alt="' . esc_attr__( 'Logo', 'borderland' ) . '" /></a>';
 		$output .= '</div>';
 	}
     $output .= "<div class='nav_select_menu clearfix'><div class='nav_select_button'><i class='fa fa-bars'></i></div></div>";
@@ -461,7 +460,7 @@ if($row_type == 'row') {
 	
 	if($custom_widget_area !== ''){
 		$output .= '<div class="custom_widget_area"><div class="custom_widget_area_inner"><div class="custom_widget_area_inner2">';
-			$output .= eltd_get_dynamic_sidebar($custom_widget_area);
+			$output .= borderland_elated_get_dynamic_sidebar_content($custom_widget_area);
 		$output .= '</div></div></div>';
 	}
 	
@@ -504,4 +503,4 @@ if($row_type == 'row') {
 }else if($row_type == 'content_menu'){
 	$output .= '</nav>';
 }
-print $output;
+echo borderland_elated_get_module_part( $output );

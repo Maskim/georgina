@@ -2,7 +2,7 @@
 
 // Code in else part is because of compatibility for older versions of VC.
 
-if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
+if(version_compare(borderland_elated_get_vc_version(), '4.7.4') >= 0) {
 
 	/**
 	 * Shortcode attributes
@@ -110,7 +110,7 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	$flex_fx = '';
 	$frame_class = '';
 	if ( 'flexslider' === $type || 'flexslider_fade' === $type || 'fading' === $type ) {
-		$type = ' wpb_flexslider_custom wpb_flexslider flexslider_fade flexslider';
+		$type = ' wpb_flexslider_custom flexslider_fade flexslider';
 		$flex_fx = ' data-flex_fx="fade"';
 	} else if ( 'flexslider_slide' === $type ) {
 		$type = ' wpb_flexslider_custom wpb_flexslider flexslider_slide flexslider';
@@ -306,8 +306,8 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 				$title_desc_inner_style .= 'background-color: ' . $title_and_desc_layer_color . ';';
 			}
 
-			$gal_images .= '<div class="image_title_desc_holder' . $position_set . '" ' . eltd_get_inline_style($title_desc_style) . '>';
-			$gal_images .= '<div class="image_title_desc_holder_inner"' . eltd_get_inline_style($title_desc_inner_style) . '>';
+			$gal_images .= '<div class="image_title_desc_holder' . $position_set . '" ' . borderland_elated_get_inline_style($title_desc_style) . '>';
+			$gal_images .= '<div class="image_title_desc_holder_inner"' . borderland_elated_get_inline_style($title_desc_inner_style) . '>';
 			if ($show_image_title == 'show_image_title') {
 				$gal_images .= '<div class="image_gallery_title"';
 				if ($title_style !== '') {
@@ -320,7 +320,7 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 			if ($show_image_description == 'show_image_description') {
 				$gal_images .= '<div class="image_gallery_description" ';
 				if ($description_style !== '') {
-					$gal_images .= eltd_get_inline_style($description_style);
+					$gal_images .= borderland_elated_get_inline_style($description_style);
 				}
 				$gal_images .= '>';
 				$gal_images .= esc_html($image_description);
@@ -371,17 +371,17 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	$output .= '<div class="' . $css_class . '">';
 	$output .= '<div class="wpb_wrapper">';
 	$output .= wpb_widget_title( array( 'title' => $title, 'extraclass' => 'wpb_gallery_heading' ) );
-	$output .= '<div class="wpb_gallery_slides' . $type . $frame_class . '" data-interval="' . $interval . '"' . $flex_fx . ' ' . $data_array . ' ' . eltd_get_inline_style($border_style) . '>' . $slides_wrap_start . $gal_images . $slides_wrap_end . '</div>';
+	$output .= '<div class="wpb_gallery_slides' . $type . $frame_class . '" data-interval="' . $interval . '"' . $flex_fx . ' ' . $data_array . ' ' . borderland_elated_get_inline_style($border_style) . '>' . $slides_wrap_start . $gal_images . $slides_wrap_end . '</div>';
 	if ($frame == 'use_frame') {
 		$output .= "<div class='gallery_frame'>";
 		if ($choose_frame == "frame2") {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-2.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-2.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . " />";
 		} elseif ($choose_frame == "frame3") {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-3.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-3.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . "' />";
 		} elseif ($choose_frame == "frame4") {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-4.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-4.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . "' />";
 		} else {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . "' />";
 		}
 		$output .= "</div>";
 	}
@@ -389,7 +389,7 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	$output .= '</div>';
 	$output .= '</div>';
 
-	echo $output;
+	echo borderland_elated_get_module_part($output);
 
 
 } else {
@@ -684,8 +684,8 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 				$title_desc_inner_style .= 'background-color: ' . $title_and_desc_layer_color . ';';
 			}
 
-			$gal_images .= '<div class="image_title_desc_holder' . $position_set . '" ' . eltd_get_inline_style($title_desc_style) . '>';
-			$gal_images .= '<div class="image_title_desc_holder_inner"' . eltd_get_inline_style($title_desc_inner_style) . '>';
+			$gal_images .= '<div class="image_title_desc_holder' . $position_set . '" ' . borderland_elated_get_inline_style($title_desc_style) . '>';
+			$gal_images .= '<div class="image_title_desc_holder_inner"' . borderland_elated_get_inline_style($title_desc_inner_style) . '>';
 			if ($show_image_title == 'show_image_title') {
 				$gal_images .= '<div class="image_gallery_title"';
 				if ($title_style !== '') {
@@ -698,7 +698,7 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 			if ($show_image_description == 'show_image_description') {
 				$gal_images .= '<div class="image_gallery_description" ';
 				if ($description_style !== '') {
-					$gal_images .= eltd_get_inline_style($description_style);
+					$gal_images .= borderland_elated_get_inline_style($description_style);
 				}
 				$gal_images .= '>';
 				$gal_images .= esc_html($image_description);
@@ -744,19 +744,19 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	$output .= "\n\t" . '<div class="' . $css_class . '">';
 	$output .= "\n\t\t" . '<div class="wpb_wrapper">';
 	$output .= wpb_widget_title(array('title' => $title, 'extraclass' => 'wpb_gallery_heading'));
-	$output .= '<div class="wpb_gallery_slides' . $type . $frame_class . '" data-interval="' . $interval . '"' . $flex_fx . ' ' . $data_array . ' ' . eltd_get_inline_style($border_style) . '>' . $slides_wrap_start . $gal_images . $slides_wrap_end;
+	$output .= '<div class="wpb_gallery_slides' . $type . $frame_class . '" data-interval="' . $interval . '"' . $flex_fx . ' ' . $data_array . ' ' . borderland_elated_get_inline_style($border_style) . '>' . $slides_wrap_start . $gal_images . $slides_wrap_end;
 	$output .= '</div>';
 	if ($frame == 'use_frame') {
 
 		$output .= "<div class='gallery_frame'>";
 		if ($choose_frame == "frame2") {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-2.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-2.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . "' />";
 		} elseif ($choose_frame == "frame3") {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-3.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-3.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . "' />";
 		} elseif ($choose_frame == "frame4") {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-4.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame-4.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . "' />";
 		} else {
-			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame.png' alt='slider-frame-image'/>";
+			$output .= "<img src='" . get_template_directory_uri() . "/img/slider_frame.png' alt='" . esc_attr__( 'slider-frame-image', 'borderland' ) . "' />";
 		}
 		$output .= "</div>";
 	}
@@ -764,5 +764,5 @@ if(version_compare(eltd_get_vc_version(), '4.7.4') >= 0) {
 	$output .= "\n\t\t" . '</div> ' . $this->endBlockComment('.wpb_wrapper');
 	$output .= "\n\t" . '</div> ' . $this->endBlockComment('.wpb_gallery');
 
-	print $output;
+	echo borderland_elated_get_module_part( $output );
 }

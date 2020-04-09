@@ -167,9 +167,9 @@ $output .= "<div class='tabs-container' $tabs_container_style>";
 $output .= "\n\t\t\t" . wpb_js_remove_wpautop($content);
 $output .= "</div>";
 if ('vc_tour' == $this->shortcode) {
-    $output .= "\n\t\t\t" . '<div class="wpb_tour_next_prev_nav clearfix"> <span class="wpb_prev_slide"><a href="#prev" title="' . __('Previous slide', 'js_composer') . '">' . __('Previous slide', 'js_composer') . '</a></span> <span class="wpb_next_slide"><a href="#next" title="' . __('Next slide', 'js_composer') . '">' . __('Next slide', 'js_composer') . '</a></span></div>';
+    $output .= "\n\t\t\t" . '<div class="wpb_tour_next_prev_nav clearfix"> <span class="wpb_prev_slide"><a href="#prev" title="' . esc_attr__('Previous slide', 'borderland') . '">' . esc_html__('Previous slide', 'borderland') . '</a></span> <span class="wpb_next_slide"><a href="#next" title="' . esc_attr__('Next slide', 'borderland') . '">' . esc_html__('Next slide', 'borderland') . '</a></span></div>';
 }
 $output .= "\n\t\t" . '</div> ' . $this->endBlockComment('.wpb_wrapper');
 $output .= "\n\t" . '</div> ' . $this->endBlockComment($element);
 
-print $output;
+echo borderland_elated_get_module_part( $output );

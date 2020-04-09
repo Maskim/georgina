@@ -1,6 +1,6 @@
 <?php
 
-if(!function_exists('eltd_custom_breadcrumbs')) {
+if(!function_exists('borderland_elated_custom_breadcrumbs')) {
 	/**
 	 * Function that renders breadcrumbs
 	 *
@@ -10,15 +10,15 @@ if(!function_exists('eltd_custom_breadcrumbs')) {
 	 * @see is_home()
 	 * @see is_front_page()
 	 * @see is_category()
-	 * @see eltd_is_product_category()
+	 * @see borderland_elated_is_product_category()
 	 * @see get_search_query()
 	 */
-	function eltd_custom_breadcrumbs() {
-		global $post, $wp_query;
+	function borderland_elated_custom_breadcrumbs() {
+		global $post;
 
 		$output = "";
 		$homeLink = home_url();
-		$pageid = $wp_query->get_queried_object_id();
+		$pageid = borderland_elated_get_page_id();
 		$bread_style = "";
 
 		if(get_post_meta($pageid, "eltd_page_breadcrumbs_color", true) != ""){
@@ -26,42 +26,42 @@ if(!function_exists('eltd_custom_breadcrumbs')) {
 		}
 
 		$showOnHome = 1; // 1 - show breadcrumbs on the homepage, 0 - don't show
-		$delimiter = '<span class="delimiter" '.eltd_get_inline_style($bread_style).'>&nbsp;/&nbsp;</span>'; // delimiter between crumbs
+		$delimiter = '<span class="delimiter" '.borderland_elated_get_inline_style($bread_style).'>&nbsp;/&nbsp;</span>'; // delimiter between crumbs
 		$home = get_bloginfo('name'); // text for the 'Home' link
 		$showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
-		$before = '<span class="current" '.eltd_get_inline_style($bread_style).'>'; // tag before the current crumb
+		$before = '<span class="current" '.borderland_elated_get_inline_style($bread_style).'>'; // tag before the current crumb
 		$after = '</span>'; // tag after the current crumb
 
 		if (is_home() && !is_front_page()) {
-			$output = '<div class="breadcrumbs"><div class="breadcrumbs_inner"><a '.eltd_get_inline_style($bread_style).' href="' . $homeLink . '">' . $home . '</a>' . $delimiter . ' <a '.eltd_get_inline_style($bread_style).' href="' . $homeLink . '">'. get_the_title($pageid) .'</a></div></div>';
+			$output = '<div class="breadcrumbs"><div class="breadcrumbs_inner"><a '.borderland_elated_get_inline_style($bread_style).' href="' . $homeLink . '">' . $home . '</a>' . $delimiter . ' <a '.borderland_elated_get_inline_style($bread_style).' href="' . $homeLink . '">'. get_the_title($pageid) .'</a></div></div>';
 
 		} elseif(is_home()) {
 			$output = '<div class="breadcrumbs"><div class="breadcrumbs_inner">'.$before.$home.$after.'</div></div>';
 		}
 
 		elseif(is_front_page()) {
-			if ($showOnHome == 1) $output = '<div class="breadcrumbs"><div class="breadcrumbs_inner"><a '.eltd_get_inline_style($bread_style).' href="' . $homeLink . '">' . $home . '</a></div></div>';
+			if ($showOnHome == 1) $output = '<div class="breadcrumbs"><div class="breadcrumbs_inner"><a '.borderland_elated_get_inline_style($bread_style).' href="' . $homeLink . '">' . $home . '</a></div></div>';
 		}
 
 		else {
 
-			$output .= '<div class="breadcrumbs"><div class="breadcrumbs_inner"><a '.eltd_get_inline_style($bread_style).' href="' . $homeLink . '">' . $home . '</a>' . $delimiter;
+			$output .= '<div class="breadcrumbs"><div class="breadcrumbs_inner"><a '.borderland_elated_get_inline_style($bread_style).' href="' . $homeLink . '">' . $home . '</a>' . $delimiter;
 
-			if ( is_category() || eltd_is_product_category()) {
+			if ( is_category() || borderland_elated_is_product_category()) {
 				$thisCat = get_category(get_query_var('cat'), false);
 				if (isset($thisCat->parent) && $thisCat->parent != 0) $output .= get_category_parents($thisCat->parent, TRUE, ' ' . $delimiter);
 				$output .= $before . single_cat_title('', false) . $after;
 
 			} elseif ( is_search() ) {
-				$output .= $before . 'Search results for "' . get_search_query() . '"' . $after;
+				$output .= $before . sprintf( esc_html__( 'Search results for "%s"', 'borderland' ), get_search_query() ) . $after;
 
 			} elseif ( is_day() ) {
-				$output .= '<a '.eltd_get_inline_style($bread_style).' href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a>' . $delimiter;
-				$output .= '<a '.eltd_get_inline_style($bread_style).' href="' . get_month_link(get_the_time('Y'),get_the_time('m')) . '">' . get_the_time('F') . '</a>' . $delimiter;
+				$output .= '<a '.borderland_elated_get_inline_style($bread_style).' href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a>' . $delimiter;
+				$output .= '<a '.borderland_elated_get_inline_style($bread_style).' href="' . get_month_link(get_the_time('Y'),get_the_time('m')) . '">' . get_the_time('F') . '</a>' . $delimiter;
 				$output .= $before . get_the_time('d') . $after;
 
 			} elseif ( is_month() ) {
-				$output .= '<a '.eltd_get_inline_style($bread_style).' href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a>' . $delimiter;
+				$output .= '<a '.borderland_elated_get_inline_style($bread_style).' href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a>' . $delimiter;
 				$output .= $before . get_the_time('F') . $after;
 
 			} elseif ( is_year() ) {
@@ -90,47 +90,48 @@ if(!function_exists('eltd_custom_breadcrumbs')) {
 					$cat = $cat[0];
 					$output .= get_category_parents($cat, TRUE, ' ' . $delimiter);
 				}
-				$output .= '<a '.eltd_get_inline_style($bread_style).' href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
+				$output .= '<a '.borderland_elated_get_inline_style($bread_style).' href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
 				if ($showCurrent == 1) $output .= $delimiter . $before . get_the_title() . $after;
 
 			} elseif ( is_page() && !$post->post_parent ) {
 				if ($showCurrent == 1) $output .= $before . get_the_title() . $after;
 
 			} elseif ( is_page() && $post->post_parent ) {
-				$parent_id  = $post->post_parent;
+				$parent_id   = $post->post_parent;
 				$breadcrumbs = array();
-				while ($parent_id) {
-					$page = get_page($parent_id);
-					$breadcrumbs[] = '<a '.eltd_get_inline_style($bread_style).' href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
-					$parent_id  = $page->post_parent;
+				while ( $parent_id ) {
+					$page          = get_post( $parent_id );
+					$breadcrumbs[] = '<a' . borderland_elated_get_inline_style($bread_style) . ' href="' . get_permalink( $page->ID ) . '">' . wp_kses_post( get_the_title( $page->ID ) ) . '</a>';
+					$parent_id     = $page->post_parent;
 				}
-				$breadcrumbs = array_reverse($breadcrumbs);
-				for ($i = 0; $i < count($breadcrumbs); $i++) {
-					$output .= $breadcrumbs[$i];
-					if ($i != count($breadcrumbs)-1) $output .= ' ' . $delimiter;
+				$breadcrumbs = array_reverse( $breadcrumbs );
+				for ( $i = 0; $i < count( $breadcrumbs ); $i ++ ) {
+					$output .= $breadcrumbs[ $i ];
+					if ( $i != count( $breadcrumbs ) - 1 ) {
+						$output .= ' ' . $delimiter;
+					}
 				}
-				if ($showCurrent == 1) $output .= $delimiter . $before . get_the_title() . $after;
-
+				if ( $showCurrent == 1 ) {
+					$output .= $delimiter . $before . get_the_title() . $after;
+				}
+				
 			} elseif ( is_tag() ) {
-				$output .= $before . 'Posts tagged "' . single_tag_title('', false) . '"' . $after;
+				$output .= $before . sprintf( esc_html__( 'Posts tagged "%s"', 'borderland' ), single_tag_title('', false) ) . $after;
 
 			} elseif ( is_author() ) {
 				global $author;
 				$userdata = get_userdata($author);
-				$output .= $before . 'Articles posted by ' . $userdata->display_name . $after;
+				$output .= $before . esc_html__( 'Articles posted by ', 'borderland' ) . $userdata->display_name . $after;
 
 			} elseif ( is_404() ) {
-				$output .= $before . 'Error 404' . $after;
-			} elseif(function_exists("is_woocommerce") && is_shop()){
-				global $woocommerce;
-				$shop_id = get_option('woocommerce_shop_page_id');
-				$shop= get_page($shop_id);
-				$output .= $before .  $shop->post_title . $after;
+				$output .= $before . esc_html__( 'Error 404', 'borderland' ) . $after;
+			} elseif ( borderland_elated_is_woocommerce_installed() && borderland_elated_is_woocommerce_shop() ) {
+				$output .= $before . get_the_title( borderland_elated_get_woo_shop_page_id() ) . $after;
 			}
 
 			if ( get_query_var('paged') ) {
 
-				$output .= $before . " (" . __('Page', 'eltd') . ' ' . get_query_var('paged') . ")" . $after;
+				$output .= $before . " (" . esc_html__('Page', 'borderland') . ' ' . get_query_var('paged') . ")" . $after;
 
 			}
 

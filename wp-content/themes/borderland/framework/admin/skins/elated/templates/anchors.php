@@ -4,7 +4,7 @@
             <?php if(is_object($page) && property_exists($page, 'layout')) { ?>
             <div class="eltdf-anchor-holder">
                 <?php if(is_array($page->layout) && count($page->layout)) { ?>
-                    <span>Scroll To:</span>
+                    <span><?php esc_html_e( 'Scroll To:', 'borderland' ); ?></span>
                     <select class="nav-select eltdf-selectpicker" data-width="315px" data-hide-disabled="true" data-live-search="true" id="eltdf-select-anchor">
                         <option value="" disabled selected></option>
                         <?php foreach ($page->layout as $panel) { ?>

@@ -1,14 +1,14 @@
 <?php
 
-if(!function_exists('eltd_title_classes')) {
+if(!function_exists('borderland_elated_title_classes')) {
 	/**
 	 * Function that adds classes to title div.
 	 * All other functions are tied to it with add_filter function
 	 * @param array $classes array of classes
 	 */
-	function eltd_title_classes($classes = array()) {
+	function borderland_elated_title_classes($classes = array()) {
 		$classes = array();
-		$classes = apply_filters('eltd_title_classes', $classes);
+		$classes = apply_filters('borderland_elated_filter_title_classes', $classes);
 
 		if(is_array($classes) && count($classes)) {
 			echo implode(' ', $classes);
@@ -16,30 +16,23 @@ if(!function_exists('eltd_title_classes')) {
 	}
 }
 
-if(!function_exists('eltd_title_position_class')) {
+if(!function_exists('borderland_elated_title_position_class')) {
 	/**
 	 * Function that adds class on title based on title position option
 	 * Could be left, centered or right
 	 * @param $classes original array of classes
 	 * @return array changed array of classes
 	 */
-	function eltd_title_position_class($classes) {
-		global $eltd_options;
-		global $wp_query;
-
+	function borderland_elated_title_position_class($classes) {
 		//init variables
-		$id 			= $wp_query->get_queried_object_id();
+		$id = borderland_elated_get_page_id();
 		$title_position = 'left';
-
-		if(eltd_is_woocommerce_page()) {
-			$id = get_option('woocommerce_shop_page_id');
-		}
 
 		if(get_post_meta($id, "eltd_page_title_position", true) != "") {
 			$title_position = get_post_meta($id, "eltd_page_title_position", true);
 
 		} else {
-			$title_position = $eltd_options['page_title_position'];
+			$title_position = borderland_elated_options()->getOptionValue( 'page_title_position' );
 		}
 
 		$classes[] = 'position_'.$title_position;
@@ -47,32 +40,24 @@ if(!function_exists('eltd_title_position_class')) {
 		return $classes;
 	}
 
-	add_filter('eltd_title_classes', 'eltd_title_position_class');
+	add_filter('borderland_elated_filter_title_classes', 'borderland_elated_title_position_class');
 }
 
-if(!function_exists('eltd_title_background_image_classes')) {
-	function eltd_title_background_image_classes($classes) {
-		global $eltd_options;
-		global $wp_query;
-
-		//init variables
-		$id 					= $wp_query->get_queried_object_id();
+if(!function_exists('borderland_elated_title_background_image_classes')) {
+	function borderland_elated_title_background_image_classes($classes) {
+		$id = borderland_elated_get_page_id();
 		$is_img_responsive 		= '';
 		$is_image_fixed			= '';
 		$is_image_fixed_array 	= array('yes', 'yes_zoom');
 		$show_title_img			= true;
 		$title_img				= '';
 
-		if(eltd_is_woocommerce_page()) {
-			$id = get_option('woocommerce_shop_page_id');
-		}
-
 		//is responsive image is set for current page?
 		if(get_post_meta($id, "eltd_responsive-title-image", true) != "") {
 			$is_img_responsive = get_post_meta($id, "eltd_responsive-title-image", true);
 		} else {
 			//take value from theme options
-			$is_img_responsive = $eltd_options['responsive_title_image'];
+			$is_img_responsive = borderland_elated_options()->getOptionValue( 'responsive_title_image' );
 		}
 
 		//is title image chosen for current page?
@@ -80,7 +65,7 @@ if(!function_exists('eltd_title_background_image_classes')) {
 			$title_img = get_post_meta($id, "eltd_title-image", true);
 		}else{
 			//take image that is set in theme options
-			$title_img = $eltd_options['title_image'];
+			$title_img = borderland_elated_options()->getOptionValue( 'title_image' );
 		}
 
 		//is image set to be fixed for current page?
@@ -88,7 +73,7 @@ if(!function_exists('eltd_title_background_image_classes')) {
 			$is_image_fixed = get_post_meta($id, "eltd_fixed-title-image", true);
 		}else{
 			//take setting from theme options
-			$is_image_fixed = $eltd_options['fixed_title_image'];
+			$is_image_fixed = borderland_elated_options()->getOptionValue( 'fixed_title_image' );
 		}
 
 		//is title image hidden for current page?
@@ -117,32 +102,25 @@ if(!function_exists('eltd_title_background_image_classes')) {
 		return $classes;
 	}
 
-	add_filter('eltd_title_classes', 'eltd_title_background_image_classes');
+	add_filter('borderland_elated_filter_title_classes', 'borderland_elated_title_background_image_classes');
 }
 
-if(!function_exists('eltd_title_text_is_hidden_class')) {
-	function eltd_title_text_is_hidden_class($classes) {
-		global $eltd_options;
-		global $wp_query;
+if(!function_exists('borderland_elated_title_text_is_hidden_class')) {
+	function borderland_elated_title_text_is_hidden_class($classes) {
 		$is_title_text_visible = true;
 
 		//init variables
-		$id = $wp_query->get_queried_object_id();
-
-		if(eltd_is_woocommerce_page()) {
-			$id = get_option('woocommerce_shop_page_id');
-		}
-		
+		$id = borderland_elated_get_page_id();
 		
 		if(get_post_meta($id, "eltd_show_page_title_text", true) == 'yes') {
 			$is_title_text_visible = true;
 		} elseif(get_post_meta($id, "eltd_show_page_title_text", true) == 'no') {
 			$is_title_text_visible = false;
-		} elseif(get_post_meta($id, "eltd_show_page_title_text", true) == '' && (isset($eltd_options['show_page_title_text']) && $eltd_options['show_page_title_text'] == 'yes')) {
+		} elseif(get_post_meta($id, "eltd_show_page_title_text", true) == '' && (borderland_elated_options()->getOptionValue( 'show_page_title_text' ) == 'yes')) {
 			$is_title_text_visible = true;
-		} elseif(get_post_meta($id, "eltd_show_page_title_text", true) == '' && (isset($eltd_options['show_page_title_text']) && $eltd_options['show_page_title_text'] == 'no')) {
+		} elseif(get_post_meta($id, "eltd_show_page_title_text", true) == '' && (borderland_elated_options()->getOptionValue( 'show_page_title_text' ) == 'no')) {
 			$is_title_text_visible = false;
-		} elseif(isset($eltd_options['show_page_title_text']) && $eltd_options['show_page_title_text'] == 'yes') {
+		} elseif(borderland_elated_options()->getOptionValue( 'show_page_title_text' ) == 'yes') {
 			$is_title_text_visible = true;
 		}
 
@@ -153,22 +131,13 @@ if(!function_exists('eltd_title_text_is_hidden_class')) {
 		return $classes;
 	}
 
-	add_filter('eltd_title_classes', 'eltd_title_text_is_hidden_class');
+	add_filter('borderland_elated_filter_title_classes', 'borderland_elated_title_text_is_hidden_class');
 }
 
-
-
-if(!function_exists('eltd_title_breadcrumb_type_class')) {
-    function eltd_title_breadcrumb_type_class($classes) {
-        global $eltd_options;
-        global $wp_query;
-
+if(!function_exists('borderland_elated_title_breadcrumb_type_class')) {
+    function borderland_elated_title_breadcrumb_type_class($classes) {
         //init variables
-        $id 			= $wp_query->get_queried_object_id();
-
-		if(eltd_is_woocommerce_page()) {
-			$id = get_option('woocommerce_shop_page_id');
-		}
+	    $id = borderland_elated_get_page_id();
 
         $title_type = "standard_title";
         if(get_post_meta($id, "eltd_page_title_type", true) != ""){
@@ -176,7 +145,7 @@ if(!function_exists('eltd_title_breadcrumb_type_class')) {
         }else if(is_404()){
             $title_type = "breadcrumbs_title";
         }else{
-            $title_type = $eltd_options['title_type'];
+            $title_type = borderland_elated_options()->getOptionValue( 'title_type' );
         }
 
         $classes[] = $title_type;
@@ -184,29 +153,23 @@ if(!function_exists('eltd_title_breadcrumb_type_class')) {
         return $classes;
     }
 
-    add_filter('eltd_title_classes', 'eltd_title_breadcrumb_type_class');
+    add_filter('borderland_elated_filter_title_classes', 'borderland_elated_title_breadcrumb_type_class');
 }
 
-if(!function_exists('eltd_title_background_color_class')) {
-	function eltd_title_background_color_class($classes) {
-		global $eltd_options;
-		global $wp_query;
-
+if(!function_exists('borderland_elated_title_background_color_class')) {
+	function borderland_elated_title_background_color_class($classes) {
 		//init variables
-		$id 			= $wp_query->get_queried_object_id();
 		$title_image	= '';
 		$title_bg_color = '';
-
-		if(eltd_is_woocommerce_page()) {
-			$id = get_option('woocommerce_shop_page_id');
-		}
+		
+		$id = borderland_elated_get_page_id();
 
 		//is title image chosen for current page?
 		if(get_post_meta($id, "eltd_title-image", true) != ""){
 			$title_img = get_post_meta($id, "eltd_title-image", true);
 		}else{
 			//take image that is set in theme options
-			$title_img = $eltd_options['title_image'];
+			$title_img = borderland_elated_options()->getOptionValue( 'title_image' );
 		}
 
 		//is title background color set?
@@ -214,7 +177,7 @@ if(!function_exists('eltd_title_background_color_class')) {
 			$title_bg_color = get_post_meta($id, "eltd_page-title-background-color", true);
 		}else{
 			//take background color from
-			$title_bg_color = $eltd_options['title_background_color'];
+			$title_bg_color = borderland_elated_options()->getOptionValue( 'title_background_color' );
 		}
 
 		if($title_bg_color !== '' && $title_img === '') {
@@ -224,5 +187,5 @@ if(!function_exists('eltd_title_background_color_class')) {
 		return $classes;
 	}
 
-	add_filter('eltd_title_classes', 'eltd_title_background_color_class');
+	add_filter('borderland_elated_filter_title_classes', 'borderland_elated_title_background_color_class');
 }

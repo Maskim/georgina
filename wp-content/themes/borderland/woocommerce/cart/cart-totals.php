@@ -2,7 +2,15 @@
 /**
  * Cart totals
  *
- * @author 		WooThemes
+ * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart-totals.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
  * @package 	WooCommerce/Templates
  * @version     2.3.6
  */
@@ -12,17 +20,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="cart_totals <?php if ( WC()->customer->has_calculated_shipping() ) echo 'calculated_shipping'; ?>">
+<div class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-	<h2><?php _e( 'Cart Totals', 'woocommerce' ); ?></h2>
+	<h2><?php esc_html_e( 'Cart Totals', 'borderland' ); ?></h2>
 
 	<table cellspacing="0" class="shop_table shop_table_responsive">
 
 		<tr class="cart-subtotal">
-			<th><?php _e( 'Subtotal', 'woocommerce' ); ?></th>
-            <td data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
+			<th><?php esc_html_e( 'Subtotal', 'borderland' ); ?></th>
+            <td data-title="<?php esc_attr_e( 'Subtotal', 'borderland' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
@@ -43,8 +51,8 @@ if ( ! defined( 'ABSPATH' ) ) {
         <?php elseif ( WC()->cart->needs_shipping() && 'yes' === get_option( 'woocommerce_enable_shipping_calc' ) ) : ?>
 
 			<tr class="shipping">
-				<th><?php _e( 'Shipping', 'woocommerce' ); ?></th>
-                <td data-title="<?php esc_attr_e( 'Shipping', 'woocommerce' ); ?>"><?php woocommerce_shipping_calculator(); ?></td>
+				<th><?php esc_html_e( 'Shipping', 'borderland' ); ?></th>
+                <td data-title="<?php esc_attr_e( 'Shipping', 'borderland' ); ?>"><?php woocommerce_shipping_calculator(); ?></td>
 			</tr>
 
 		<?php endif; ?>
@@ -55,23 +63,23 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <td data-title="<?php echo esc_attr( $fee->name ); ?>"><?php wc_cart_totals_fee_html( $fee ); ?></td>
 			</tr>
 		<?php endforeach; ?>
-
-        <?php if ( wc_tax_enabled() && 'excl' === WC()->cart->tax_display_cart ) :
-            $taxable_address = WC()->customer->get_taxable_address();
-            $estimated_text  = WC()->customer->is_customer_outside_base() && ! WC()->customer->has_calculated_shipping()
-                ? sprintf( ' <small>(' . __( 'estimated for %s', 'woocommerce' ) . ')</small>', WC()->countries->estimated_for_prefix( $taxable_address[0] ) . WC()->countries->countries[ $taxable_address[0] ] )
-                : '';
+		
+		<?php if ( wc_tax_enabled() && ! WC()->cart->display_prices_including_tax() ) :
+			$taxable_address = WC()->customer->get_taxable_address();
+			$estimated_text  = WC()->customer->is_customer_outside_base() && ! WC()->customer->has_calculated_shipping()
+				? sprintf( ' <small>' . esc_html__( '(estimated for %s)', 'borderland' ) . '</small>', WC()->countries->estimated_for_prefix( $taxable_address[0] ) . WC()->countries->countries[ $taxable_address[0] ] )
+				: '';
 
             if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) : ?>
 				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>
 					<tr class="tax-rate tax-rate-<?php echo sanitize_title( $code ); ?>">
-						<th><?php echo esc_html( $tax->label ); ?></th>
+						<th><?php echo esc_html( $tax->label ) . $estimated_text; ?></th>
                         <td data-title="<?php echo esc_attr( $tax->label ); ?>"><?php echo wp_kses_post( $tax->formatted_amount ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<tr class="tax-total">
-					<th><?php echo esc_html( WC()->countries->tax_or_vat() ); ?></th>
+					<th><?php echo esc_html( WC()->countries->tax_or_vat() ) . $estimated_text; ?></th>
                     <td data-title="<?php echo esc_attr( WC()->countries->tax_or_vat() ); ?>"><?php wc_cart_totals_taxes_total_html(); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -80,8 +88,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
 		<tr class="order-total">
-			<th><?php _e( 'Total', 'woocommerce' ); ?></th>
-            <td data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></td>
+			<th><?php esc_html_e( 'Total', 'borderland' ); ?></th>
+            <td data-title="<?php esc_attr_e( 'Total', 'borderland' ); ?>"><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
 
 		<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>

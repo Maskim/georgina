@@ -349,10 +349,10 @@ $html .= "</li>";
 if($show_button == "yes"){
 	if($pricing_button_type == "standard_button"){
 		if(isset($button_text) && $button_text !== '') {
-			$html .="<li class='price_button $button_class' ".eltd_get_inline_style($button_holder_style)." >";
+			$html .="<li class='price_button $button_class' ".borderland_elated_get_inline_style($button_holder_style)." >";
 			if($type=="title_on_top"){
 				$html .= "<div class='title_on_top_button_wrapper $disable_button_border_top_class'>";
-				$html .= "<a ".eltd_get_inline_style($button_style)." href='$link' target='$target'>".$button_text."";
+				$html .= "<a ".borderland_elated_get_inline_style($button_style)." href='$link' target='$target'>".$button_text."";
 				if($button_arrow == "yes"){
 					$html .= "<span class='arrow_right'></span>";
 				}        
@@ -361,7 +361,7 @@ if($show_button == "yes"){
 			}
 
 			if($type=="price_on_top"){
-				$html .= "<a ".eltd_get_inline_style($button_style)." href='$link' target='$target'>".$button_text."";
+				$html .= "<a ".borderland_elated_get_inline_style($button_style)." href='$link' target='$target'>".$button_text."";
 				if($button_arrow == "yes"){
 					$html .= "<span class='arrow_right'></span>";
 				}
@@ -372,7 +372,7 @@ if($show_button == "yes"){
 		}
 	}elseif($pricing_button_type == "button_on_bottom"){
 		$html .="<li class='button_on_bottom_wrapper'>";
-		$html .="<a class='button_on_bottom' ".eltd_get_inline_style($button_on_bottom_styles)." href='$link' target='$target'></a>";
+		$html .="<a class='button_on_bottom' ".borderland_elated_get_inline_style($button_on_bottom_styles)." href='$link' target='$target'></a>";
 		$html .="</li>";//close li.price_button
 	}
 }
@@ -381,4 +381,4 @@ $html .= "</ul>";
 $html .= "</div>"; //close div.price_table_inner
 $html .="</div>"; //close div.eltd_price_table
 
-print $html;
+echo borderland_elated_get_module_part( $html );

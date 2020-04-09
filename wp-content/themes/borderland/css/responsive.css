@@ -2403,12 +2403,8 @@
 	.projects_holder .filler,
 	.masonry_with_space .projects_holder .mix,
 	.masonry_with_space .projects_holder .filler,
-	/*.full_width .projects_masonry_holder .portfolio_masonry_item,*/
-    /*.full_width .projects_masonry_holder .portfolio_masonry_item.large_height,*/
     .full_width .projects_masonry_holder .portfolio_masonry_item.large_width,
     .full_width .projects_masonry_holder .portfolio_masonry_item.large_width_height,
-    /*.projects_masonry_holder .portfolio_masonry_item,*/
-    /*.projects_masonry_holder .portfolio_masonry_item.large_height,*/
     .projects_masonry_holder .portfolio_masonry_item.large_width,
     .projects_masonry_holder .portfolio_masonry_item.large_width_height,
     .full_width .projects_holder_outer.v6 .hover_text, 
@@ -2635,7 +2631,7 @@
 	}
 
 	.comment_holder .comment-list li ul.children{
-		padding: 0 0 0 30px;
+		padding: 0;
 	}
 	
 	.blog_holder.masonry article,
@@ -3226,11 +3222,6 @@
 	.gallery_holder ul.gallery_with_space.v2 li{
 		width: 100% !important;
 		margin-right: 0 !important;
-	}
-
-
-	.comment_holder .comment-list li ul.children{
-		padding: 0 0 0 15px;
 	}
 
 	.box_image_with_border{

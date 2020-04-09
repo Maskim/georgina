@@ -10,45 +10,19 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woothemes.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     2.0.0
+ * @see https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce/Templates
+ * @version 3.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
 global $product;
 
-if ( get_option( 'woocommerce_enable_review_rating' ) === 'no' )
+if ( ! wc_review_ratings_enabled() ) {
 	return;
-?>
+}
 
-<?php if ( $rating_html = $product->get_rating_html() ) : ?>
-    <?php echo wp_kses($rating_html, array(
-        'div' => array(
-            'class' => true,
-            'title' => true,
-            'style' => true,
-            'id' => true
-        ),
-        'span' => array(
-            'style' => true,
-            'class' => true,
-            'id' => true,
-            'title' => true
-        ),
-        'strong' => array(
-            'class' => true,
-            'id' => true,
-            'style' => true,
-            'title' => true
-        )
-    )); ?>
-<?php else: ?>
-        <div class="star-rating">
-            <span style="width: 0%"></span>
-        </div>
-<?php endif; ?>
+echo wc_get_rating_html( $product->get_average_rating() ); // WordPress.XSS.EscapeOutput.OutputNotEscaped.
