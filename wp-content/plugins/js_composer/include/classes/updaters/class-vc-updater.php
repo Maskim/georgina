@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WPBakery Visual Composer updater
+ * WPBakery WPBakery Page Builder updater
  *
- * @package WPBakeryVisualComposer
+ * @package WPBakeryPageBuilder
  *
  */
 
@@ -29,7 +29,7 @@ class Vc_Updater {
 	/**
 	 * @var string
 	 */
-	public $title = 'WPBakery Visual Composer';
+	public $title = 'WPBakery Page Builder';
 
 	/**
 	 * @var bool
@@ -41,14 +41,6 @@ class Vc_Updater {
 			$this,
 			'preUpgradeFilter',
 		), 10, 4 );
-	}
-
-	/**
-	 * @deprecated 5.0
-	 */
-	public function checkLicenseKeyFromRemote() {
-		_deprecated_function( '\Vc_Updater::checkLicenseKeyFromRemote', '5.0 (will be removed in next release)', 'vc_license()->checkLicenseKeyFromRemote()' );
-		vc_license()->checkLicenseKeyFromRemote();
 	}
 
 	/**
@@ -80,13 +72,26 @@ class Vc_Updater {
 	/**
 	 * Get unique, short-lived download link
 	 *
-	 * @param deprecated string $license_key
-	 *
 	 * @return array|boolean JSON response or false if request failed
 	 */
-	public function getDownloadUrl( $license_key = '' ) {
+	public function getDownloadUrl() {
 		$url = $this->getUrl();
-		$response = wp_remote_get( $url );
+		// FIX SSL SNI
+		$filter_add = true;
+		if ( function_exists( 'curl_version' ) ) {
+			$version = curl_version();
+			if ( version_compare( $version['version'], '7.18', '>=' ) ) {
+				$filter_add = false;
+			}
+		}
+		if ( $filter_add ) {
+			add_filter( 'https_ssl_verify', '__return_false' );
+		}
+		$response = wp_remote_get( $url, array( 'timeout' => 30 ) );
+
+		if ( $filter_add ) {
+			remove_filter( 'https_ssl_verify', '__return_false' );
+		}
 
 		if ( is_wp_error( $response ) ) {
 			return false;
@@ -95,6 +100,9 @@ class Vc_Updater {
 		return json_decode( $response['body'], true );
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getUrl() {
 		$host = esc_url( vc_license()->getSiteUrl() );
 		$key = rawurlencode( vc_license()->getLicenseKey() );
@@ -104,6 +112,9 @@ class Vc_Updater {
 		return $url;
 	}
 
+	/**
+	 * @return string|void
+	 */
 	public static function getUpdaterUrl() {
 		return vc_is_network_plugin() ? network_admin_url( 'admin.php?page=vc-updater' ) : admin_url( 'admin.php?page=vc-updater' );
 	}
@@ -113,7 +124,7 @@ class Vc_Updater {
 	 *
 	 * @param $reply
 	 * @param $package
-	 * @param $updater WP_Upgrader
+	 * @param WP_Upgrader $updater
 	 *
 	 * @return mixed|string|WP_Error
 	 */
@@ -126,32 +137,32 @@ class Vc_Updater {
 
 		$res = $updater->fs_connect( array( WP_CONTENT_DIR ) );
 		if ( ! $res ) {
-			return new WP_Error( 'no_credentials', __( "Error! Can't connect to filesystem", 'js_composer' ) );
+			return new WP_Error( 'no_credentials', esc_html__( "Error! Can't connect to filesystem", 'js_composer' ) );
 		}
 
 		if ( ! vc_license()->isActivated() ) {
 			if ( vc_is_as_theme() && vc_get_param( 'action' ) !== 'update-selected' ) {
 				return false;
 			}
-			$url = esc_url( self::getUpdaterUrl() );
+			$url = self::getUpdaterUrl();
 
-			return new WP_Error( 'no_credentials', __( 'To receive automatic updates license activation is required. Please visit <a href="' . $url . '' . '" target="_blank">Settings</a> to activate your Visual Composer.', 'js_composer' ) . ' ' . sprintf( ' <a href="http://go.wpbakery.com/faq-update-in-theme" target="_blank">%s</a>', __( 'Got Visual Composer in theme?', 'js_composer' ) ) );
+			return new WP_Error( 'no_credentials', sprintf( esc_html__( 'To receive automatic updates license activation is required. Please visit %sSettings%s to activate your WPBakery Page Builder.', 'js_composer' ), '<a href="' . esc_url( $url ) . '" target="_blank">', '</a>' ) . ' ' . sprintf( ' <a href="https://go.wpbakery.com/faq-update-in-theme" target="_blank">%s</a>', esc_html__( 'Got WPBakery Page Builder in theme?', 'js_composer' ) ) );
 		}
 
-		$updater->strings['downloading_package_url'] = __( 'Getting download link...', 'js_composer' );
+		$updater->strings['downloading_package_url'] = esc_html__( 'Getting download link...', 'js_composer' );
 		$updater->skin->feedback( 'downloading_package_url' );
 
 		$response = $this->getDownloadUrl();
 
 		if ( ! $response ) {
-			return new WP_Error( 'no_credentials', __( 'Download link could not be retrieved', 'js_composer' ) );
+			return new WP_Error( 'no_credentials', esc_html__( 'Download link could not be retrieved', 'js_composer' ) );
 		}
 
 		if ( ! $response['status'] ) {
 			return new WP_Error( 'no_credentials', $response['error'] );
 		}
 
-		$updater->strings['downloading_package'] = __( 'Downloading package...', 'js_composer' );
+		$updater->strings['downloading_package'] = esc_html__( 'Downloading package...', 'js_composer' );
 		$updater->skin->feedback( 'downloading_package' );
 
 		$downloaded_archive = download_url( $response['url'] );
@@ -170,87 +181,5 @@ class Vc_Updater {
 		}
 
 		return $downloaded_archive;
-	}
-
-	/**
-	 * Downloads new VC from Envato marketplace and unzips into temporary directory.
-	 *
-	 * @deprecated 4.8
-	 *
-	 * @param $reply
-	 * @param $package
-	 * @param $updater WP_Upgrader
-	 *
-	 * @return mixed|string|WP_Error
-	 */
-	public function upgradeFilterFromEnvato( $reply, $package, $updater ) {
-		_deprecated_function( '\Vc_Updater::upgradeFilterFromEnvato', '4.8 (will be removed in next release)' );
-		global $wp_filesystem;
-		/** @var \WP_Filesystem_Base $wp_filesystem */
-
-		if ( ( isset( $updater->skin->plugin ) && vc_plugin_name() === $updater->skin->plugin ) || ( isset( $updater->skin->plugin_info ) && $updater->skin->plugin_info['Name'] === $this->title ) ) {
-			$updater->strings['download_envato'] = __( 'Downloading package from envato market...', 'js_composer' );
-			$updater->skin->feedback( 'download_envato' );
-			$package_filename = 'js_composer.zip';
-			$res = $updater->fs_connect( array( WP_CONTENT_DIR ) );
-			if ( ! $res ) {
-				return new WP_Error( 'no_credentials', __( "Error! Can't connect to filesystem", 'js_composer' ) );
-			}
-			$username = vc_settings()->get( 'envato_username' );
-			$api_key = vc_settings()->get( 'envato_api_key' );
-			$purchase_code = vc_license()->getLicenseKey();
-			if ( ! vc_license()->isActivated() || empty( $username ) || empty( $api_key ) || empty( $purchase_code ) ) {
-				return new WP_Error( 'no_credentials', __( 'To receive automatic updates license activation is required. Please visit <a href="' . admin_url( 'admin.php?page=vc-updater' ) . '' . '" target="_blank">Settings</a> to activate your Visual Composer.', 'js_composer' ) );
-			}
-			$json = wp_remote_get( $this->envatoDownloadPurchaseUrl( $username, $api_key, $purchase_code ) );
-			$result = json_decode( $json['body'], true );
-			if ( ! isset( $result['download-purchase']['download_url'] ) ) {
-				return new WP_Error( 'no_credentials', __( 'Error! Envato API error', 'js_composer' ) . ( isset( $result['error'] ) ? ': ' . $result['error'] : '.' ) );
-			}
-			$result['download-purchase']['download_url'];
-			$download_file = download_url( $result['download-purchase']['download_url'] );
-			if ( is_wp_error( $download_file ) ) {
-				return $download_file;
-			}
-			$upgrade_folder = $wp_filesystem->wp_content_dir() . 'uploads/js_composer_envato_package';
-			if ( is_dir( $upgrade_folder ) ) {
-				$wp_filesystem->delete( $upgrade_folder );
-			}
-			$result = unzip_file( $download_file, $upgrade_folder );
-			if ( $result && is_file( $upgrade_folder . '/' . $package_filename ) ) {
-				return $upgrade_folder . '/' . $package_filename;
-			}
-
-			return new WP_Error( 'no_credentials', __( 'Error on unzipping package', 'js_composer' ) );
-		}
-
-		return $reply;
-	}
-
-	/**
-	 * @deprecated 4.8
-	 */
-	public function removeTemporaryDir() {
-		_deprecated_function( '\Vc_Updater::removeTemporaryDir', '4.8 (will be removed in next release)' );
-		global $wp_filesystem;
-		/** @var \WP_Filesystem_Base $wp_filesystem */
-		if ( is_dir( $wp_filesystem->wp_content_dir() . 'uploads/js_composer_envato_package' ) ) {
-			$wp_filesystem->delete( $wp_filesystem->wp_content_dir() . 'uploads/js_composer_envato_package', true );
-		}
-	}
-
-	/**
-	 * @deprecated 4.8
-	 *
-	 * @param $username
-	 * @param $api_key
-	 * @param $purchase_code
-	 *
-	 * @return string
-	 */
-	protected function envatoDownloadPurchaseUrl( $username, $api_key, $purchase_code ) {
-		_deprecated_function( '\Vc_Updater::envatoDownloadPurchaseUrl', '4.8 (will be removed in next release)' );
-
-		return 'http://marketplace.envato.com/api/edge/' . rawurlencode( $username ) . '/' . rawurlencode( $api_key ) . '/download-purchase:' . rawurlencode( $purchase_code ) . '.json';
 	}
 }

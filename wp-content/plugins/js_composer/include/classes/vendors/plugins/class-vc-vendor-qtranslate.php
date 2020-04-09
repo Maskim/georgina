@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Vc_Vendor_Qtranslate
  * @since 4.3
  */
-class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
+class Vc_Vendor_Qtranslate {
 
 	/**
 	 * @since 4.3
@@ -27,8 +27,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 		$this->languages = $languages;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isValidPostType() {
-		return in_array( get_post_type(), vc_editor_post_types() );
+		return in_array( get_post_type(), vc_editor_post_types(), true );
 	}
 
 	/**
@@ -38,41 +41,41 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 		$this->setLanguages();
 		global $q_config;
 		add_filter( 'vc_frontend_get_page_shortcodes_post_content', array(
-			&$this,
+			$this,
 			'filterPostContent',
 		) );
 
 		add_action( 'vc_backend_editor_render', array(
-			&$this,
+			$this,
 			'enqueueJsBackend',
 		) );
 
 		add_action( 'vc_frontend_editor_render', array(
-			&$this,
+			$this,
 			'enqueueJsFrontend',
 		) );
 
 		add_action( 'vc_frontend_editor_render_template', array(
-			&$this,
+			$this,
 			'vcFrontEndEditorRender',
 		) );
 		add_filter( 'vc_nav_controls', array(
-			&$this,
+			$this,
 			'vcNavControls',
 		) );
 
 		add_filter( 'vc_nav_front_controls', array(
-			&$this,
+			$this,
 			'vcNavControlsFrontend',
 		) );
 
 		add_filter( 'vc_frontend_editor_iframe_url', array(
-			&$this,
+			$this,
 			'vcRenderEditButtonLink',
 		) );
 		if ( ! vc_is_frontend_editor() ) {
 			add_filter( 'vc_get_inline_url', array(
-				&$this,
+				$this,
 				'vcRenderEditButtonLink',
 			) );
 		}
@@ -82,7 +85,7 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 		}
 
 		add_action( 'init', array(
-			&$this,
+			$this,
 			'qtransPostInit',
 		), 1000 );
 
@@ -221,8 +224,8 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
 	 * @return string
+	 * @since 4.3
 	 */
 	public function generateSelect() {
 		$output = '';
@@ -239,8 +242,8 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
 	 * @return string
+	 * @since 4.3
 	 */
 	public function generateSelectFrontend() {
 		$output = '';
@@ -258,11 +261,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $list
 	 *
 	 * @return array
+	 * @since 4.3
+	 *
 	 */
 	public function vcNavControls( $list ) {
 		if ( $this->isValidPostType() ) {
@@ -279,11 +282,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $list
 	 *
 	 * @return array
+	 * @since 4.3
+	 *
 	 */
 	public function vcNavControlsFrontend( $list ) {
 		if ( $this->isValidPostType() ) {
@@ -300,8 +303,8 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
 	 * @return string
+	 * @since 4.3
 	 */
 	public function getControlSelectDropdown() {
 		return '<li class="vc_pull-right" > ' . $this->generateSelect() . '</li > ';
@@ -315,11 +318,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $link
 	 *
 	 * @return string
+	 * @since 4.3
+	 *
 	 */
 	public function vcRenderEditButtonLink( $link ) {
 		return add_query_arg( array( 'qlang' => qtrans_getLanguage() ), $link );
@@ -343,11 +346,11 @@ class Vc_Vendor_Qtranslate implements Vc_Vendor_Interface {
 	}
 
 	/**
-	 * @since 4.3
-	 *
 	 * @param $content
 	 *
 	 * @return string
+	 * @since 4.3
+	 *
 	 */
 	public function filterPostContent( $content ) {
 		return qtrans_useCurrentLanguageIfNotFoundShowAvailable( $content );

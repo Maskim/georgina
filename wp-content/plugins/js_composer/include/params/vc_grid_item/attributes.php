@@ -9,9 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param $value
  * @param $data
  *
+ * @return string
  * @since 4.4
  *
- * @return string
  */
 function vc_gitem_template_attribute_filter_terms_css_classes( $value, $data ) {
 	$output = '';
@@ -34,7 +34,7 @@ function vc_gitem_template_attribute_filter_terms_css_classes( $value, $data ) {
  * Get image for post
  *
  * @param $data
- * @return mixed|string|void
+ * @return mixed|string
  */
 function vc_gitem_template_attribute_post_image( $data ) {
 	/**
@@ -52,6 +52,11 @@ function vc_gitem_template_attribute_post_image( $data ) {
 	return apply_filters( 'vc_gitem_template_attribute_post_image_html', $html );
 }
 
+/**
+ * @param $value
+ * @param $data
+ * @return mixed
+ */
 function vc_gitem_template_attribute_featured_image( $value, $data ) {
 	/**
 	 * @var Wp_Post $post
@@ -74,9 +79,9 @@ function vc_gitem_template_attribute_featured_image( $value, $data ) {
  * @param $value
  * @param $data
  *
+ * @return mixed
  * @since 4.5
  *
- * @return mixed
  */
 function vc_gitem_template_attribute_vc_btn( $value, $data ) {
 	/**
@@ -112,16 +117,20 @@ function vc_gitem_template_attribute_post_image_url( $value, $data ) {
 		'post' => null,
 		'data' => '',
 	), $data ) );
+	$extraImageMeta = explode( ':', $data );
+	$size = 'large'; // default size
+	if ( isset( $extraImageMeta[1] ) ) {
+		$size = $extraImageMeta[1];
+	}
 	if ( 'attachment' === $post->post_type ) {
-		$src = wp_get_attachment_image_src( $post->ID, 'large' );
+		$src = vc_get_image_by_size( $post->ID, $size );
 	} else {
 		$attachment_id = get_post_thumbnail_id( $post->ID );
-		$src = wp_get_attachment_image_src( $attachment_id, 'large' );
+		$src = vc_get_image_by_size( $attachment_id, $size );
 	}
-	if ( empty( $src ) && ! empty( $data ) ) {
-		$output = esc_attr( rawurldecode( $data ) );
-	} elseif ( ! empty( $src ) ) {
-		$output = $src[0];
+
+	if ( ! empty( $src ) ) {
+		$output = is_array( $src ) ? $src[0] : $src;
 	} else {
 		$output = vc_asset_url( 'vc/vc_gitem_image.png' );
 	}
@@ -140,7 +149,7 @@ function vc_gitem_template_attribute_post_image_url( $value, $data ) {
 function vc_gitem_template_attribute_post_image_url_href( $value, $data ) {
 	$link = vc_gitem_template_attribute_post_image_url( $value, $data );
 
-	return strlen( $link ) ? ' href="' . esc_attr( $link ) . '"' : '';
+	return strlen( $link ) ? ' href="' . esc_url( $link ) . '"' : '';
 }
 
 /**
@@ -160,11 +169,13 @@ function vc_gitem_template_attribute_post_image_url_attr_prettyphoto( $value, $d
 		'post' => null,
 		'data' => '',
 	), $data ) );
-	$href = vc_gitem_template_attribute_post_image_url_href( $value, array( 'post' => $post, 'data' => '' ) );
+	$href = vc_gitem_template_attribute_post_image_url_href( $value, array(
+		'post' => $post,
+		'data' => '',
+	) );
 	$rel = ' data-rel="' . esc_attr( 'prettyPhoto[rel-' . md5( vc_request_param( 'shortcode_id' ) ) . ']' ) . '"';
-	return $href . $rel . ' class="' . esc_attr( $data . ( strlen( $href ) ? ' prettyphoto' : '' ) )
-	       . '" title="' . esc_attr(
-		   apply_filters( 'vc_gitem_template_attribute_post_title', $post->post_title, $data_default ) ) . '"';
+
+	return $href . $rel . ' class="' . esc_attr( $data . ( strlen( $href ) ? ' prettyphoto' : '' ) ) . '" title="' . esc_attr( apply_filters( 'vc_gitem_template_attribute_post_title', $post->post_title, $data_default ) ) . '"';
 }
 
 /**
@@ -189,7 +200,7 @@ function vc_gitem_template_attribute_post_image_alt( $value, $data ) {
 		return '';
 	}
 
-	$alt = trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
+	$alt = trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
 
 	return apply_filters( 'vc_gitem_template_attribute_post_image_url_value', $alt );
 }
@@ -210,14 +221,18 @@ function vc_gitem_template_attribute_post_image_background_image_css( $value, $d
 		'post' => null,
 		'data' => '',
 	), $data ) );
+	$size = 'large'; // default size
+	if ( ! empty( $data ) ) {
+		$size = $data;
+	}
 	if ( 'attachment' === $post->post_type ) {
-		$src = wp_get_attachment_image_src( $post->ID, 'large' );
+		$src = vc_get_image_by_size( $post->ID, $size );
 	} else {
 		$attachment_id = get_post_thumbnail_id( $post->ID );
-		$src = wp_get_attachment_image_src( $attachment_id, 'large' );
+		$src = vc_get_image_by_size( $attachment_id, $size );
 	}
 	if ( ! empty( $src ) ) {
-		$output = 'background-image: url(\'' . $src[0] . '\') !important;';
+		$output = 'background-image: url(\'' . ( is_array( $src ) ? $src[0] : $src ) . '\') !important;';
 	} else {
 		$output = 'background-image: url(\'' . vc_asset_url( 'vc/vc_gitem_image.png' ) . '\') !important;';
 	}
@@ -316,9 +331,10 @@ function vc_gitem_template_attribute_post_data( $value, $data ) {
 		'data' => '',
 	), $data ) );
 
-	return strlen( $data ) > 0 ? apply_filters( 'vc_gitem_template_attribute_' . $data, (
-		isset( $post->$data ) ? $post->$data : ''
-	), array( 'post' => $post, 'data' => '' ) ) : $value;
+	return strlen( $data ) > 0 ? apply_filters( 'vc_gitem_template_attribute_' . $data, ( isset( $post->$data ) ? $post->$data : '' ), array(
+		'post' => $post,
+		'data' => '',
+	) ) : $value;
 }
 
 /**
@@ -361,6 +377,11 @@ function vc_gitem_template_attribute_post_title( $value, $data ) {
 	return the_title( '', '', false );
 }
 
+/**
+ * @param $value
+ * @param $data
+ * @return string|null
+ */
 function vc_gitem_template_attribute_post_author( $value, $data ) {
 	/**
 	 * @var null|Wp_Post $post ;
@@ -374,6 +395,11 @@ function vc_gitem_template_attribute_post_author( $value, $data ) {
 	return get_the_author();
 }
 
+/**
+ * @param $value
+ * @param $data
+ * @return string
+ */
 function vc_gitem_template_attribute_post_author_href( $value, $data ) {
 	/**
 	 * @var null|Wp_Post $post ;
@@ -386,6 +412,12 @@ function vc_gitem_template_attribute_post_author_href( $value, $data ) {
 
 	return get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) );
 }
+
+/**
+ * @param $value
+ * @param $data
+ * @return mixed
+ */
 function vc_gitem_template_attribute_post_categories( $value, $data ) {
 	/**
 	 * @var null|Wp_Post $post ;

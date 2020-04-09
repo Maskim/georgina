@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'minimize',
 			'close',
 		);
-		// TODO: Check || ! empty( $list_presets ) || ! empty( $list_vendor_presets )
-		if ( vc_user_access()->part( 'presets' )->can()->get() || vc_user_access()->part( 'templates' )->can()->get() ) {
+
+		if ( vc_user_access()->part( 'presets' )->checkStateAny( true, null )->get() || vc_user_access()->part( 'templates' )->checkStateAny( true, null )->get() ) {
 			$controls = array_merge( array(
 				'settings' => array(
 					'template' => 'editors/partials/vc_ui-settings-dropdown.tpl.php',
@@ -21,11 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 
 		vc_include_template( 'editors/popups/vc_ui-header.tpl.php', array(
-			'title' => __( 'Page settings', 'js_composer' ),
+			'title' => esc_html__( 'Page settings', 'js_composer' ),
 			'controls' => $controls,
 			'header_css_class' => 'vc_ui-post-settings-header-container',
 			'content_template' => '',
-		) ); ?>
+		) );
+		?>
 
 		<!-- param window footer-->
 		<div class="vc_ui-panel-content-container">
@@ -35,20 +36,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 		<!-- param window footer-->
-		<?php vc_include_template( 'editors/popups/vc_ui-footer.tpl.php', array(
+		<?php
+		vc_include_template( 'editors/popups/vc_ui-footer.tpl.php', array(
 			'controls' => array(
 				array(
 					'name' => 'close',
-					'label' => __( 'Close', 'js_composer' ),
+					'label' => esc_html__( 'Close', 'js_composer' ),
 					'css_classes' => 'vc_ui-button-fw',
 				),
 				array(
 					'name' => 'save',
-					'label' => __( 'Save changes', 'js_composer' ),
+					'label' => esc_html__( 'Save changes', 'js_composer' ),
 					'css_classes' => 'vc_ui-button-fw',
 					'style' => 'action',
 				),
 			),
-		) ); ?>
+		) );
+		?>
 	</div>
 </div>
